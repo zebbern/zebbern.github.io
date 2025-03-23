@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zebbern | Cybersecurity & Tools</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset and global styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #f4f4f4;
+      }
+      a {
+        color: #0066cc;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      /* Header */
+      header {
+        background: #212121;
+        color: #fff;
+        padding: 20px 0;
+      }
+      header .branding {
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: flex-end;
+      }
+      nav ul li {
+        margin-left: 20px;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: url("https://via.placeholder.com/1200x400?text=Cybersecurity+Background")
+          no-repeat center center/cover;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+      }
+
+      /* Main Content */
+      main {
+        padding: 40px 0;
+      }
+      section {
+        background: #fff;
+        padding: 20px;
+        margin-bottom: 40px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      section h2 {
+        margin-bottom: 15px;
+        color: #212121;
+      }
+      section ul {
+        list-style: disc inside;
+        margin-left: 20px;
+      }
+
+      /* Footer */
+      footer {
+        background: #212121;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      /* Responsive Navigation */
+      @media (max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+        }
+        nav ul li {
+          margin: 10px 0;
+        }
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header with Navigation -->
+    <header>
+      <div class="container">
+        <div class="branding">Zebbern</div>
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Securing the Future, One Byte at a Time</h1>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+      <!-- About Section -->
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          Hello, I'm Zebbern – a cybersecurity expert passionate about
+          developing robust tools to safeguard digital environments. With
+          experience in penetration testing, vulnerability assessment, and
+          system hardening, I deliver innovative solutions for today's cyber
+          challenges.
+        </p>
+      </section>
+
+      <!-- Tools Section -->
+      <section id="tools">
+        <h2>Cybersecurity Tools</h2>
+        <p>
+          Explore a curated collection of open-source and custom-built tools
+          designed for network scanning, penetration testing, and real-time threat
+          monitoring. Each tool is crafted to empower professionals in protecting
+          critical systems.
+        </p>
+        <ul>
+          <li>Network Scanners</li>
+          <li>Penetration Testing Suites</li>
+          <li>Vulnerability Assessment Tools</li>
+          <li>Real-Time Threat Monitoring</li>
+        </ul>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects">
+        <h2>Projects & Research</h2>
+        <p>
+          Dive into my latest projects, research, and case studies that tackle
+          modern cybersecurity challenges. Check out my GitHub for detailed
+          repositories and continuous updates.
+        </p>
+        <p>
+          Visit my GitHub profile:
+          <a href="https://github.com/zebbern" target="_blank">github.com/zebbern</a>
+        </p>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>
+          Interested in collaboration or have inquiries about cybersecurity and
+          tool development? Get in touch!
+        </p>
+        <p>
+          Email:
+          <a href="mailto:contact@zebbern.com">contact@zebbern.com</a>
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Zebbern. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

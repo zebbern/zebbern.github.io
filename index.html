@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Zebbern | Cybersecurity & Tools</title>
 
     <!-- Google Fonts -->
@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
 
-    <!-- Font Awesome for Icons (optional) -->
+    <!-- Font Awesome for Icons (optional, but recommended) -->
     <script
       src="https://kit.fontawesome.com/a2e3e45d70.js" 
       crossorigin="anonymous"
@@ -19,7 +19,7 @@
     ></script>
 
     <style>
-      /* Reset & global styles */
+      /* RESET & GLOBALS */
       * {
         margin: 0;
         padding: 0;
@@ -30,20 +30,23 @@
       }
       body {
         font-family: "Roboto", sans-serif;
-        background: #0f0f0f;
-        color: #e0e0e0;
+        background: #111;
+        color: #eee;
         line-height: 1.6;
+      }
+      img {
+        display: block;
+        max-width: 100%;
       }
       a {
         color: #4fc3f7;
         text-decoration: none;
       }
       a:hover {
-        text-decoration: underline;
+        color: #f9a825;
       }
-      img {
-        display: block;
-        max-width: 100%;
+      ul {
+        list-style: none;
       }
       .container {
         width: 90%;
@@ -51,58 +54,84 @@
         margin: auto;
         padding: 2rem 0;
       }
+      h1, h2, h3 {
+        font-family: "Fira Code", monospace;
+      }
+      /* End Globals */
 
-      /* Header */
+      /* HEADER */
       header {
-        background: #121212;
-        padding: 1.5rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #1b1b1b;
+        padding: 1rem 2rem;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       }
-      header .branding {
-        font-size: 2rem;
+      .branding {
+        font-size: 1.8rem;
         font-weight: 700;
       }
       nav ul {
         display: flex;
-        justify-content: flex-end;
-        list-style: none;
-        margin-top: 10px;
-      }
-      nav ul li {
-        margin-left: 20px;
-      }
-      nav a:hover {
-        color: #f9a825;
+        gap: 1rem;
       }
 
-      /* Hero Section */
+      /* HERO with Typewriter Effect */
       .hero {
-        background: url("https://via.placeholder.com/1200x400/111/fff?text=Cybersecurity+Banner")
-          no-repeat center center/cover;
-        height: 350px;
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
+        flex-direction: column;
+        height: 80vh;
+        background: url("https://via.placeholder.com/1600x900/333/fff?text=Cybersecurity+Banner")
+          no-repeat center center/cover;
         position: relative;
       }
       .hero::after {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        inset: 0;
         background: rgba(0, 0, 0, 0.4);
       }
+      .hero-content {
+        position: relative;
+        text-align: center;
+        z-index: 1;
+      }
       .hero h1 {
-        color: #fff;
         font-size: 3rem;
+        color: #fff;
+        margin-bottom: 0.5rem;
         text-shadow: 2px 2px 10px #000;
-        z-index: 2;
+      }
+      .typewriter {
+        font-family: "Fira Code", monospace;
+        font-size: 1.5rem;
+        color: #4fc3f7;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid #4fc3f7;
+        width: 0;
+        animation: typing 3s steps(26), blink 0.7s infinite step-end alternate;
+        margin: 0 auto;
       }
 
-      /* Sections */
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 20ch; /* Adjust based on text length */
+        }
+      }
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      /* SECTIONS */
       section {
         background: #1c1c1c;
         margin: 2rem 0;
@@ -110,30 +139,34 @@
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         position: relative;
-        overflow: hidden;
       }
       section h2 {
+        font-size: 2rem;
         margin-bottom: 1rem;
         color: #4fc3f7;
-        font-weight: bold;
         transition: color 0.3s ease;
       }
       section h2:hover {
         color: #f9a825;
       }
+      .subheading {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        color: #ccc;
+      }
 
-      /* About Section */
+      /* ABOUT */
       .about-content {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        gap: 2rem;
       }
       .about-content img {
         width: 180px;
         height: 180px;
         border-radius: 50%;
         object-fit: cover;
-        margin-right: 2rem;
         border: 3px solid #4fc3f7;
       }
       .about-text {
@@ -144,7 +177,7 @@
         margin-bottom: 1rem;
       }
 
-      /* Skills Section */
+      /* SKILLS */
       .skills-list {
         display: flex;
         flex-wrap: wrap;
@@ -163,8 +196,12 @@
         color: #f9a825;
       }
 
-      /* Projects Section */
-      #projects .featured-projects {
+      /* PROJECTS / TOOLS */
+      .featured-projects,
+      .repo-cards {
+        margin-top: 2rem;
+      }
+      .featured-projects-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 1.5rem;
@@ -186,9 +223,6 @@
       .project-card p {
         margin-bottom: 0.5rem;
       }
-      .repo-cards {
-        margin-top: 2rem;
-      }
       .repo-card {
         background: #2a2a2a;
         padding: 1rem;
@@ -202,98 +236,119 @@
         box-shadow: 0 0 10px rgba(79, 195, 247, 0.2);
       }
 
-      /* Contact Section */
+      /* BLOG */
+      .blog-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+      .blog-card {
+        background: #2a2a2a;
+        padding: 1rem;
+        border-radius: 6px;
+        transition: transform 0.3s ease;
+        min-height: 230px;
+      }
+      .blog-card:hover {
+        transform: scale(1.02);
+      }
+      .blog-card h3 {
+        margin-bottom: 0.5rem;
+      }
+      .blog-card img {
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+      }
+
+      /* CONTACT */
       .contact {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
+        gap: 1rem;
       }
       .contact a {
         display: inline-block;
         margin-top: 0.5rem;
       }
 
-      /* Footer */
+      /* FOOTER */
       footer {
-        background: #121212;
+        background: #1b1b1b;
         text-align: center;
         padding: 2rem 0;
         font-size: 0.9rem;
       }
 
-      /* Responsive */
+      /* RESPONSIVE */
       @media (max-width: 768px) {
-        header .branding {
-          text-align: center;
-        }
-        nav ul {
-          flex-direction: column;
-          align-items: center;
-        }
-        nav ul li {
-          margin: 10px 0;
-        }
         .hero h1 {
           font-size: 2rem;
         }
+        .typewriter {
+          font-size: 1rem;
+        }
         .about-content {
           flex-direction: column;
+          text-align: center;
         }
         .about-content img {
-          margin: 0 0 1rem 0;
+          margin-bottom: 1rem;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Header -->
+    <!-- HEADER -->
     <header>
-      <div class="container">
-        <div class="branding">Zebbern</div>
-        <nav>
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <!-- Optionally add resume link if you have a PDF hosted -->
-            <!-- <li><a href="resume.pdf" target="_blank">Resume</a></li> -->
-          </ul>
-        </nav>
-      </div>
+      <div class="branding">Zebbern</div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <!-- <li><a href="resume.pdf" target="_blank">Resume</a></li> -->
+        </ul>
+      </nav>
     </header>
 
-    <!-- Hero -->
+    <!-- HERO with Typewriter -->
     <section class="hero">
-      <h1>Securing the Future, One Byte at a Time</h1>
+      <div class="hero-content">
+        <h1>Cybersecurity Enthusiast</h1>
+        <div class="typewriter">Securing the Future, One Byte at a Time...</div>
+      </div>
     </section>
 
-    <!-- About -->
+    <!-- ABOUT -->
     <main class="container">
       <section id="about">
         <h2>About Me</h2>
+        <p class="subheading">Penetration Tester • Tool Developer • Security Researcher</p>
         <div class="about-content">
-          <!-- Replace the image source with your own photo/avatar -->
+          <!-- Replace this with your own profile photo -->
           <img
             src="https://via.placeholder.com/180"
-            alt="Profile of Zebbern"
+            alt="Profile photo of Zebbern"
           />
           <div class="about-text">
             <p>
-              I'm <strong>Zebbern</strong>, a cybersecurity specialist with a passion for building cutting-edge tools that safeguard digital landscapes. My expertise spans from in-depth penetration testing to network forensics and threat intelligence. Whether it's building custom scripts or researching the latest exploits, I'm always pushing the boundaries of what's possible.
+              I'm <strong>Zebbern</strong>, a cybersecurity specialist with a passion for building innovative tools to counter evolving threats.
+              My work spans from in-depth penetration testing and vulnerability assessments to network forensics and threat intelligence.
             </p>
             <p>
-              With a deep background in information security, I take pride in helping organizations protect their most critical assets. Check out my portfolio below and let’s stay secure together!
+              I thrive on discovering hidden vulnerabilities, refining security strategies, and pushing the boundaries of what’s possible in the digital realm.
+              Check out my skills, projects, and recent articles below. 
             </p>
           </div>
         </div>
       </section>
 
-      <!-- Skills -->
+      <!-- SKILLS -->
       <section id="skills">
         <h2>Key Skills</h2>
-        <p>A quick overview of my technical expertise and certifications:</p>
+        <p class="subheading">Here’s a snapshot of what I bring to the table:</p>
         <div class="skills-list">
           <!-- Example Skill Items (use Font Awesome icons if desired) -->
           <div class="skill-item">
@@ -316,78 +371,88 @@
             <i class="fas fa-search"></i>
             <span>Threat Intelligence</span>
           </div>
-          <!-- Add or remove skills as needed -->
+          <!-- Add more skill items, or remove as needed -->
         </div>
       </section>
 
-      <!-- Projects -->
+      <!-- PROJECTS / TOOLS -->
       <section id="projects">
-        <h2>Featured Projects</h2>
-        <p>Below are some of my top cybersecurity projects and experiments:</p>
+        <h2>Projects & Tools</h2>
+        <p class="subheading">Selected highlights from my GitHub and beyond.</p>
+
+        <!-- Featured Projects -->
         <div class="featured-projects">
-          <!-- Sample Project Card #1 -->
-          <div class="project-card">
-            <h3>Malware Analysis Toolkit</h3>
-            <p>
-              A custom toolkit aimed at identifying, dissecting, and neutralizing malicious code.  
-              <strong>Technologies:</strong> Python, Docker, Reverse Engineering Tools.
-            </p>
-            <a href="https://github.com/zebbern/malware-analysis" target="_blank">
-              View on GitHub
-            </a>
-          </div>
-          <!-- Sample Project Card #2 -->
-          <div class="project-card">
-            <h3>Network Mapper</h3>
-            <p>
-              Lightweight network scanning tool that detects open ports and services in real-time.  
-              <strong>Technologies:</strong> Go, Nmap.
-            </p>
-            <a href="https://github.com/zebbern/network-mapper" target="_blank">
-              View on GitHub
-            </a>
+          <h3>Featured Projects</h3>
+          <div class="featured-projects-grid">
+            <!-- Example Project Card -->
+            <div class="project-card">
+              <h3>Malware Analysis Toolkit</h3>
+              <p>
+                A custom toolkit aimed at identifying, dissecting, and neutralizing malicious code.
+                <strong>Technologies:</strong> Python, Docker, Reverse Engineering Tools
+              </p>
+              <a href="https://github.com/zebbern/malware-analysis" target="_blank">View on GitHub</a>
+            </div>
+
+            <div class="project-card">
+              <h3>Network Mapper</h3>
+              <p>
+                Lightweight network scanning tool that detects open ports and services in real-time.
+                <strong>Technologies:</strong> Go, Nmap
+              </p>
+              <a href="https://github.com/zebbern/network-mapper" target="_blank">View on GitHub</a>
+            </div>
           </div>
         </div>
 
-        <!-- Dynamically Loaded Repos from GitHub -->
+        <!-- Dynamic Repos -->
         <div class="repo-cards">
-          <h2>More on GitHub</h2>
-          <p>Here are my latest repositories:</p>
+          <h3>Latest GitHub Repos</h3>
           <div id="repo-list">Loading repositories...</div>
         </div>
       </section>
 
-      <!-- Contact -->
+      <!-- BLOG (MEDIUM) -->
+      <section id="blog">
+        <h2>Latest Articles</h2>
+        <p class="subheading">Insights, research, and opinions on cybersecurity.</p>
+        <div class="blog-list" id="medium-articles">
+          <p>Loading articles from Medium...</p>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
       <section id="contact">
         <h2>Contact</h2>
+        <p class="subheading">Ready to collaborate or discuss a project?</p>
         <div class="contact">
-          <p>
-            Interested in collaboration, have a question, or want to hire me?  
-            Let's connect:
-          </p>
           <p>
             <strong>Email:</strong>
             <a href="mailto:contact@zebbern.com">contact@zebbern.com</a>
           </p>
-          <!-- Social Icons (Optional) -->
           <p>
-            <a href="https://github.com/zebbern" target="_blank">
-              <i class="fab fa-github"></i> GitHub
-            </a> | 
-            <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">
-              <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
+            <strong>GitHub:</strong>
+            <a href="https://github.com/zebbern" target="_blank">@zebbern</a>
+          </p>
+          <p>
+            <strong>Medium:</strong>
+            <a href="https://medium.com/@zebbern" target="_blank">@Zebbern on Medium</a>
+          </p>
+          <!-- Optionally add LinkedIn or other social links -->
+          <p>
+            <strong>LinkedIn:</strong>
+            <a href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank">Your LinkedIn</a>
           </p>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
       <p>&copy; 2025 Zebbern. All rights reserved.</p>
     </footer>
 
-    <!-- GitHub Repo Fetcher -->
+    <!-- JS for GitHub Repo Fetch -->
     <script>
       async function loadRepos() {
         try {
@@ -400,23 +465,67 @@
             const card = document.createElement("div");
             card.className = "repo-card";
             card.innerHTML = `
-              <h3>
+              <h4>
                 <a href="${repo.html_url}" target="_blank">${repo.name}</a>
-              </h3>
+              </h4>
               <p>${repo.description || "No description provided."}</p>
               <small>
-                ⭐ ${repo.stargazers_count} | 
-                ⬆️ Updated: ${new Date(repo.updated_at).toLocaleDateString()}
+                ⭐ ${repo.stargazers_count} 
+                | Updated: ${new Date(repo.updated_at).toLocaleDateString()}
               </small>
             `;
             repoList.appendChild(card);
           });
         } catch (error) {
           document.getElementById("repo-list").innerText = "Failed to load repositories.";
+          console.error(error);
         }
       }
 
       loadRepos();
+    </script>
+
+    <!-- JS for Medium Articles (RSS2JSON) -->
+    <script>
+      async function loadMediumArticles() {
+        const mediumContainer = document.getElementById("medium-articles");
+        try {
+          const url = "https://api.rss2json.com/v1/api.json?rss=https://medium.com/feed/@Zebbern";
+          const res = await fetch(url);
+          const data = await res.json();
+
+          if (data.status !== "ok") {
+            mediumContainer.innerHTML = "<p>Failed to load Medium articles.</p>";
+            return;
+          }
+
+          const articles = data.items.filter(item => item.categories.length > 0);
+          mediumContainer.innerHTML = "";
+
+          // Show up to 3 articles (adjust as needed)
+          articles.slice(0, 3).forEach(article => {
+            // Some articles provide a thumbnail in "enclosure.link", else fallback
+            const thumbnail = article.thumbnail || "https://via.placeholder.com/300";
+
+            const card = document.createElement("div");
+            card.className = "blog-card";
+            card.innerHTML = `
+              <img src="${thumbnail}" alt="Medium Article Thumbnail" />
+              <h3><a href="${article.link}" target="_blank">${article.title}</a></h3>
+              <p>${article.description
+                .replace(/<[^>]*>/g, "")
+                .slice(0, 120)}...</p>
+              <small>Published on: ${new Date(article.pubDate).toLocaleDateString()}</small>
+            `;
+            mediumContainer.appendChild(card);
+          });
+        } catch (error) {
+          mediumContainer.innerHTML = "<p>Unable to fetch Medium posts at this time.</p>";
+          console.error(error);
+        }
+      }
+
+      loadMediumArticles();
     </script>
   </body>
 </html>

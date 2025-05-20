@@ -1,0 +1,2367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zebbern | Cybersecurity & Automation Specialist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #02050e;
+            --secondary-color: #00f0ff;
+            --secondary-glow: rgba(0, 240, 255, 0.5);
+            --accent-color: #ff3e7f;
+            --accent-glow: rgba(255, 62, 127, 0.5);
+            --tertiary-color: #9d4edd;
+            --tertiary-glow: rgba(157, 78, 221, 0.5);
+            --quaternary-color: #FFD700;
+            --text-color: #e6f1ff;
+            --text-secondary: #a8b2d1;
+            --bg-color: #02050e;
+            --card-bg: #0a1524;
+            --card-hover: #13223a;
+            --nav-height: 70px;
+            --cubic-bezier: cubic-bezier(0.645, 0.045, 0.355, 1);
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', 'San Francisco', 'SF Pro Text', system-ui, sans-serif;
+        }
+
+        @font-face {
+            font-family: 'JetBrains Mono';
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/jetbrains-mono/1.0.6/web/woff2/JetBrainsMono-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'JetBrains Mono';
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/jetbrains-mono/1.0.6/web/woff2/JetBrainsMono-Bold.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-sans);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .loader svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .loader circle {
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            transform-origin: center;
+        }
+
+        .loader .circle-bg {
+            stroke: rgba(0, 240, 255, 0.1);
+        }
+
+        .loader .circle-1 {
+            stroke: var(--secondary-color);
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: circle-animation 2s ease-in-out infinite;
+        }
+
+        .loader .circle-2 {
+            stroke: var(--accent-color);
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: circle-animation 2s ease-in-out infinite 0.2s;
+        }
+
+        .loader .circle-3 {
+            stroke: var(--tertiary-color);
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: circle-animation 2s ease-in-out infinite 0.4s;
+        }
+
+        .loader .loader-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: loader-text-fade 2s ease-in-out infinite;
+        }
+
+        @keyframes circle-animation {
+            0% {
+                stroke-dashoffset: 400;
+                transform: rotate(0deg);
+            }
+            50% {
+                stroke-dashoffset: 100;
+            }
+            100% {
+                stroke-dashoffset: 400;
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes loader-text-fade {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Remove cursor styles */
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch::before {
+            color: var(--accent-color);
+            animation: glitch-anim-1 0.4s infinite;
+        }
+
+        .glitch::after {
+            color: var(--secondary-color);
+            animation: glitch-anim-2 0.3s infinite;
+        }
+
+        @keyframes glitch-anim-1 {
+            0%, 100% { 
+                clip-path: inset(50% 0 50% 0);
+                transform: translate(-2px, -2px);
+            }
+            20% {
+                clip-path: inset(0% 0 25% 0);
+                transform: translate(2px, 2px);
+            }
+            40% {
+                clip-path: inset(25% 0 50% 0);
+                transform: translate(-1px, 1px);
+            }
+            60% {
+                clip-path: inset(50% 0 75% 0);
+                transform: translate(3px, -3px);
+            }
+            80% {
+                clip-path: inset(75% 0 100% 0);
+                transform: translate(-3px, 2px);
+            }
+        }
+
+        @keyframes glitch-anim-2 {
+            0%, 100% {
+                clip-path: inset(50% 0 50% 0);
+                transform: translate(2px, 2px);
+            }
+            20% {
+                clip-path: inset(0% 0 25% 0);
+                transform: translate(-2px, -2px);
+            }
+            40% {
+                clip-path: inset(25% 0 50% 0);
+                transform: translate(1px, -1px);
+            }
+            60% {
+                clip-path: inset(50% 0 75% 0);
+                transform: translate(-3px, 3px);
+            }
+            80% {
+                clip-path: inset(75% 0 100% 0);
+                transform: translate(3px, -2px);
+            }
+        }
+
+        /* Text Gradient Effects */
+        .gradient-text {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color), var(--tertiary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% 100%;
+            animation: gradient-shift 5s infinite alternate-reverse;
+            display: inline-block;
+        }
+
+        .gradient-text-alt {
+            background: linear-gradient(45deg, var(--tertiary-color), var(--quaternary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% 100%;
+            animation: gradient-shift 5s infinite alternate-reverse;
+            display: inline-block;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Neon Text Effect */
+        .neon-text {
+            color: var(--text-color);
+            text-shadow: 
+                0 0 5px rgba(0, 240, 255, 0.3),
+                0 0 15px rgba(0, 240, 255, 0.3),
+                0 0 30px rgba(0, 240, 255, 0.3);
+            animation: neon-flicker 8s infinite alternate-reverse;
+        }
+
+        @keyframes neon-flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                text-shadow: 
+                    0 0 5px rgba(0, 240, 255, 0.3),
+                    0 0 15px rgba(0, 240, 255, 0.3),
+                    0 0 30px rgba(0, 240, 255, 0.3);
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+
+        /* Background Effects */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -3;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.05;
+            animation: float 40s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, rgba(0, 240, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -2;
+            opacity: 0.4;
+        }
+
+        /* Noise Effect */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39ra2uRkZGZmZlpaWmXl5dvb29xcXGTk5NnZ2c8TV1mAAAAG3RSTlNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvEOwtAAAFVklEQVR4XpWWB67c2BUFb3g557T/hRo9/WUMZHlgr4Bg8Z4qQgQJlHI4A8SzFVrapvmTF9O7dmYRFZ60YiBhJRCgh1FYhiLAmdvX0CzTOpNE77ME0Zty/nWWzchDtiqrmQDeuv3powQ5ta2eN0FY0InkqDD73lT9c9lEzwUNqgFHs9VQce3TVClFCQrSTfOiYkVJQBmpbq2L6iZavPnAPcoU0dSw0SUTqz/GtrGuXfbyyBniKykOWQWGqwwMA7QiYAxi+IlPdqo+hYHnUt5ZPfnsHJyNiDtnpJyayNBkF6cWoYGAMY92U2hXHF/C1M8uP/ZtYdiuj26UdAdQQSXQErwSOMzt/XWRWAz5GuSBIkwG1H3FabJ2OsUOUhGC6tK4EMtJO0ttC6IBD3kM0ve0tJwMdSfjZo+EEISaeTr9P3wYrGjXqyC1krcKdhMpxEnt5JetoulscpyzhXN5FRpuPHvbeQaKxFAEB6EN+cYN6xD7RYGpXpNndMmZgM5Dcs3YSNFDHUo2LGfZuukSWyUYirJAdYbF3MfqEKmjM+I2EfhA94iG3L7uKrR+GdWD73ydlIB+6hgref1QTlmgmbM3/LeX5GI1Ux1RWpgxpLuZ2+I+IjzZ8wqE4nilvQdkUdfhzI5QDWy+kw5Wgg2pGpeEVeCCA7b85BO3F9DzxB3cdqvBzWcmzbyMiqhzuYqtHRVG2y4x+KOlnyqla8AoWWpuBoYRxzXrfKuILl6SfiWCbjxoZJUaCBj1CjH7GIaDbc9kqBY3W/Rgjda1iqQcOJu2WW+76pZC9QG7M00dffe9hNnseupFL53r8F7YHSwJWUKP2q+k7RdsxyOB11n0xtOvnW4irMMFNV4H0uqwS5ExsmP9AxbDTc9JwgneAT5vTiUSm1E7BSflSt3bfa1tv8Di3R8n3Af7MNWzs49hmauE2wP+ttrq+AsWpFG2awvsuOqbipWHgtuvuaAE+A1Z/7gC9hesnr+7wqCwG8c5yAg3AL1fm8T9AZtp/bbJGwl1pNrE7RuOX7PeMRUERVaPpEs+yqeoSmuOlokqw49pgomjLeh7icHNlG19yjs6XXOMedYm5xH2YxpV2tc0Ro2jJfxC50ApuxGob7lMsxfTbeUv07TyYxpeLucEH1gNd4IKH2LAg5TdVhlCafZvpskfncCfx8pOhJzd76bJWeYFnFciwcYfubRc12Ip/ppIhA1/mSZ/RxjFDrJC5xifFjJpY2Xl5zXdguFqYyTR1zSp1Y9p+tktDYYSNflcxI0iyO4TPBdlRcpeqjK/piF5bklq77VSEaA+z8qmJTFzIWiitbnzR794USKBUaT0NTEsVjZqLaFVqJoPN9ODG70IPbfBHKK+/q/AWR0tJzYHRULOa4MP+W/HfGadZUbfw177G7j/OGbIs8TahLyynl4X4RinF793Oz+BU0saXtUHrVBFT/DnA3ctNPoGbs4hRIjTok8i+algT1lTHi4SxFvONKNrgQFAq2/gFnWMXgwffgYMJpiKYkmW3tTg3ZQ9Jq+f8XN+A5eeUKHWvJWJ2sgJ1Sop+wwhqFVijqWaJhwtD8MNlSBeWNNWTa5Z5kPZw5+LbVT99wqTdx29lMUH4OIG/D86ruKEauBjvH5xy6um/Sfj7ei6UUVk4AIl3MyD4MSSTOFgSwsH/QJWaQ5as7ZcmgBZkzjjU1UrQ74ci1gWBCSGHtuV1H2mhSnO3Wp/3fEV5a+4wz//6qy8JxjZsmxxy5+4w9CDNJY09T072iKG0EnOS0arEYgXqYnXcYHwjTtUNAcMelOd4xpkoqiTYICWFq0JSiPfPDQdnt+4/wuqcXY47QILbgAAAABJRU5ErkJggg==');
+            opacity: 0.03;
+            z-index: -1;
+        }
+
+        /* Scanline Effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.03) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            background-size: 100% 4px;
+            z-index: 9;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--cubic-bezier), transform 0.8s var(--cubic-bezier);
+        }
+
+        .reveal.left {
+            transform: translateX(-30px);
+        }
+
+        .reveal.right {
+            transform: translateX(30px);
+        }
+
+        .reveal.zoom {
+            transform: scale(0.9);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+
+        /* Staggered Animations */
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color), var(--tertiary-color));
+            z-index: 101;
+            transition: width 0.05s ease;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background-color: rgba(2, 5, 14, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(2, 5, 14, 0.95);
+            backdrop-filter: blur(15px);
+            height: 60px;
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            perspective: 1000px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            position: relative;
+            z-index: 2;
+            letter-spacing: 1px;
+            text-transform: lowercase;
+            font-family: var(--font-mono);
+        }
+
+        .logo::before,
+        .logo::after {
+            content: 'zebbern';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .logo::before {
+            color: var(--accent-color);
+            animation: glitch-logo 5s infinite;
+            animation-delay: 2s;
+        }
+
+        .logo::after {
+            color: var(--tertiary-color);
+            animation: glitch-logo 5s infinite;
+            animation-delay: 2.05s;
+        }
+
+        @keyframes glitch-logo {
+            0%, 100% {
+                opacity: 0;
+                transform: translateX(0);
+            }
+            7%, 8% {
+                opacity: 1;
+                transform: translateX(-2px);
+            }
+            9%, 10% {
+                opacity: 1;
+                transform: translateX(2px);
+            }
+            11% {
+                opacity: 0;
+                transform: translateX(0);
+            }
+        }
+
+        .logo-bracket {
+            display: inline-block;
+            transform: translateY(2px);
+            color: var(--accent-color);
+            font-weight: normal;
+            opacity: 0.8;
+        }
+
+        .logo-bracket::before {
+            content: '</';
+            position: absolute;
+            right: calc(100% + 5px);
+        }
+
+        .logo-bracket::after {
+            content: '>';
+            position: absolute;
+            left: calc(100% + 5px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+            overflow: hidden;
+        }
+
+        .nav-number {
+            color: var(--secondary-color);
+            font-family: var(--font-mono);
+            margin-right: 5px;
+            font-size: 14px;
+        }
+
+        .nav-link::before,
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .nav-link::before {
+            top: 0;
+            left: 0;
+            transform-origin: left;
+        }
+
+        .nav-link::after {
+            bottom: 0;
+            right: 0;
+            transform-origin: right;
+        }
+
+        .nav-link:hover::before,
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .hire-button {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: var(--font-mono);
+        }
+
+        .hire-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .hire-button::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 240, 255, 0.15), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .hire-button:hover::before {
+            left: 100%;
+        }
+
+        .hire-button:hover::after {
+            top: 0;
+        }
+
+        .hire-button:hover {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+            transform: translateY(-3px);
+            color: var(--text-color);
+        }
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Terminal Section */
+        .terminal {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 400px;
+            height: 250px;
+            background-color: rgba(3, 10, 20, 0.85);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.2);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px) rotateX(10deg) rotateY(-10deg);
+            transition: all 0.8s ease-out;
+            z-index: 3;
+            backdrop-filter: blur(5px);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .terminal.active {
+            opacity: 1;
+            transform: translateY(0) rotateX(0) rotateY(0);
+        }
+
+        .terminal-header {
+            height: 30px;
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .terminal-button-red {
+            background-color: #ff5f56;
+        }
+
+        .terminal-button-yellow {
+            background-color: #ffbd2e;
+        }
+
+        .terminal-button-green {
+            background-color: #27c93f;
+        }
+
+        .terminal-title {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        .terminal-content {
+            padding: 20px;
+            height: calc(100% - 30px);
+            font-family: var(--font-mono);
+            color: var(--secondary-color);
+            overflow: hidden;
+        }
+
+        .terminal-line {
+            display: flex;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .terminal-line.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .terminal-prompt {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        .terminal-text {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid transparent;
+            animation: terminal-cursor 1s step-end infinite;
+        }
+
+        @keyframes terminal-cursor {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: var(--secondary-color);
+            }
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-blob {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            mix-blend-mode: lighten;
+            animation: blob-move 20s infinite alternate;
+            will-change: transform;
+        }
+
+        .hero-blob:nth-child(1) {
+            background-color: var(--secondary-color);
+            top: -300px;
+            right: -200px;
+        }
+
+        .hero-blob:nth-child(2) {
+            background-color: var(--accent-color);
+            bottom: -300px;
+            left: -200px;
+            animation-delay: 3s;
+        }
+
+        .hero-blob:nth-child(3) {
+            background-color: var(--tertiary-color);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 6s;
+        }
+
+        @keyframes blob-move {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(20px, -30px) scale(1.1);
+            }
+            100% {
+                transform: translate(-20px, 30px) scale(0.9);
+            }
+        }
+
+        .hero-3d-container {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            transform-style: preserve-3d;
+        }
+
+        .hero-intro {
+            color: var(--secondary-color);
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-family: var(--font-mono);
+            display: inline-block;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 80px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.1;
+            position: relative;
+        }
+
+        .hero-title::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--bg-color));
+            z-index: 1;
+            animation: reveal-title 2s ease forwards;
+        }
+
+        @keyframes reveal-title {
+            0% {
+                left: 0;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 80px;
+            color: var(--text-secondary);
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle .highlight {
+            color: var(--accent-color);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            padding: 15px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: var(--font-mono);
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.3), transparent);
+            transition: all 0.6s;
+            z-index: -1;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta:hover {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .hero-cta-alt {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .hero-cta-alt::before {
+            background: linear-gradient(90deg, transparent, rgba(255, 62, 127, 0.3), transparent);
+        }
+
+        .hero-cta-alt:hover {
+            box-shadow: 0 0 20px rgba(255, 62, 127, 0.5);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title .number {
+            color: var(--secondary-color);
+            font-family: var(--font-mono);
+            margin-right: 10px;
+            font-size: 24px;
+            opacity: 0.8;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-color), transparent);
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-description {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .skill-item {
+            position: relative;
+            padding-left: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateX(5px);
+            color: var(--secondary-color);
+        }
+
+        .skill-item:hover::before {
+            color: var(--accent-color);
+        }
+
+        .about-image-container {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .about-image-wrapper {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            animation: floating 6s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0) rotateY(0);
+            }
+            50% {
+                transform: translateY(-20px) rotateY(5deg);
+            }
+        }
+
+        .about-image {
+            max-width: 300px;
+            border-radius: 5px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            filter: grayscale(80%) contrast(1.2);
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7);
+        }
+
+        .about-image-wrapper:hover .about-image {
+            filter: grayscale(0%) contrast(1);
+            box-shadow: 0 20px 40px -15px rgba(0, 240, 255, 0.3);
+        }
+
+        .img-backdrop {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            transform: translateX(-50%) translateZ(-20px);
+            border: 2px solid var(--secondary-color);
+            border-radius: 5px;
+            z-index: 0;
+            transition: all 0.3s ease;
+        }
+
+        .about-image-wrapper:hover .img-backdrop {
+            transform: translateX(-40%) translateY(10px) translateZ(-30px);
+        }
+
+        .img-glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.15);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+            border-radius: 5px;
+        }
+
+        .about-image-wrapper:hover .img-glow {
+            opacity: 1;
+        }
+
+        /* Stats Section */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            background-color: var(--card-bg);
+            border-radius: 5px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .stat-number::after {
+            content: attr(data-suffix);
+            font-size: 24px;
+            position: absolute;
+            top: 5px;
+            right: -20px;
+            color: var(--accent-color);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-mono);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 5px;
+            padding: 30px;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, transparent 50%, rgba(0, 240, 255, 0.1) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(45deg, transparent, rgba(0, 240, 255, 0.05), transparent);
+            transform: rotate(45deg);
+            transition: transform 0.65s ease-in-out;
+            z-index: -1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) rotateX(10deg) rotateY(10deg);
+            box-shadow: 
+                0 20px 40px -15px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(0, 240, 255, 0.2);
+            background-color: var(--card-hover);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover::after {
+            transform: rotate(45deg) translate(150%, 150%);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .folder-icon {
+            color: var(--secondary-color);
+            font-size: 40px;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover .folder-icon {
+            color: var(--accent-color);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            font-size: 20px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px) scale(1.2);
+        }
+
+        .project-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .project-card:hover .project-title {
+            color: var(--secondary-color);
+        }
+
+        .project-card:hover .project-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary-color), transparent);
+            animation: grow-line 0.5s forwards;
+        }
+
+        @keyframes grow-line {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            flex-grow: 1;
+            margin-bottom: 25px;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            list-style: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-family: var(--font-mono);
+        }
+
+        .project-tech li {
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 3px;
+            background-color: rgba(0, 240, 255, 0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-tech li::before {
+            content: '▹';
+            color: var(--secondary-color);
+            margin-right: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .project-tech li:hover {
+            background-color: rgba(0, 240, 255, 0.1);
+            color: var(--secondary-color);
+            transform: translateX(3px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.1);
+        }
+
+        .project-tech li:hover::before {
+            color: var(--accent-color);
+        }
+
+        /* Featured Project */
+        .featured-project {
+            margin-bottom: 100px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .featured-project-image {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-project-image img {
+            width: 100%;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            filter: grayscale(100%) contrast(1) brightness(70%);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.7);
+        }
+
+        .featured-project:hover .featured-project-image img {
+            filter: grayscale(0%) contrast(1) brightness(100%);
+            transform: translateY(-5px);
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.7);
+        }
+
+        .featured-project-content {
+            flex: 1;
+            position: absolute;
+            right: 0;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 5px;
+            z-index: 2;
+            width: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        .featured-project:hover .featured-project-content {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+        }
+
+        .featured-project-tag {
+            color: var(--secondary-color);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .featured-project-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .featured-project-description {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.7;
+            background-color: var(--card-hover);
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .featured-project:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .featured-project:nth-child(even) .featured-project-content {
+            right: auto;
+            left: 0;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            color: var(--secondary-color);
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-family: var(--font-mono);
+        }
+
+        .contact-heading {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .contact-description {
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            font-size: 18px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 40px;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .form-group {
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 20px 15px;
+            background-color: rgba(10, 21, 36, 0.5);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 5px;
+            color: var(--text-color);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            transform: translateZ(0);
+        }
+
+        .form-input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+            outline: none;
+            transform: translateZ(5px);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            color: var(--text-secondary);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            transform: translateZ(10px);
+            transform-style: preserve-3d;
+        }
+
+        .form-input:focus ~ .form-label,
+        .form-input:not(:placeholder-shown) ~ .form-label {
+            top: -10px;
+            left: 10px;
+            font-size: 12px;
+            background-color: var(--bg-color);
+            padding: 0 5px;
+            color: var(--secondary-color);
+            transform: translateZ(20px);
+        }
+
+        textarea.form-input {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+            padding: 15px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 20px;
+            font-family: var(--font-mono);
+        }
+
+        .contact-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.3), transparent);
+            transition: all 0.6s;
+            z-index: -1;
+        }
+
+        .contact-button:hover::before {
+            left: 100%;
+        }
+
+        .contact-button:hover {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Hackerize Effect */
+        .hackerize {
+            display: inline-block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .hackerize:hover::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: var(--accent-color);
+            animation: glitch-text 0.4s infinite;
+        }
+
+        @keyframes glitch-text {
+            0% { transform: translate(-2px, 0); }
+            25% { transform: translate(2px, -2px); }
+            50% { transform: translate(-1px, 1px); }
+            75% { transform: translate(1px, -1px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 0 30px;
+            text-align: center;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-link {
+            color: var(--text-secondary);
+            font-size: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(168, 178, 209, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 240, 255, 0.2) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            transform: scale(0.8);
+        }
+
+        .social-link:hover {
+            color: var(--secondary-color);
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 20px -10px rgba(0, 240, 255, 0.5);
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+        }
+
+        .footer-text {
+            font-size: 14px;
+            position: relative;
+            display: inline-block;
+            font-family: var(--font-mono);
+        }
+
+        .footer-text::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .footer-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, var(--card-bg) 0%, transparent 100%);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            z-index: 10;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                right: -100%;
+                flex-direction: column;
+                background-color: var(--card-bg);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+                gap: 20px;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hero-title, .hero-subtitle {
+                font-size: 50px;
+            }
+
+            .hero-cta-container {
+                flex-direction: column;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image-container {
+                order: -1;
+                margin-bottom: 30px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .terminal {
+                display: none;
+            }
+
+            .featured-project {
+                flex-direction: column !important;
+            }
+
+            .featured-project-content {
+                position: relative;
+                width: 100%;
+                right: auto !important;
+                left: auto !important;
+                margin-top: -50px;
+            }
+
+            .cursor-outer, .cursor-inner {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title, .hero-subtitle {
+                font-size: 40px;
+            }
+
+            .contact-heading {
+                font-size: 40px;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="loader">
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" class="circle-bg" />
+                <circle cx="50" cy="50" r="45" class="circle-1" />
+                <circle cx="50" cy="50" r="35" class="circle-2" />
+                <circle cx="50" cy="50" r="25" class="circle-3" />
+            </svg>
+            <div class="loader-text" id="loader-text">Loading</div>
+        </div>
+    </div>
+
+    <!-- No custom cursor -->
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+
+    <!-- Background Effects -->
+    <div class="bg-animation" id="bg-animation"></div>
+    <div class="grid-overlay"></div>
+    <div class="noise"></div>
+    <div class="scanlines"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-content">
+            <div class="logo-container">
+                <div class="logo">zebbern<span class="logo-bracket"></span></div>
+            </div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" class="nav-link"><span class="nav-number">01.</span>About</a></li>
+                <li><a href="#projects" class="nav-link"><span class="nav-number">02.</span>Projects</a></li>
+                <li><a href="#contact" class="nav-link"><span class="nav-number">03.</span>Contact</a></li>
+                <li><a href="mailto:your-email@example.com" class="hire-button tooltip" data-tooltip="Let's work together!">Hire Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg">
+            <div class="hero-blob"></div>
+            <div class="hero-blob"></div>
+            <div class="hero-blob"></div>
+        </div>
+        
+        <!-- Terminal Window -->
+        <div class="terminal" id="terminal">
+            <div class="terminal-header">
+                <div class="terminal-button terminal-button-red"></div>
+                <div class="terminal-button terminal-button-yellow"></div>
+                <div class="terminal-button terminal-button-green"></div>
+                <div class="terminal-title">zebbern@cybersecurity:~</div>
+            </div>
+            <div class="terminal-content">
+                <div class="terminal-line" id="line1">
+                    <span class="terminal-prompt">$</span>
+                    <span class="terminal-text" id="text1"></span>
+                </div>
+                <div class="terminal-line" id="line2">
+                    <span class="terminal-prompt">$</span>
+                    <span class="terminal-text" id="text2"></span>
+                </div>
+                <div class="terminal-line" id="line3">
+                    <span class="terminal-prompt">$</span>
+                    <span class="terminal-text" id="text3"></span>
+                </div>
+                <div class="terminal-line" id="line4">
+                    <span class="terminal-prompt">&gt;</span>
+                    <span class="terminal-text" id="text4"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container hero-3d-container">
+            <div class="hero-content">
+                <p class="hero-intro reveal" id="hero-intro">Hi, my name is</p>
+                <h1 class="hero-title reveal reveal-delay-1" id="hero-title">Zebbern<span class="neon-text">.</span></h1>
+                <h2 class="hero-subtitle reveal reveal-delay-2">Security specialist & automation expert</h2>
+                <p class="hero-description reveal reveal-delay-3">Building tools for security research, penetration testing, and automated workflows.</p>
+                <div class="hero-cta-container">
+                    <a href="#projects" class="hero-cta reveal reveal-delay-4">Explore My Work</a>
+                    <a href="#contact" class="hero-cta hero-cta-alt reveal reveal-delay-5">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title reveal"><span class="number">01.</span>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description reveal">
+                        Cybersecurity specialist with expertise in automation development. I create tools that enhance security research, streamline penetration testing, and automate data collection processes.
+                    </p>
+                    <p class="about-description reveal">
+                        Focused on developing solutions that identify security vulnerabilities and protect against threats. My projects include URL extraction tools, automation scripts, and security research resources.
+                    </p>
+                    <div class="skills-list reveal">
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">Automation</div>
+                        <div class="skill-item">OSINT</div>
+                        <div class="skill-item">Penetration Testing</div>
+                        <div class="skill-item">Web Scraping</div>
+                        <div class="skill-item">Bash Scripting</div>
+                        <div class="skill-item">API Integration</div>
+                        <div class="skill-item">Selenium</div>
+                    </div>
+                </div>
+                <div class="about-image-container reveal reveal-delay-2">
+                    <div class="about-image-wrapper" id="image-wrapper">
+                        <img src="/api/placeholder/400/400" alt="Profile Image" class="about-image" id="profile-image">
+                        <div class="img-backdrop"></div>
+                        <div class="img-glow"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="stats-container">
+                <div class="stat-item reveal">
+                    <div class="stat-number" data-suffix="+">6</div>
+                    <div class="stat-label">GitHub Projects</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-1">
+                    <div class="stat-number" data-suffix="+">50</div>
+                    <div class="stat-label">GitHub Stars</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-2">
+                    <div class="stat-number" data-suffix="+">5</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item reveal reveal-delay-3">
+                    <div class="stat-number" data-suffix="+">12</div>
+                    <div class="stat-label">Security Tools</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title reveal"><span class="number">02.</span>My Projects</h2>
+            
+            <!-- Featured Project -->
+            <div class="featured-project reveal">
+                <div class="featured-project-image">
+                    <img src="/api/placeholder/600/400" alt="URL Extraction Tool">
+                </div>
+                <div class="featured-project-content">
+                    <p class="featured-project-tag">Featured Project</p>
+                    <h3 class="featured-project-title">URL Extraction Tool</h3>
+                    <p class="featured-project-description">
+                        A powerful tool for extracting archived URLs from sources like Wayback Machine, Common Crawl, and VirusTotal, designed for researchers and security analysts to explore historical data.
+                    </p>
+                    <ul class="project-tech">
+                        <li>Go</li>
+                        <li>Web Archives</li>
+                        <li>API Integration</li>
+                        <li>OSINT</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card reveal">
+                    <div class="project-header">
+                        <i class="fas fa-folder folder-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/zebbern/Zefoy-Automation" target="_blank" class="project-link tooltip" data-tooltip="View GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://github.com/zebbern/Zefoy-Automation" target="_blank" class="project-link tooltip" data-tooltip="View Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Zefoy Automation</h3>
+                    <p class="project-description">
+                        TikTok automation tool using Python and Selenium WebDriver for social engagement automation.
+                    </p>
+                    <ul class="project-tech">
+                        <li>Python</li>
+                        <li>Selenium</li>
+                        <li>Automation</li>
+                        <li>Web Interactions</li>
+                    </ul>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card reveal reveal-delay-1">
+                    <div class="project-header">
+                        <i class="fas fa-folder folder-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/zebbern/GoogleDorking" target="_blank" class="project-link tooltip" data-tooltip="View GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://github.com/zebbern/GoogleDorking" target="_blank" class="project-link tooltip" data-tooltip="View Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Google Dorking Resource</h3>
+                    <p class="project-description">
+                        Guide to advanced Google search techniques focused on security research and vulnerability discovery.
+                    </p>
+                    <ul class="project-tech">
+                        <li>OSINT</li>
+                        <li>Search Techniques</li>
+                        <li>Security Research</li>
+                        <li>Documentation</li>
+                    </ul>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card reveal reveal-delay-2">
+                    <div class="project-header">
+                        <i class="fas fa-folder folder-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/zebbern/Proxy-Scraper" target="_blank" class="project-link tooltip" data-tooltip="View GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://github.com/zebbern/Proxy-Scraper" target="_blank" class="project-link tooltip" data-tooltip="View Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Proxy Scraper</h3>
+                    <p class="project-description">
+                        Automated tool that updates HTTP/HTTPS/SOCKS4/SOCKS5 proxy lists hourly for security testing.
+                    </p>
+                    <ul class="project-tech">
+                        <li>Python</li>
+                        <li>Web Scraping</li>
+                        <li>Automation</li>
+                        <li>Networking</li>
+                    </ul>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card reveal reveal-delay-3">
+                    <div class="project-header">
+                        <i class="fas fa-folder folder-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/zebbern/Exploitdb-Extracter" target="_blank" class="project-link tooltip" data-tooltip="View GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://github.com/zebbern/Exploitdb-Extracter" target="_blank" class="project-link tooltip" data-tooltip="View Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Exploitdb-Extracter</h3>
+                    <p class="project-description">
+                        Tool that extracts and saves Google dorks from Exploit-DB in various formats, making vulnerability research more efficient by organizing and categorizing discovery techniques.
+                    </p>
+                    <ul class="project-tech">
+                        <li>Python</li>
+                        <li>Data Extraction</li>
+                        <li>Security Research</li>
+                        <li>Vulnerability Assessment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <p class="contact-title reveal"><span class="number">03.</span>What's Next?</p>
+            <h2 class="contact-heading reveal reveal-delay-1">Get In Touch</h2>
+            <p class="contact-description reveal reveal-delay-2">
+                I'm currently looking for new opportunities. Whether you have a question, a project idea, or just want to say hi, I'll do my best to get back to you!
+            </p>
+            
+            <!-- Contact Form -->
+            <div class="contact-form reveal reveal-delay-3">
+                <div class="form-group">
+                    <input type="text" class="form-input" id="name" placeholder=" " required>
+                    <label for="name" class="form-label">Your Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" id="email" placeholder=" " required>
+                    <label for="email" class="form-label">Your Email</label>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-input" id="message" placeholder=" " required></textarea>
+                    <label for="message" class="form-label">Your Message</label>
+                </div>
+                <button type="submit" class="contact-button">Send Message</button>
+            </div>
+
+            <p class="contact-description reveal reveal-delay-4">
+                Alternatively, you can reach me directly at <a href="mailto:your-email@example.com" class="gradient-text-alt">your-email@example.com</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bg"></div>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="https://github.com/zebbern" target="_blank" class="social-link reveal tooltip" data-tooltip="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/" target="_blank" class="social-link reveal reveal-delay-1 tooltip" data-tooltip="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com/" target="_blank" class="social-link reveal reveal-delay-2 tooltip" data-tooltip="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link reveal reveal-delay-3 tooltip" data-tooltip="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+            </div>
+            <p class="footer-text reveal reveal-delay-4">
+                <span class="gradient-text-alt">Designed & Built by Zebbern</span> &copy; 2025
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Preloader
+            const preloader = document.getElementById('preloader');
+            const loaderText = document.getElementById('loader-text');
+            let loadingDots = 0;
+            
+            const loadingInterval = setInterval(() => {
+                loadingDots = (loadingDots + 1) % 4;
+                loaderText.innerText = 'Loading' + '.'.repeat(loadingDots);
+            }, 300);
+            
+            setTimeout(() => {
+                clearInterval(loadingInterval);
+                preloader.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    initializeAnimations();
+                }, 500);
+            }, 2000);
+            
+            // Custom Cursor
+            const cursorOuter = document.getElementById('cursor-outer');
+            const cursorInner = document.getElementById('cursor-inner');
+            
+            document.addEventListener('mousemove', (e) => {
+                cursorOuter.style.left = e.clientX + 'px';
+                cursorOuter.style.top = e.clientY + 'px';
+                cursorInner.style.left = e.clientX + 'px';
+                cursorInner.style.top = e.clientY + 'px';
+                
+                // Make cursor visible after first mouse move
+                if (!cursorOuter.classList.contains('visible')) {
+                    setTimeout(() => {
+                        cursorOuter.classList.add('visible');
+                        cursorInner.classList.add('visible');
+                    }, 100);
+                }
+            });
+            
+            document.addEventListener('mousedown', () => {
+                cursorOuter.classList.add('click');
+            });
+            
+            document.addEventListener('mouseup', () => {
+                cursorOuter.classList.remove('click');
+            });
+            
+            // Hover effect on interactive elements
+            const hoverElements = document.querySelectorAll('a, button, .project-card, .skill-item, .form-input, .social-link');
+            
+            hoverElements.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursorOuter.classList.add('hover');
+                    cursorInner.classList.add('hover');
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    cursorOuter.classList.remove('hover');
+                    cursorInner.classList.remove('hover');
+                });
+            });
+
+            // Terminal Animation
+            function activateTerminal() {
+                const terminal = document.getElementById('terminal');
+                terminal.classList.add('active');
+                
+                const text1 = document.getElementById('text1');
+                const text2 = document.getElementById('text2');
+                const text3 = document.getElementById('text3');
+                const text4 = document.getElementById('text4');
+                
+                const line1 = document.getElementById('line1');
+                const line2 = document.getElementById('line2');
+                const line3 = document.getElementById('line3');
+                const line4 = document.getElementById('line4');
+                
+                function typeWriter(element, text, speed, callback) {
+                    let i = 0;
+                    const typeInterval = setInterval(() => {
+                        if (i < text.length) {
+                            element.textContent += text.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typeInterval);
+                            if (callback) callback();
+                        }
+                    }, speed);
+                }
+                
+                setTimeout(() => {
+                    line1.classList.add('active');
+                    typeWriter(text1, 'whoami', 100, () => {
+                        setTimeout(() => {
+                            line2.classList.add('active');
+                            typeWriter(text2, 'cybersecurity_specialist', 50, () => {
+                                setTimeout(() => {
+                                    line3.classList.add('active');
+                                    typeWriter(text3, 'cat skills.txt', 100, () => {
+                                        setTimeout(() => {
+                                            line4.classList.add('active');
+                                            typeWriter(text4, 'Python, Automation, OSINT, Pentesting', 30);
+                                        }, 500);
+                                    });
+                                }, 500);
+                            });
+                        }, 500);
+                    });
+                }, 500);
+            }
+
+            // Mobile menu toggle
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            mobileMenu.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Scrolling effects
+            const navbar = document.getElementById('navbar');
+            const progressBar = document.getElementById('progress-bar');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const progress = (scrollTop / scrollHeight) * 100;
+                
+                // Update progress bar
+                progressBar.style.width = progress + '%';
+                
+                // Navbar scroll effect
+                if (scrollTop > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                // Reveal elements on scroll
+                reveal();
+            });
+
+            // 3D Image hover effect
+            const imageWrapper = document.getElementById('image-wrapper');
+            const profileImage = document.getElementById('profile-image');
+            
+            if (imageWrapper) {
+                imageWrapper.addEventListener('mousemove', (e) => {
+                    const rect = imageWrapper.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    
+                    imageWrapper.style.transform = `rotateY(${x * 10}deg) rotateX(${-y * 10}deg)`;
+                    profileImage.style.transform = `translateZ(20px)`;
+                });
+                
+                imageWrapper.addEventListener('mouseleave', () => {
+                    imageWrapper.style.transform = '';
+                    profileImage.style.transform = '';
+                });
+            }
+            
+            // Create background particles
+            function createParticles() {
+                const bgAnimation = document.getElementById('bg-animation');
+                const numberOfParticles = 50;
+                
+                for (let i = 0; i < numberOfParticles; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random size between 5px and 50px
+                    const size = Math.random() * 45 + 5;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    
+                    // Random color
+                    const colors = ['rgba(0, 240, 255, 0.5)', 'rgba(255, 62, 127, 0.5)', 'rgba(157, 78, 221, 0.5)'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.backgroundColor = color;
+                    
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    
+                    // Random animation delay and duration
+                    const animationDuration = Math.random() * 30 + 20;
+                    const animationDelay = Math.random() * 15;
+                    particle.style.animationDuration = `${animationDuration}s`;
+                    particle.style.animationDelay = `${animationDelay}s`;
+                    
+                    bgAnimation.appendChild(particle);
+                }
+            }
+            
+            // Glitch text on hover
+            const hackerizeElements = document.querySelectorAll('.hackerize');
+            
+            hackerizeElements.forEach(element => {
+                const text = element.innerText;
+                element.setAttribute('data-text', text);
+            });
+            
+            // Reveal elements on scroll animation
+            function reveal() {
+                const reveals = document.querySelectorAll('.reveal');
+                
+                for (let i = 0; i < reveals.length; i++) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveals[i].getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add('active');
+                    }
+                }
+            }
+            
+            // Initialize all animations
+            function initializeAnimations() {
+                createParticles();
+                activateTerminal();
+                reveal();
+                
+                // Initial trigger for reveal animations
+                setTimeout(() => {
+                    const heroIntro = document.getElementById('hero-intro');
+                    const heroTitle = document.getElementById('hero-title');
+                    const highlight1 = document.getElementById('highlight1');
+                    const highlight2 = document.getElementById('highlight2');
+                    
+                    if (heroIntro) heroIntro.classList.add('active');
+                    
+                    setTimeout(() => {
+                        if (heroTitle) heroTitle.classList.add('active');
+                        setTimeout(() => {
+                            document.querySelectorAll('.hero-subtitle, .hero-description, .hero-cta').forEach(el => {
+                                el.classList.add('active');
+                            });
+                        }, 300);
+                    }, 300);
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

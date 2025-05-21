@@ -1,0 +1,101 @@
+{
+    "categoryId": "ctf",
+    "categoryName": "CTF",
+    "sections": [
+        {
+            "title": "New to CTF",
+            "category": "ctf",
+            "resources": [
+                {
+                    "name": "CTF Field Guide",
+                    "url": "https://trailofbits.github.io/ctf/",
+                    "icon": "fas fa-book"
+                },
+                {
+                    "name": "Hackerstoolkit.co",
+                    "url": "https://hackerstoolkit.co",
+                    "icon": "fas fa-toolbox"
+                },
+                {
+                    "name": "Commando",
+                    "url": "https://github.com/mandiant/commando-vm",
+                    "icon": "fas fa-terminal"
+                },
+                {
+                    "name": "Kali Linux",
+                    "url": "https://www.kali.org/",
+                    "icon": "fab fa-linux"
+                }
+            ]
+        },
+        {
+            "title": "CTF Sites (schedule only)",
+            "category": "ctf",
+            "resources": [
+                {
+                    "name": "CTF Time Events",
+                    "url": "https://ctftime.org/event/list/upcoming",
+                    "icon": "fas fa-calendar"
+                },
+                {
+                    "name": "picoCTF",
+                    "url": "https://picoctf.org/",
+                    "icon": "fas fa-flag"
+                }
+            ]
+        },
+        {
+            "title": "CTF Sites (24/7 avail)",
+            "category": "ctf",
+            "resources": [
+                {
+                    "name": "OverTheWire: Wargames",
+                    "url": "https://overthewire.org/wargames/",
+                    "icon": "fas fa-gamepad"
+                },
+                {
+                    "name": "RingZer0",
+                    "url": "https://ringzer0ctf.com/",
+                    "icon": "fas fa-ring"
+                },
+                {
+                    "name": "Root Me",
+                    "url": "https://www.root-me.org/",
+                    "icon": "fas fa-server"
+                },
+                {
+                    "name": "SmashTheStack Wargaming Network",
+                    "url": "http://smashthestack.org/",
+                    "icon": "fas fa-network-wired"
+                },
+                {
+                    "name": "[WeChall] Challenges",
+                    "url": "https://www.wechall.net/",
+                    "icon": "fas fa-puzzle-piece"
+                }
+            ]
+        },
+        {
+            "title": "Challenge Sets for Practice",
+            "category": "ctf",
+            "resources": [
+                {
+                    "name": "DARPA Challenge Sets",
+                    "url": "https://github.com/draperlaboratory/cyber-challenges",
+                    "icon": "fas fa-tasks"
+                }
+            ]
+        },
+        {
+            "title": "CTFs for Job Opportunities",
+            "category": "ctf",
+            "resources": [
+                {
+                    "name": "Cyber Warrior Network",
+                    "url": "https://cyberwarriornetwork.com/",
+                    "icon": "fas fa-briefcase"
+                }
+            ]
+        }
+    ]
+}

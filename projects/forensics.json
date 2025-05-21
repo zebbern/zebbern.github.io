@@ -1,0 +1,105 @@
+{
+    "categoryId": "forensics",
+    "categoryName": "Digital Forensics",
+    "sections": [
+        {
+            "title": "Forensic Test/CTF Images",
+            "category": "forensic",
+            "resources": [
+                {
+                    "name": "DFIR Artifact Museum - Archive of artifacts from many CTFs",
+                    "url": "https://github.com/Interception-Org/DFIR-artifacts-zoo",
+                    "icon": "fas fa-microscope"
+                },
+                {
+                    "name": "ACSC cyber security challenge",
+                    "url": "https://www.cyber.gov.au/acsc/view-all-content/programs/acsc-cyber-security-challenge",
+                    "icon": "fas fa-shield-alt"
+                },
+                {
+                    "name": "Africa CTF Images - DFIR Science",
+                    "url": "https://dfir.science/ctf-images",
+                    "icon": "fas fa-globe-africa"
+                },
+                {
+                    "name": "Case 001 - The Stolen Szechuan Sauce - DFIR Madness",
+                    "url": "https://dfirmadness.com/the-stolen-szechuan-sauce/",
+                    "icon": "fas fa-folder-open"
+                },
+                {
+                    "name": "Cellebrite CTF 2020 Links & Questions",
+                    "url": "https://abrignoni.blogspot.com/2020/10/cellebrite-ctf-2020-links-questions.html",
+                    "icon": "fas fa-mobile-alt"
+                }
+            ]
+        },
+        {
+            "title": "Digital Forensic Challenge Images",
+            "category": "forensic",
+            "resources": [
+                {
+                    "name": "Digital Forensic Challenge Images (Datasets) - ALL",
+                    "url": "https://www.cfreds.nist.gov/",
+                    "icon": "fas fa-database"
+                },
+                {
+                    "name": "FORENSIC CHALLENGES",
+                    "url": "https://www.cyberdefenders.org/blueteam-ctf-challenges/",
+                    "icon": "fas fa-flag"
+                },
+                {
+                    "name": "Forensic Challenges - DFRWS",
+                    "url": "https://dfrws.org/forensic-challenges/",
+                    "icon": "fas fa-laptop-medical"
+                }
+            ]
+        },
+        {
+            "title": "Magnet Summit Materials",
+            "category": "forensic",
+            "resources": [
+                {
+                    "name": "Magnet User Summit 2019 CTF",
+                    "url": "https://dfir.training/ctfs-challenges/magnet-user-summit-2019-ctf",
+                    "icon": "fas fa-magnet"
+                },
+                {
+                    "name": "Magnet Virtual Summit 2020 CTF",
+                    "url": "https://dfir.training/ctfs-challenges/magnet-virtual-summit-2020-ctf",
+                    "icon": "fas fa-magnet"
+                },
+                {
+                    "name": "Magnet Virtual Summit 2021 CTF",
+                    "url": "https://dfir.training/ctfs-challenges/magnet-virtual-summit-2021-ctf",
+                    "icon": "fas fa-magnet"
+                },
+                {
+                    "name": "Magnet Virtual Summit 2022 CTF",
+                    "url": "https://dfir.training/ctfs-challenges/magnet-virtual-summit-2022-ctf",
+                    "icon": "fas fa-magnet"
+                }
+            ]
+        },
+        {
+            "title": "Other Resources",
+            "category": "forensic",
+            "resources": [
+                {
+                    "name": "Public Images - The Binary Hick",
+                    "url": "https://thebinaryhick.blog/public-images/",
+                    "icon": "fas fa-images"
+                },
+                {
+                    "name": "Pcap Files - Netresec",
+                    "url": "https://www.netresec.com/?page=PcapFiles",
+                    "icon": "fas fa-network-wired"
+                },
+                {
+                    "name": "Scenarios - Digital Corpora",
+                    "url": "https://digitalcorpora.org/corpora/scenarios",
+                    "icon": "fas fa-folder-open"
+                }
+            ]
+        }
+    ]
+}

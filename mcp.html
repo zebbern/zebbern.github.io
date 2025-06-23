@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code MCP - Model Context Protocol Guide</title>
+    <meta name="description" content="Complete guide to Model Context Protocol (MCP) with Claude Code. Setup remote servers, OAuth integration, and popular MCP servers for 2025.">
+    <meta name="keywords" content="Claude Code MCP, Model Context Protocol, remote MCP servers, OAuth integration, MCP setup">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="shared.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i> Claude Code
+            </a>
+            
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link ">Home</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Start</div>
+                                <a href="index.html#overview" class="nav-dropdown-link">
+                                    <i class="fas fa-info-circle"></i>
+                                    Overview
+                                </a>
+                                <a href="index.html#workflow" class="nav-dropdown-link">
+                                    <i class="fas fa-rocket"></i>
+                                    Transform Workflow
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Get Started</div>
+                                <a href="windows.html" class="nav-dropdown-link">
+                                    <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                                    Windows Setup
+                                </a>
+                                <a href="macos.html" class="nav-dropdown-link">
+                                    <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                                    macOS Setup
+                                </a>
+                                <a href="linux.html" class="nav-dropdown-link">
+                                    <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                                    Linux Setup
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="features.html" class="nav-link ">Features</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">AI Models</div>
+                                <a href="features.html#models" class="nav-dropdown-link">
+                                    <i class="fas fa-brain"></i>
+                                    Claude 4 Models
+                                </a>
+                                <a href="features.html#commands" class="nav-dropdown-link">
+                                    <i class="fas fa-terminal"></i>
+                                    Commands Reference
+                                </a>
+                                <a href="features.html#modes" class="nav-dropdown-link">
+                                    <i class="fas fa-cogs"></i>
+                                    Usage Modes
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Integration</div>
+                                <a href="features.html#ide" class="nav-dropdown-link">
+                                    <i class="fas fa-code"></i>
+                                    IDE Integration
+                                </a>
+                                <a href="features.html#enterprise" class="nav-dropdown-link">
+                                    <i class="fas fa-building"></i>
+                                    Enterprise Features
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="windows.html" class="nav-link ">Installation</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Operating Systems</div>
+                                <a href="windows.html" class="nav-dropdown-link">
+                                    <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                                    Windows (WSL)
+                                </a>
+                                <a href="macos.html" class="nav-dropdown-link">
+                                    <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                                    macOS (Homebrew)
+                                </a>
+                                <a href="linux.html" class="nav-dropdown-link">
+                                    <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                                    Linux (All Distros)
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Links</div>
+                                <a href="resources.html#troubleshooting" class="nav-dropdown-link">
+                                    <i class="fas fa-tools"></i>
+                                    Troubleshooting
+                                </a>
+                                <a href="resources.html#requirements" class="nav-dropdown-link">
+                                    <i class="fas fa-check-circle"></i>
+                                    System Requirements
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mcp.html" class="nav-link active">MCP</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Setup & Configuration</div>
+                                <a href="mcp.html#setup" class="nav-dropdown-link">
+                                    <i class="fas fa-cog"></i>
+                                    Quick Setup
+                                </a>
+                                <a href="mcp.html#remote" class="nav-dropdown-link">
+                                    <i class="fas fa-cloud"></i>
+                                    Remote MCP Servers
+                                </a>
+                                <a href="mcp.html#servers" class="nav-dropdown-link">
+                                    <i class="fas fa-server"></i>
+                                    Popular Servers
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Advanced</div>
+                                <a href="mcp.html#oauth" class="nav-dropdown-link">
+                                    <i class="fas fa-shield-alt"></i>
+                                    OAuth Integration
+                                </a>
+                                <a href="mcp.html#custom" class="nav-dropdown-link">
+                                    <i class="fas fa-wrench"></i>
+                                    Custom Servers
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="examples.html" class="nav-link ">Examples</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Start</div>
+                                <a href="examples.html#quick" class="nav-dropdown-link">
+                                    <i class="fas fa-bolt"></i>
+                                    Quick Commands
+                                </a>
+                                <a href="examples.html#workflows" class="nav-dropdown-link">
+                                    <i class="fas fa-project-diagram"></i>
+                                    Development Workflows
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Advanced</div>
+                                <a href="examples.html#ide" class="nav-dropdown-link">
+                                    <i class="fas fa-code"></i>
+                                    IDE Integration
+                                </a>
+                                <a href="examples.html#advanced" class="nav-dropdown-link">
+                                    <i class="fas fa-rocket"></i>
+                                    Complex Scenarios
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="resources.html" class="nav-link ">Resources</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Help & Support</div>
+                                <a href="resources.html#troubleshooting" class="nav-dropdown-link">
+                                    <i class="fas fa-tools"></i>
+                                    Troubleshooting
+                                </a>
+                                <a href="resources.html#community" class="nav-dropdown-link">
+                                    <i class="fas fa-users"></i>
+                                    Community Guides
+                                </a>
+                                <a href="resources.html#faq" class="nav-dropdown-link">
+                                    <i class="fas fa-question-circle"></i>
+                                    FAQ
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Official</div>
+                                <a href="resources.html#official" class="nav-dropdown-link">
+                                    <i class="fas fa-file-alt"></i>
+                                    Documentation
+                                </a>
+                                <a href="resources.html#enterprise" class="nav-dropdown-link">
+                                    <i class="fas fa-building"></i>
+                                    Enterprise
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="search-container collapsed">
+                
+                <input type="text" class="search-input" placeholder="Search documentation..." id="searchInput" style="opacity: 0;">
+                <button class="search-toggle">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" class="nav-link ">Home</a></li>
+                <li><a href="features.html" class="nav-link ">Features</a></li>
+                <li><a href="mcp.html" class="nav-link active">MCP</a></li>
+                <li><a href="examples.html" class="nav-link ">Examples</a></li>
+                <li><a href="resources.html" class="nav-link ">Resources</a></li>
+            </ul>
+            
+            <div class="mobile-section">
+                <h4 style="color: var(--text-accent); font-size: 0.875rem; font-weight: 600; margin-bottom: var(--space-sm); text-transform: uppercase;">Installation Guides</h4>
+                <div class="mobile-os-nav">
+                    <a href="windows.html" class="os-link windows ">
+                        <i class="fab fa-windows"></i>
+                        Windows (WSL)
+                    </a>
+                    <a href="macos.html" class="os-link macos ">
+                        <i class="fab fa-apple"></i>
+                        macOS (Homebrew)
+                    </a>
+                    <a href="linux.html" class="os-link linux ">
+                        <i class="fab fa-linux"></i>
+                        Linux (All Distros)
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mobile-search">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search documentation..." id="mobileSearchInput">
+                <div class="search-results" id="mobileSearchResults"></div>
+            </div>
+        </div>
+    </header>
+    
+
+    <!-- Hero Section -->
+    <section class="section" style="padding-top: var(--space-2xl);">
+        <div class="container">
+            <div class="text-center mb-2xl">
+                <div style="width: 5rem; height: 5rem; background: var(--gradient-accent); border-radius: var(--radius-2xl); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg); font-size: 2.5rem;">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: var(--space-md); color: var(--text-accent);">
+                    Model Context Protocol (MCP)
+                </h1>
+                <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto var(--space-lg);">
+                    Extend Claude Code's capabilities with MCP servers. Connect to external tools, 
+                    data sources, and services with the latest 2025 features including remote servers and OAuth.
+                </p>
+                
+                <div class="flex gap-md justify-center">
+                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: var(--radius-sm); padding: var(--space-xs) var(--space-sm);">
+                        <span style="color: var(--text-success); font-size: 0.75rem; font-weight: 600;">
+                            <i class="fas fa-star"></i>
+                            NEW: Remote MCP Support
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- What is MCP -->
+            <div class="glass card mb-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-question-circle text-accent"></i>
+                        What is Model Context Protocol?
+                    </h3>
+                    <p class="card-description">
+                        MCP transforms Claude from a passive assistant into an active tool that can manipulate files, 
+                        run commands, access real-time data, and perform complex multi-step operations across different platforms.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">Without MCP</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Claude can only answer questions</li>
+                            <li>Limited to training data knowledge</li>
+                            <li>Cannot interact with external systems</li>
+                            <li>Passive conversation-based assistance</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-primary mb-md">With MCP</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Access live data and APIs</li>
+                            <li>Manipulate files and run commands</li>
+                            <li>Integrate with development tools</li>
+                            <li>Active, hands-on assistance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2025 Updates -->
+    <section class="section glass-secondary">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-rocket text-success"></i>
+                What's New in 2025
+            </h2>
+            
+            <div class="grid grid-3">
+                <div class="glass card">
+                    <div class="card-icon">
+                        <i class="fas fa-cloud text-accent"></i>
+                    </div>
+                    <div class="card-header">
+                        <h3 class="card-title">Remote MCP Servers</h3>
+                        <div class="difficulty-badge difficulty-beginner mb-md">
+                            <i class="fas fa-star"></i>
+                            June 2025
+                        </div>
+                        <p class="card-description">
+                            Connect to remote MCP servers without running them locally. 
+                            Access cloud-based services and enterprise tools directly.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt text-success"></i>
+                    </div>
+                    <div class="card-header">
+                        <h3 class="card-title">Native OAuth Support</h3>
+                        <div class="difficulty-badge difficulty-beginner mb-md">
+                            <i class="fas fa-star"></i>
+                            June 2025
+                        </div>
+                        <p class="card-description">
+                            Secure authentication to remote MCP servers with OAuth. 
+                            No API keys to manage or credentials to store manually.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-icon">
+                        <i class="fas fa-network-wired text-warning"></i>
+                    </div>
+                    <div class="card-header">
+                        <h3 class="card-title">Streamable HTTP Transport</h3>
+                        <div class="difficulty-badge difficulty-intermediate mb-md">
+                            <i class="fas fa-star"></i>
+                            March 2025
+                        </div>
+                        <p class="card-description">
+                            Enhanced connectivity with HTTP + Server-Sent Events (SSE) 
+                            for improved performance and reliability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Setup -->
+    <section class="section" id="setup">
+        <div class="container">
+            <h2 class="section-title">Quick MCP Setup</h2>
+            <p class="section-subtitle">
+                Get started with essential MCP servers in minutes. Choose your setup method based on your experience level.
+            </p>
+            
+            <div class="grid grid-2 mt-2xl">
+                <!-- Quick Install -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-bolt text-warning"></i>
+                            Quick Install Script
+                        </h3>
+                        <div class="difficulty-badge difficulty-beginner mb-md">
+                            <i class="fas fa-star"></i>
+                            Recommended for Beginners
+                        </div>
+                        <p class="card-description">
+                            Install essential MCP servers with a single command. Perfect for getting started quickly.
+                        </p>
+                    </div>
+                    
+                    <div class="code-block">
+                        <pre><code># Install essential MCP servers
+claude mcp add sequential-thinking -s user -- npx -y @modelcontextprotocol/server-sequential-thinking
+claude mcp add filesystem -s user -- npx -y @modelcontextprotocol/server-filesystem ~/Projects
+claude mcp add puppeteer -s user -- npx -y @modelcontextprotocol/server-puppeteer
+claude mcp add fetch -s user -- npx -y @kazuph/mcp-fetch</code></pre>
+                    </div>
+                    
+                    <div class="mt-lg">
+                        <h4 class="text-primary mb-md">What This Installs:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li><strong>Sequential Thinking:</strong> Multi-step reasoning</li>
+                            <li><strong>Filesystem:</strong> File operations</li>
+                            <li><strong>Puppeteer:</strong> Browser automation</li>
+                            <li><strong>Fetch:</strong> HTTP requests and APIs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Manual Configuration -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-cog text-accent"></i>
+                            Manual Configuration
+                        </h3>
+                        <div class="difficulty-badge difficulty-intermediate mb-md">
+                            <i class="fas fa-star"></i>
+                            Better Control
+                        </div>
+                        <p class="card-description">
+                            Create configuration files manually for better control and customization options.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Create .claude.json:</h4>
+                        <div class="code-block">
+                            <pre><code>{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "~/Projects"]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {"GITHUB_TOKEN": "your_token"}
+    }
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-lg">
+                        <h4 class="text-primary mb-md">Configuration Scopes:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li><strong>local:</strong> ./.claude.json (current directory)</li>
+                            <li><strong>project:</strong> ./.claude/settings.json (shareable)</li>
+                            <li><strong>user:</strong> ~/.claude.json (all projects)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular MCP Servers -->
+    <section class="section glass-secondary" id="servers">
+        <div class="container">
+            <h2 class="section-title">Popular MCP Servers</h2>
+            <p class="section-subtitle">
+                Discover the most useful MCP servers for development, automation, and productivity.
+            </p>
+            
+            <!-- Essential Servers -->
+            <div class="mb-2xl">
+                <h3 class="text-center mb-xl text-primary">Essential Development Servers</h3>
+                
+                <div class="grid grid-2">
+                    <div class="glass card">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                <i class="fas fa-folder text-accent"></i>
+                                Filesystem Server
+                            </h4>
+                            <div class="difficulty-badge difficulty-beginner mb-md">
+                                <i class="fas fa-star"></i>
+                                Essential
+                            </div>
+                            <p class="card-description">
+                                Read, write, and manipulate files in your project directories. 
+                                Essential for any development workflow.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-lg">
+                            <h5 class="text-primary mb-sm">Installation:</h5>
+                            <div class="code-block">
+                                <pre><code>claude mcp add filesystem -s user -- npx -y @modelcontextprotocol/server-filesystem ~/Projects</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-lg">
+                            <h5 class="text-primary mb-sm">Capabilities:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                <li>Read and write files</li>
+                                <li>Create and delete directories</li>
+                                <li>Search file contents</li>
+                                <li>File metadata operations</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="glass card">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                <i class="fab fa-github text-accent"></i>
+                                GitHub Server
+                            </h4>
+                            <div class="difficulty-badge difficulty-intermediate mb-md">
+                                <i class="fas fa-star"></i>
+                                Popular
+                            </div>
+                            <p class="card-description">
+                                Interact with GitHub repositories, issues, pull requests, and more. 
+                                Requires GitHub token for authentication.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-lg">
+                            <h5 class="text-primary mb-sm">Installation:</h5>
+                            <div class="code-block">
+                                <pre><code>claude mcp add github -s user -- env GITHUB_TOKEN=your_token npx -y @modelcontextprotocol/server-github</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-lg">
+                            <h5 class="text-primary mb-sm">Capabilities:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                <li>Repository management</li>
+                                <li>Issue and PR operations</li>
+                                <li>Code search and analysis</li>
+                                <li>Workflow automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Automation Servers -->
+            <div class="mb-2xl">
+                <h3 class="text-center mb-xl text-primary">Automation & Testing</h3>
+                
+                <div class="grid grid-3">
+                    <div class="glass card">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                <i class="fas fa-robot text-accent"></i>
+                                Puppeteer Server
+                            </h4>
+                            <p class="card-description">
+                                Browser automation for testing, scraping, and web interactions.
+                            </p>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre><code>claude mcp add puppeteer -s user -- npx -y @modelcontextprotocol/server-puppeteer</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="glass card">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                <i class="fas fa-brain text-accent"></i>
+                                Sequential Thinking
+                            </h4>
+                            <p class="card-description">
+                                Enhanced multi-step reasoning for complex problem-solving tasks.
+                            </p>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre><code>claude mcp add sequential-thinking -s user -- npx -y @modelcontextprotocol/server-sequential-thinking</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="glass card">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                <i class="fas fa-globe text-accent"></i>
+                                Fetch Server
+                            </h4>
+                            <p class="card-description">
+                                HTTP requests and API interactions for external data access.
+                            </p>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre><code>claude mcp add fetch -s user -- npx -y @kazuph/mcp-fetch</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enterprise Servers -->
+            <div class="mb-2xl">
+                <h3 class="text-center mb-xl text-primary">Enterprise & Productivity</h3>
+                
+                <div class="grid grid-2">
+                    <div class="glass card">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                <i class="fas fa-bug text-warning"></i>
+                                Sentry Server
+                            </h4>
+                            <div class="difficulty-badge difficulty-advanced mb-md">
+                                <i class="fas fa-star"></i>
+                                Enterprise
+                            </div>
+                            <p class="card-description">
+                                Error monitoring and performance tracking integration with Sentry.
+                            </p>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre><code>claude mcp add sentry -s user -- npx -y @sentry/mcp-server</code></pre>
+                        </div>
+                        
+                        <div class="mt-lg">
+                            <h5 class="text-primary mb-sm">Features:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                <li>Error tracking and analysis</li>
+                                <li>Performance monitoring</li>
+                                <li>Issue management</li>
+                                <li>Release tracking</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="glass card">
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                <i class="fas fa-tasks text-accent"></i>
+                                Linear Server
+                            </h4>
+                            <div class="difficulty-badge difficulty-intermediate mb-md">
+                                <i class="fas fa-star"></i>
+                                Project Management
+                            </div>
+                            <p class="card-description">
+                                Project management integration with Linear for issue tracking and workflows.
+                            </p>
+                        </div>
+                        
+                        <div class="code-block">
+                            <pre><code>claude mcp add linear -s user -- npx -y @linear/mcp-server</code></pre>
+                        </div>
+                        
+                        <div class="mt-lg">
+                            <h5 class="text-primary mb-sm">Features:</h5>
+                            <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                                <li>Issue creation and management</li>
+                                <li>Project tracking</li>
+                                <li>Team collaboration</li>
+                                <li>Workflow automation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Remote MCP Setup -->
+    <section class="section" id="remote">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-cloud text-accent"></i>
+                Remote MCP Servers (2025)
+            </h2>
+            <p class="section-subtitle">
+                Connect to remote MCP servers with OAuth authentication. No local installation required.
+            </p>
+            
+            <div class="glass card mb-2xl" style="border-left: 4px solid var(--text-success);">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-star text-success"></i>
+                        New in June 2025
+                    </h3>
+                    <p class="card-description">
+                        Remote MCP support allows Claude Code to connect to cloud-based MCP servers 
+                        without running them locally. This enables access to enterprise services, 
+                        cloud APIs, and shared development tools.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">Benefits:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>No local server management</li>
+                            <li>Access to enterprise services</li>
+                            <li>Shared team configurations</li>
+                            <li>Automatic updates and maintenance</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-primary mb-md">Security:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>OAuth 2.0 authentication</li>
+                            <li>No API keys to manage</li>
+                            <li>Secure token handling</li>
+                            <li>Enterprise-grade encryption</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Remote Setup Example -->
+            <div class="glass card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-cog text-accent"></i>
+                        Remote MCP Configuration
+                    </h3>
+                    <p class="card-description">
+                        Example configuration for connecting to remote MCP servers with OAuth authentication.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Configuration Example:</h4>
+                    <div class="code-block">
+                        <pre><code>{
+  "mcpServers": {
+    "enterprise-github": {
+      "type": "remote",
+      "url": "https://mcp.example.com/github",
+      "oauth": {
+        "provider": "github",
+        "scopes": ["repo", "issues", "pull_requests"]
+      }
+    },
+    "company-tools": {
+      "type": "remote", 
+      "url": "https://internal-mcp.company.com/tools",
+      "oauth": {
+        "provider": "company-sso",
+        "scopes": ["tools:read", "tools:write"]
+      }
+    }
+  }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(99, 102, 241, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(99, 102, 241, 0.2);">
+                    <p class="text-accent">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>OAuth Flow:</strong> Claude Code will automatically handle the OAuth authentication flow, 
+                        opening your browser for secure login when needed.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="section glass-secondary">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-wrench text-warning"></i>
+                MCP Troubleshooting
+            </h2>
+            
+            <div class="grid grid-2">
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">Common Issues</h3>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Server Not Starting</h4>
+                        <div class="code-block">
+                            <pre><code># Check MCP server status
+claude mcp list
+
+# Debug MCP issues
+claude --mcp-debug
+
+# Check server configuration
+/mcp</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Permission Errors</h4>
+                        <div class="code-block">
+                            <pre><code># Fix npm permissions
+mkdir ~/.npm-global
+npm config set prefix ~/.npm-global
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">Debugging Commands</h3>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Command</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>/mcp</code></td>
+                                    <td>Check server status</td>
+                                </tr>
+                                <tr>
+                                    <td><code>claude mcp list</code></td>
+                                    <td>List configured servers</td>
+                                </tr>
+                                <tr>
+                                    <td><code>claude --mcp-debug</code></td>
+                                    <td>Debug MCP issues</td>
+                                </tr>
+                                <tr>
+                                    <td><code>MCP_DEBUG=true claude</code></td>
+                                    <td>Enable debug logging</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OAuth Integration Section -->
+    <section class="section" id="oauth">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-shield-alt text-success"></i>
+                OAuth Integration
+            </h2>
+            <p class="section-subtitle">
+                Secure authentication with OAuth for remote MCP servers without managing API keys manually.
+            </p>
+            
+            <div class="grid grid-2 mb-2xl">
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-key text-accent"></i>
+                            Native OAuth Support
+                        </h3>
+                        <p class="card-description">
+                            Claude Code now supports native OAuth authentication for remote MCP servers, 
+                            eliminating the need to manually manage API keys.
+                        </p>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">OAuth Configuration</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this, `{
+  \"mcpServers\": {
+    \"github\": {
+      \"command\": \"npx\",
+      \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],
+      \"env\": {
+        \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"oauth:github\"
+      }
+    }
+  }
+}`)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre><code>{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "oauth:github"
+      }
+    }
+  }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-cogs text-accent"></i>
+                            Setup Process
+                        </h3>
+                        <p class="card-description">
+                            Simple steps to configure OAuth authentication for your MCP servers.
+                        </p>
+                    </div>
+                    
+                    <ol class="feature-list">
+                        <li><i class="fas fa-check text-success"></i> Configure MCP server with oauth: prefix</li>
+                        <li><i class="fas fa-check text-success"></i> Claude Code handles OAuth flow automatically</li>
+                        <li><i class="fas fa-check text-success"></i> Secure token storage and refresh</li>
+                        <li><i class="fas fa-check text-success"></i> No manual API key management required</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Servers Section -->
+    <section class="section glass-secondary" id="custom">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-code text-accent"></i>
+                Custom MCP Servers
+            </h2>
+            <p class="section-subtitle">
+                Build and deploy your own MCP servers to extend Claude Code with custom functionality.
+            </p>
+            
+            <div class="grid grid-2 mb-2xl">
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-hammer text-accent"></i>
+                            Building Custom Servers
+                        </h3>
+                        <p class="card-description">
+                            Create custom MCP servers using the official SDK and templates.
+                        </p>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Basic MCP Server</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this, `import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+
+const server = new Server(
+  {
+    name: 'my-custom-server',
+    version: '0.1.0',
+  },
+  {
+    capabilities: {
+      tools: {},
+    },
+  }
+);
+
+// Add your custom tools here
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return {
+    tools: [
+      {
+        name: 'my_tool',
+        description: 'My custom tool',
+        inputSchema: {
+          type: 'object',
+          properties: {},
+        },
+      },
+    ],
+  };
+});
+
+const transport = new StdioServerTransport();
+await server.connect(transport);`)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre><code>import { Server } from '@modelcontextprotocol/sdk/server/index.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+
+const server = new Server(
+  {
+    name: 'my-custom-server',
+    version: '0.1.0',
+  },
+  {
+    capabilities: {
+      tools: {},
+    },
+  }
+);
+
+// Add your custom tools here
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return {
+    tools: [
+      {
+        name: 'my_tool',
+        description: 'My custom tool',
+        inputSchema: {
+          type: 'object',
+          properties: {},
+        },
+      },
+    ],
+  };
+});
+
+const transport = new StdioServerTransport();
+await server.connect(transport);</code></pre>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-rocket text-accent"></i>
+                            Deployment Options
+                        </h3>
+                        <p class="card-description">
+                            Various ways to deploy and distribute your custom MCP servers.
+                        </p>
+                    </div>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-npm text-warning"></i> <strong>NPM Package:</strong> Publish to npm for easy installation</li>
+                        <li><i class="fas fa-docker text-info"></i> <strong>Docker Container:</strong> Containerized deployment</li>
+                        <li><i class="fas fa-server text-success"></i> <strong>Remote Server:</strong> HTTP-based MCP server</li>
+                        <li><i class="fas fa-file-code text-accent"></i> <strong>Local Script:</strong> Direct execution from filesystem</li>
+                    </ul>
+                    
+                    <div class="mt-lg">
+                        <a href="https://modelcontextprotocol.io/docs/building-servers" class="btn btn-secondary" target="_blank">
+                            <i class="fas fa-book"></i>
+                            Server Development Guide
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- JavaScript -->
+    <script src="shared.js"></script>
+    <script>
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+    <!-- Developer Footer -->
+    <footer class="developer-footer">
+        <div class="container">
+            <div class="developer-credits">
+                <div class="developer-info">
+                    <img src="https://avatars.githubusercontent.com/u/185730623?v=4" alt="Zebbern" class="developer-avatar">
+                    <div class="developer-details">
+                        <h4 class="developer-name">Website developed by Zebbern</h4>
+                        <p class="developer-description">Full-stack developer passionate about AI tools and developer experience</p>
+                    </div>
+                </div>
+                <div class="developer-links">
+                    <a href="https://github.com/zebbern" class="developer-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+            <div class="developer-footer-bottom">
+                <p>&copy; 2025 Claude Code Guide. Website crafted with ❤️ by <a href="https://github.com/zebbern" target="_blank">Zebbern</a></p>
+            </div>
+        </div>
+
+    </footer>
+    <!-- Commands Button -->
+    <a href="commands.html" class="commands-button" title="All Claude Commands">
+        <i class="fas fa-terminal"></i>
+        All Claude Commands
+    </a>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <a href="#" class="quick-action" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+        <a href="resources.html#community" class="quick-action" title="Community">
+            <i class="fas fa-users"></i>
+        </a>
+        <a href="resources.html#support" class="quick-action" title="Support">
+            <i class="fas fa-question-circle"></i>
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="shared.js"></script>
+</body>
+</html>

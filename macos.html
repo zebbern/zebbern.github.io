@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code for macOS - Complete Installation Guide</title>
+    <meta name="description" content="Complete guide to installing Claude Code on macOS. Native installation with Homebrew for Intel and Apple Silicon Macs.">
+    <meta name="keywords" content="Claude Code macOS, Homebrew installation, Apple Silicon, Intel Mac, AI coding assistant">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="shared.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i> Claude Code
+            </a>
+            
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link ">Home</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Start</div>
+                                <a href="index.html#overview" class="nav-dropdown-link">
+                                    <i class="fas fa-info-circle"></i>
+                                    Overview
+                                </a>
+                                <a href="index.html#workflow" class="nav-dropdown-link">
+                                    <i class="fas fa-rocket"></i>
+                                    Transform Workflow
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Get Started</div>
+                                <a href="windows.html" class="nav-dropdown-link">
+                                    <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                                    Windows Setup
+                                </a>
+                                <a href="macos.html" class="nav-dropdown-link">
+                                    <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                                    macOS Setup
+                                </a>
+                                <a href="linux.html" class="nav-dropdown-link">
+                                    <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                                    Linux Setup
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="features.html" class="nav-link ">Features</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">AI Models</div>
+                                <a href="features.html#models" class="nav-dropdown-link">
+                                    <i class="fas fa-brain"></i>
+                                    Claude 4 Models
+                                </a>
+                                <a href="features.html#commands" class="nav-dropdown-link">
+                                    <i class="fas fa-terminal"></i>
+                                    Commands Reference
+                                </a>
+                                <a href="features.html#modes" class="nav-dropdown-link">
+                                    <i class="fas fa-cogs"></i>
+                                    Usage Modes
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Integration</div>
+                                <a href="features.html#ide" class="nav-dropdown-link">
+                                    <i class="fas fa-code"></i>
+                                    IDE Integration
+                                </a>
+                                <a href="features.html#enterprise" class="nav-dropdown-link">
+                                    <i class="fas fa-building"></i>
+                                    Enterprise Features
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="macos.html" class="nav-link active">Installation</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Operating Systems</div>
+                                <a href="windows.html" class="nav-dropdown-link">
+                                    <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                                    Windows (WSL)
+                                </a>
+                                <a href="macos.html" class="nav-dropdown-link">
+                                    <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                                    macOS (Homebrew)
+                                </a>
+                                <a href="linux.html" class="nav-dropdown-link">
+                                    <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                                    Linux (All Distros)
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Links</div>
+                                <a href="resources.html#troubleshooting" class="nav-dropdown-link">
+                                    <i class="fas fa-tools"></i>
+                                    Troubleshooting
+                                </a>
+                                <a href="resources.html#requirements" class="nav-dropdown-link">
+                                    <i class="fas fa-check-circle"></i>
+                                    System Requirements
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mcp.html" class="nav-link ">MCP</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Setup & Configuration</div>
+                                <a href="mcp.html#setup" class="nav-dropdown-link">
+                                    <i class="fas fa-cog"></i>
+                                    Quick Setup
+                                </a>
+                                <a href="mcp.html#remote" class="nav-dropdown-link">
+                                    <i class="fas fa-cloud"></i>
+                                    Remote MCP Servers
+                                </a>
+                                <a href="mcp.html#servers" class="nav-dropdown-link">
+                                    <i class="fas fa-server"></i>
+                                    Popular Servers
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Advanced</div>
+                                <a href="mcp.html#oauth" class="nav-dropdown-link">
+                                    <i class="fas fa-shield-alt"></i>
+                                    OAuth Integration
+                                </a>
+                                <a href="mcp.html#custom" class="nav-dropdown-link">
+                                    <i class="fas fa-wrench"></i>
+                                    Custom Servers
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="examples.html" class="nav-link ">Examples</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Start</div>
+                                <a href="examples.html#quick" class="nav-dropdown-link">
+                                    <i class="fas fa-bolt"></i>
+                                    Quick Commands
+                                </a>
+                                <a href="examples.html#workflows" class="nav-dropdown-link">
+                                    <i class="fas fa-project-diagram"></i>
+                                    Development Workflows
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Advanced</div>
+                                <a href="examples.html#ide" class="nav-dropdown-link">
+                                    <i class="fas fa-code"></i>
+                                    IDE Integration
+                                </a>
+                                <a href="examples.html#advanced" class="nav-dropdown-link">
+                                    <i class="fas fa-rocket"></i>
+                                    Complex Scenarios
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="resources.html" class="nav-link ">Resources</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Help & Support</div>
+                                <a href="resources.html#troubleshooting" class="nav-dropdown-link">
+                                    <i class="fas fa-tools"></i>
+                                    Troubleshooting
+                                </a>
+                                <a href="resources.html#community" class="nav-dropdown-link">
+                                    <i class="fas fa-users"></i>
+                                    Community Guides
+                                </a>
+                                <a href="resources.html#faq" class="nav-dropdown-link">
+                                    <i class="fas fa-question-circle"></i>
+                                    FAQ
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Official</div>
+                                <a href="resources.html#official" class="nav-dropdown-link">
+                                    <i class="fas fa-file-alt"></i>
+                                    Documentation
+                                </a>
+                                <a href="resources.html#enterprise" class="nav-dropdown-link">
+                                    <i class="fas fa-building"></i>
+                                    Enterprise
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="search-container collapsed">
+                
+                <input type="text" class="search-input" placeholder="Search documentation..." id="searchInput" style="opacity: 0;">
+                <button class="search-toggle">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" class="nav-link ">Home</a></li>
+                <li><a href="features.html" class="nav-link ">Features</a></li>
+                <li><a href="mcp.html" class="nav-link ">MCP</a></li>
+                <li><a href="examples.html" class="nav-link ">Examples</a></li>
+                <li><a href="resources.html" class="nav-link ">Resources</a></li>
+            </ul>
+            
+            <div class="mobile-section">
+                <h4 style="color: var(--text-accent); font-size: 0.875rem; font-weight: 600; margin-bottom: var(--space-sm); text-transform: uppercase;">Installation Guides</h4>
+                <div class="mobile-os-nav">
+                    <a href="windows.html" class="os-link windows ">
+                        <i class="fab fa-windows"></i>
+                        Windows (WSL)
+                    </a>
+                    <a href="macos.html" class="os-link macos active">
+                        <i class="fab fa-apple"></i>
+                        macOS (Homebrew)
+                    </a>
+                    <a href="linux.html" class="os-link linux ">
+                        <i class="fab fa-linux"></i>
+                        Linux (All Distros)
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mobile-search">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search documentation..." id="mobileSearchInput">
+                <div class="search-results" id="mobileSearchResults"></div>
+            </div>
+        </div>
+    </header>
+    
+
+    <!-- Hero Section -->
+    <section class="section" style="padding-top: var(--space-2xl);">
+        <div class="container">
+            <div class="text-center mb-2xl">
+                <div style="width: 5rem; height: 5rem; background: var(--gradient-macos); border-radius: var(--radius-2xl); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg); font-size: 2.5rem;">
+                    <i class="fab fa-apple"></i>
+                </div>
+                <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: var(--space-md); color: var(--macos-color);">
+                    Claude Code for macOS
+                </h1>
+                <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-lg);">
+                    Native macOS installation with Homebrew. Optimized for both Intel and Apple Silicon Macs. 
+                    The easiest platform to get started with Claude Code.
+                </p>
+                
+                <div class="flex gap-md justify-center">
+                    <div class="difficulty-badge difficulty-beginner">
+                        <i class="fas fa-star"></i>
+                        Easiest Installation
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <!-- Very Quick Installation -->
+            <div class="container mb-2xl">
+                <div class="glass card" style="max-width: 700px; margin: 0 auto;">
+                    <div class="card-header" style="text-align: center;">
+                        <h3 class="card-title">
+                            <i class="fas fa-bolt text-warning"></i>
+                            Very Quick Installation
+                        </h3>
+                        <p class="card-description">
+                            For experienced users - get Claude Code running in 3 commands
+                        </p>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">macOS Quick Setup</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this, `# Install Node.js (macOS with Homebrew)
+brew install node
+
+# Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Run Claude Code
+claude`)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre><code># Install Node.js (macOS with Homebrew)
+brew install node
+
+# Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Run Claude Code
+claude</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Path Selection -->
+            <div class="grid grid-2 mb-2xl">
+                <div class="glass card" style="cursor: pointer;" onclick="scrollToSection('beginner')">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-seedling text-success"></i>
+                            Beginner Path
+                        </h3>
+                        <div class="difficulty-badge difficulty-beginner mb-md">
+                            <i class="fas fa-star"></i>
+                            Step-by-Step Guide
+                        </div>
+                        <p class="card-description">
+                            New to command line or development tools? Follow our detailed guide with explanations.
+                        </p>
+                    </div>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; margin-bottom: var(--space-lg);">
+                        <li>Homebrew installation explained</li>
+                        <li>Terminal basics and tips</li>
+                        <li>Node.js setup walkthrough</li>
+                        <li>First-time user guidance</li>
+                    </ul>
+                    <a href="#beginner" class="btn btn-macos">
+                        <i class="fas fa-play"></i>
+                        Start Beginner Guide
+                    </a>
+                </div>
+                
+                <div class="glass card" style="cursor: pointer;" onclick="scrollToSection('professional')">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-rocket text-accent"></i>
+                            Professional Path
+                        </h3>
+                        <div class="difficulty-badge difficulty-advanced mb-md">
+                            <i class="fas fa-star"></i>
+                            Quick Setup
+                        </div>
+                        <p class="card-description">
+                            Experienced developer? Jump straight to advanced configurations and enterprise features.
+                        </p>
+                    </div>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; margin-bottom: var(--space-lg);">
+                        <li>One-command installation</li>
+                        <li>Advanced MCP configurations</li>
+                        <li>Development environment optimization</li>
+                        <li>Enterprise deployment options</li>
+                    </ul>
+                    <a href="#professional" class="btn btn-secondary">
+                        <i class="fas fa-rocket"></i>
+                        Quick Setup
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Requirements -->
+    <section class="section glass-secondary">
+        <div class="container">
+            <div class="glass card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-check-circle text-success"></i>
+                        System Requirements
+                    </h3>
+                    <p class="card-description">
+                        Claude Code works natively on macOS with minimal requirements.
+                    </p>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><strong>macOS Version</strong></td>
+                                <td>macOS 10.15 Catalina or later (recommended: macOS 12+)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Processor</strong></td>
+                                <td>Intel x64 or Apple Silicon (M1/M2/M3)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Memory</strong></td>
+                                <td>4GB RAM minimum (8GB+ recommended)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Storage</strong></td>
+                                <td>1GB free space for Node.js and Claude Code</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Network</strong></td>
+                                <td>Internet connection for installation and API access</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Account</strong></td>
+                                <td>Claude Max subscription OR Anthropic API key</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-lg p-lg" style="background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.2);">
+                    <p class="text-success">
+                        <i class="fas fa-thumbs-up"></i>
+                        <strong>Great News!</strong> macOS is the most straightforward platform for Claude Code installation. No virtualization or compatibility layers needed.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beginner Path -->
+    <section class="section" id="beginner">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-seedling text-success"></i>
+                Beginner Installation Guide
+            </h2>
+            <p class="section-subtitle">
+                Follow these detailed steps to install Claude Code on macOS. Perfect for developers new to command line tools.
+            </p>
+            
+            <!-- Step 1: Install Homebrew -->
+            <div class="glass card mt-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-macos); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">1</span>
+                        Install Homebrew Package Manager
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        5 minutes
+                    </div>
+                    <p class="card-description">
+                        Homebrew is the most popular package manager for macOS. It makes installing development tools simple and reliable.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">What is Homebrew?</h4>
+                    <p class="text-secondary mb-md">
+                        Homebrew is like an app store for command-line tools. It automatically handles downloads, 
+                        installations, and updates for thousands of development tools including Node.js.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Installation Command</h4>
+                    <p class="text-secondary mb-md">Open Terminal (⌘ + Space, type "Terminal") and run:</p>
+                    
+                    <div class="code-block">
+                        <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+                    </div>
+                    
+                    <p class="text-muted mb-lg">
+                        This command downloads and runs the official Homebrew installer. You'll be prompted for your password.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Follow the Installation Prompts</h4>
+                    <ol style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li>Enter your macOS password when prompted</li>
+                        <li>Press Enter to continue when asked</li>
+                        <li>Wait for the installation to complete (5-10 minutes)</li>
+                        <li>Follow any additional instructions shown</li>
+                    </ol>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Add Homebrew to PATH (Apple Silicon Macs)</h4>
+                    <p class="text-secondary mb-md">If you have an M1/M2/M3 Mac, you may need to add Homebrew to your PATH:</p>
+                    
+                    <div class="code-block">
+                        <pre><code># Add Homebrew to PATH
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"</code></pre>
+                    </div>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Verify Installation</h4>
+                    <div class="code-block">
+                        <pre><code># Check if Homebrew is installed correctly
+brew --version
+
+# Should output something like: Homebrew 4.x.x</code></pre>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(0, 122, 255, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(0, 122, 255, 0.2);">
+                    <p class="text-macos">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Tip:</strong> If you see "command not found" for brew, restart Terminal or run the PATH command above.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 2: Install Node.js -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-macos); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">2</span>
+                        Install Node.js
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        3 minutes
+                    </div>
+                    <p class="card-description">
+                        Node.js is the JavaScript runtime that Claude Code requires. We'll install the latest LTS (Long Term Support) version.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Install Node.js with Homebrew</h4>
+                    <div class="code-block">
+                        <pre><code># Install Node.js (includes npm)
+brew install node
+
+# Verify installation
+node --version
+npm --version</code></pre>
+                    </div>
+                    
+                    <p class="text-muted mb-lg">
+                        This installs both Node.js and npm (Node Package Manager) which we'll use to install Claude Code.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">What You Should See</h4>
+                    <div class="code-block">
+                        <pre><code># Expected output (versions may be newer)
+$ node --version
+v20.x.x
+
+$ npm --version
+10.x.x</code></pre>
+                    </div>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Configure npm (Optional but Recommended)</h4>
+                    <p class="text-secondary mb-md">Set up npm to avoid permission issues with global packages:</p>
+                    
+                    <div class="code-block">
+                        <pre><code># Create directory for global packages
+mkdir -p ~/.npm-global
+
+# Configure npm to use this directory
+npm config set prefix ~/.npm-global
+
+# Add to PATH in your shell profile
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.zshrc
+
+# Reload shell configuration
+source ~/.zshrc</code></pre>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.2);">
+                    <p class="text-success">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>Success!</strong> Node.js is now installed and ready to use.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 3: Install Claude Code -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-macos); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">3</span>
+                        Install Claude Code
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        2 minutes
+                    </div>
+                    <p class="card-description">
+                        Now we can install Claude Code using npm. This downloads the latest version from the official repository.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Install Claude Code Globally</h4>
+                    <div class="code-block">
+                        <pre><code># Install Claude Code globally
+npm install -g @anthropic-ai/claude-code
+
+# Verify installation
+claude --version</code></pre>
+                    </div>
+                    
+                    <p class="text-muted mb-lg">
+                        The <code>-g</code> flag installs Claude Code globally, making it available from any directory.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Test the Installation</h4>
+                    <div class="code-block">
+                        <pre><code># Check if Claude Code is in PATH
+which claude
+
+# Should output something like: /usr/local/bin/claude or ~/.npm-global/bin/claude</code></pre>
+                    </div>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Apple Silicon Specific (M1/M2/M3 Macs)</h4>
+                    <p class="text-secondary mb-md">If you encounter any issues on Apple Silicon, try:</p>
+                    
+                    <div class="code-block">
+                        <pre><code># Force ARM64 architecture
+arch -arm64 npm install -g @anthropic-ai/claude-code</code></pre>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.2);">
+                    <p class="text-success">
+                        <i class="fas fa-party-horn"></i>
+                        <strong>Excellent!</strong> Claude Code is now installed on your Mac.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 4: Authentication -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-macos); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">4</span>
+                        Set Up Authentication
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        3 minutes
+                    </div>
+                    <p class="card-description">
+                        Configure Claude Code to work with your Anthropic account. You can use either Claude Max or an API key.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2 mb-lg">
+                    <div>
+                        <h4 class="text-primary mb-md">Option A: Claude Max (Recommended)</h4>
+                        <p class="text-secondary mb-md">Best for regular users ($20/month):</p>
+                        
+                        <ol style="color: var(--text-secondary); padding-left: 1.5rem; margin-bottom: var(--space-md);">
+                            <li>Navigate to a project directory</li>
+                            <li>Run <code>claude</code></li>
+                            <li>Follow OAuth prompts in browser</li>
+                            <li>Complete authentication</li>
+                        </ol>
+                        
+                        <div class="code-block">
+                            <pre><code># Navigate to your project
+cd ~/Projects/your-project
+
+# Start Claude Code
+claude</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Option B: API Key</h4>
+                        <p class="text-secondary mb-md">For pay-per-use or enterprise:</p>
+                        
+                        <ol style="color: var(--text-secondary); padding-left: 1.5rem; margin-bottom: var(--space-md);">
+                            <li>Get API key from <a href="https://console.anthropic.com" class="text-accent">Anthropic Console</a></li>
+                            <li>Set environment variable</li>
+                            <li>Add to shell profile</li>
+                        </ol>
+                        
+                        <div class="code-block">
+                            <pre><code># Set API key
+export ANTHROPIC_API_KEY=your_key_here
+
+# Add to shell profile
+echo 'export ANTHROPIC_API_KEY=your_key' >> ~/.zshrc
+source ~/.zshrc</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(0, 122, 255, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(0, 122, 255, 0.2);">
+                    <p class="text-macos">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Note:</strong> macOS uses zsh as the default shell. If you're using bash, replace <code>~/.zshrc</code> with <code>~/.bash_profile</code>.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 5: First Use -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-macos); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">5</span>
+                        First Use and Testing
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        5 minutes
+                    </div>
+                    <p class="card-description">
+                        Test Claude Code with your first project and learn the basic workflow.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Create a Test Project</h4>
+                    <div class="code-block">
+                        <pre><code># Create a new project directory
+mkdir ~/claude-test
+cd ~/claude-test
+
+# Create a simple JavaScript file
+echo "console.log('Hello Claude!');" > hello.js
+
+# Create a README
+echo "# My First Claude Code Project" > README.md</code></pre>
+                    </div>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Start Claude Code</h4>
+                    <div class="code-block">
+                        <pre><code># Start Claude Code in your project
+claude
+
+# Try some basic commands
+> "Explain what this JavaScript file does"
+> "/init"  # Generate project documentation
+> "/help"  # See all available commands
+> "/status" # Check system status</code></pre>
+                    </div>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Basic Commands to Try</h4>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li><code>/init</code> - Generate CLAUDE.md documentation</li>
+                        <li><code>/help</code> - Show all available commands</li>
+                        <li><code>/model claude-sonnet-4</code> - Switch AI models</li>
+                        <li><code>/clear</code> - Clear conversation context</li>
+                        <li><code>/exit</code> - Exit Claude Code</li>
+                    </ul>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.2);">
+                    <p class="text-success">
+                        <i class="fas fa-rocket"></i>
+                        <strong>Congratulations!</strong> You've successfully installed and tested Claude Code on macOS. You're ready to start AI-powered development!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Path -->
+    <section class="section glass-secondary" id="professional">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-rocket text-accent"></i>
+                Professional Installation Guide
+            </h2>
+            <p class="section-subtitle">
+                Quick setup for experienced developers with advanced configurations and optimization tips.
+            </p>
+            
+            <!-- One-Command Install -->
+            <div class="glass card mt-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-bolt text-accent"></i>
+                        One-Command Installation
+                    </h3>
+                    <div class="difficulty-badge difficulty-advanced mb-md">
+                        <i class="fas fa-clock"></i>
+                        2 minutes
+                    </div>
+                    <p class="card-description">
+                        Complete installation in a single command. Assumes you have Homebrew installed.
+                    </p>
+                </div>
+                
+                <div class="code-block">
+                    <pre><code># Complete installation (if Homebrew is already installed)
+brew install node && npm install -g @anthropic-ai/claude-code
+
+# Or full installation from scratch
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && \
+brew install node && \
+npm install -g @anthropic-ai/claude-code</code></pre>
+                </div>
+                
+                <div class="mt-lg">
+                    <h4 class="text-primary mb-md">Verify Installation</h4>
+                    <div class="code-block">
+                        <pre><code># Quick verification
+claude --version && echo "✅ Claude Code installed successfully"</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Development Environment Setup -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-cogs text-accent"></i>
+                        Development Environment Optimization
+                    </h3>
+                    <p class="card-description">
+                        Optimize your macOS development environment for Claude Code.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">Shell Configuration</h4>
+                        <p class="text-secondary mb-md">Add to <code>~/.zshrc</code> or <code>~/.bash_profile</code>:</p>
+                        
+                        <div class="code-block">
+                            <pre><code># Claude Code environment
+export ANTHROPIC_API_KEY=your_key
+export CLAUDE_MODEL=claude-sonnet-4
+export MCP_DEBUG=false
+
+# Node.js optimization
+export NODE_OPTIONS="--max-old-space-size=4096"
+
+# npm global packages
+export PATH=~/.npm-global/bin:$PATH
+
+# Homebrew (Apple Silicon)
+eval "$(/opt/homebrew/bin/brew shellenv)"</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Global Configuration</h4>
+                        <p class="text-secondary mb-md">Create <code>~/.claude.json</code>:</p>
+                        
+                        <div class="code-block">
+                            <pre><code>{
+  "defaultModel": "claude-sonnet-4",
+  "permissions": {
+    "allowedTools": ["Edit", "Bash(git*)"],
+    "deniedTools": ["Bash(rm*)"]
+  },
+  "preferences": {
+    "autoCompact": true,
+    "compactThreshold": 50000
+  },
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "~/Projects"]
+    }
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- IDE Integration -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-code text-accent"></i>
+                        IDE Integration Setup
+                    </h3>
+                    <p class="card-description">
+                        Set up Claude Code with popular macOS development environments.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">VS Code Integration</h4>
+                        <div class="code-block">
+                            <pre><code># Install VS Code extension
+code --install-extension anthropic.claude-code
+
+# Connect Claude Code to VS Code
+claude /ide
+
+# Use keyboard shortcuts
+# Cmd+Esc to access Claude Code</code></pre>
+                        </div>
+                        
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem; margin-top: var(--space-md);">
+                            <li>Inline edit suggestions</li>
+                            <li>Context sharing with open files</li>
+                            <li>Visual diffs for changes</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Terminal Integration</h4>
+                        <div class="code-block">
+                            <pre><code># iTerm2 integration
+echo 'alias cc="claude"' >> ~/.zshrc
+
+# Terminal optimization
+claude /terminal-setup
+
+# Add to iTerm2 profile for quick access
+# Cmd+T -> New tab with claude auto-start</code></pre>
+                        </div>
+                        
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem; margin-top: var(--space-md);">
+                            <li>Quick access aliases</li>
+                            <li>Terminal optimization</li>
+                            <li>iTerm2 profile setup</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Advanced MCP Setup -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-plug text-accent"></i>
+                        Advanced MCP Configuration
+                    </h3>
+                    <p class="card-description">
+                        Set up Model Context Protocol servers for enhanced capabilities.
+                    </p>
+                </div>
+                
+                <div class="code-block">
+                    <pre><code># Install essential MCP servers
+npm install -g @modelcontextprotocol/server-filesystem
+npm install -g @modelcontextprotocol/server-github
+npm install -g @modelcontextprotocol/server-puppeteer
+
+# Quick MCP setup
+claude mcp add filesystem -s user -- npx -y @modelcontextprotocol/server-filesystem ~/Projects
+claude mcp add github -s user -- env GITHUB_TOKEN=your_token npx -y @modelcontextprotocol/server-github</code></pre>
+                </div>
+                
+                <div class="mt-lg">
+                    <h4 class="text-primary mb-md">Project-Specific MCP</h4>
+                    <p class="text-secondary mb-md">Create <code>.claude.json</code> in your project root:</p>
+                    
+                    <div class="code-block">
+                        <pre><code>{
+  "mcpServers": {
+    "project-filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "./"]
+    },
+    "project-specific": {
+      "command": "npx",
+      "args": ["-y", "@your-org/custom-mcp-server"]
+    }
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Performance Optimization -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-tachometer-alt text-accent"></i>
+                        Performance Optimization
+                    </h3>
+                    <p class="card-description">
+                        Optimize Claude Code performance on macOS for large projects.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">Memory Optimization</h4>
+                        <div class="code-block">
+                            <pre><code># Increase Node.js memory limit
+export NODE_OPTIONS="--max-old-space-size=8192"
+
+# For large codebases
+export NODE_OPTIONS="--max-old-space-size=16384"
+
+# Add to shell profile
+echo 'export NODE_OPTIONS="--max-old-space-size=8192"' >> ~/.zshrc</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">File System Optimization</h4>
+                        <div class="code-block">
+                            <pre><code># Exclude large directories
+echo "node_modules/
+.git/
+dist/
+build/
+*.log" > .claudeignore
+
+# Use SSD for better performance
+# Keep projects on internal SSD, not external drives</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- macOS-Specific Tips -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">macOS-Specific Tips & Tricks</h2>
+            <p class="section-subtitle">
+                Make the most of Claude Code on macOS with these platform-specific optimizations.
+            </p>
+            
+            <div class="grid grid-2 mt-2xl">
+                <!-- Keyboard Shortcuts -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-keyboard text-accent"></i>
+                            Keyboard Shortcuts
+                        </h3>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Shortcut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Open Terminal</td>
+                                    <td><kbd>⌘</kbd> + <kbd>Space</kbd> → "Terminal"</td>
+                                </tr>
+                                <tr>
+                                    <td>New Terminal Tab</td>
+                                    <td><kbd>⌘</kbd> + <kbd>T</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Claude Code in IDE</td>
+                                    <td><kbd>⌘</kbd> + <kbd>Esc</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Paste in Terminal</td>
+                                    <td><kbd>⌘</kbd> + <kbd>V</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Clear Terminal</td>
+                                    <td><kbd>⌘</kbd> + <kbd>K</kbd></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Spotlight Integration -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-search text-accent"></i>
+                            Spotlight Integration
+                        </h3>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Quick Access</h4>
+                        <ol style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Press <kbd>⌘</kbd> + <kbd>Space</kbd></li>
+                            <li>Type "Terminal"</li>
+                            <li>Press <kbd>Enter</kbd></li>
+                            <li>Type <code>claude</code></li>
+                        </ol>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Create Automator Shortcut</h4>
+                        <ol style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Open Automator</li>
+                            <li>Create "Quick Action"</li>
+                            <li>Add "Run Shell Script"</li>
+                            <li>Set script to: <code>cd ~/Projects && claude</code></li>
+                            <li>Save as "Start Claude Code"</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- Finder Integration -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-folder text-accent"></i>
+                            Finder Integration
+                        </h3>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Open Terminal Here</h4>
+                        <p class="text-secondary mb-md">Right-click in Finder and select "New Terminal at Folder"</p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Quick Claude Access</h4>
+                        <div class="code-block">
+                            <pre><code># Create alias for quick access
+echo 'alias ccd="cd \$1 && claude"' >> ~/.zshrc
+
+# Usage: ccd ~/Projects/my-project</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dock Integration -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-th-large text-accent"></i>
+                            Dock Integration
+                        </h3>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Add Terminal to Dock</h4>
+                        <ol style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Open Terminal</li>
+                            <li>Right-click Terminal icon in Dock</li>
+                            <li>Select "Options" → "Keep in Dock"</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Create Claude Code App</h4>
+                        <div class="code-block">
+                            <pre><code># Create app bundle (advanced)
+# Use Platypus or create Automator application
+# Set to run: cd ~/Projects && claude</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="section glass-secondary">
+        <div class="container">
+            <h2 class="section-title">macOS Troubleshooting</h2>
+            <p class="section-subtitle">
+                Solutions to common issues specific to macOS installations.
+            </p>
+            
+            <div class="grid grid-2 mt-2xl">
+                <!-- Installation Issues -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-exclamation-triangle text-warning"></i>
+                            Installation Issues
+                        </h3>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Homebrew installation fails</h4>
+                        <div class="code-block">
+                            <pre><code># Check Xcode Command Line Tools
+xcode-select --install
+
+# If already installed, reset
+sudo xcode-select --reset</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Permission denied errors</h4>
+                        <div class="code-block">
+                            <pre><code># Fix Homebrew permissions
+sudo chown -R $(whoami) /opt/homebrew
+
+# For Intel Macs
+sudo chown -R $(whoami) /usr/local</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Command not found: brew</h4>
+                        <div class="code-block">
+                            <pre><code># Add Homebrew to PATH (Apple Silicon)
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# For Intel Macs
+echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Runtime Issues -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-cog text-accent"></i>
+                            Runtime Issues
+                        </h3>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Claude Code not found</h4>
+                        <div class="code-block">
+                            <pre><code># Check npm global directory
+npm config get prefix
+
+# Add to PATH if needed
+echo 'export PATH="$(npm config get prefix)/bin:$PATH"' >> ~/.zshrc</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Apple Silicon compatibility</h4>
+                        <div class="code-block">
+                            <pre><code># Force ARM64 architecture
+arch -arm64 npm install -g @anthropic-ai/claude-code
+
+# Check architecture
+uname -m  # Should show arm64 for Apple Silicon</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Network connectivity issues</h4>
+                        <div class="code-block">
+                            <pre><code># Check DNS resolution
+nslookup api.anthropic.com
+
+# Test connectivity
+curl -I https://api.anthropic.com</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="section">
+        <div class="container">
+            <div class="glass card text-center">
+                <h3 class="text-primary mb-md">🎉 macOS Installation Complete!</h3>
+                <p class="text-secondary mb-lg">
+                    Congratulations! You've successfully installed Claude Code on macOS. Here's what to explore next:
+                </p>
+                
+                <div class="grid grid-3 mb-2xl">
+                    <a href="features.html" class="btn btn-secondary">
+                        <i class="fas fa-rocket"></i>
+                        Explore Features
+                    </a>
+                    <a href="mcp.html" class="btn btn-secondary">
+                        <i class="fas fa-plug"></i>
+                        Setup MCP
+                    </a>
+                    <a href="examples.html" class="btn btn-secondary">
+                        <i class="fas fa-code"></i>
+                        View Examples
+                    </a>
+                </div>
+                
+                <div class="mt-2xl pt-lg" style="border-top: 1px solid var(--glass-border);">
+                    <p class="text-muted">
+                        Need help? Check our <a href="resources.html#troubleshooting" class="text-accent">troubleshooting guide</a> 
+                        or visit the <a href="resources.html#community" class="text-accent">community resources</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- JavaScript -->
+    <script src="shared.js"></script>
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function detectMacType() {
+            const resultDiv = document.getElementById('macTypeResult');
+            const textElement = document.getElementById('macTypeText');
+            const valueElement = document.getElementById('macTypeValue');
+            const instructionsElement = document.getElementById('macTypeInstructions');
+            
+            // Simple detection based on user agent
+            const userAgent = navigator.userAgent.toLowerCase();
+            let macType = 'Unknown';
+            let instructions = '';
+            
+            if (userAgent.includes('intel')) {
+                macType = 'Intel Mac';
+                instructions = 'Follow the standard installation instructions. No special configuration needed.';
+            } else if (userAgent.includes('arm') || userAgent.includes('m1') || userAgent.includes('m2') || userAgent.includes('m3')) {
+                macType = 'Apple Silicon (M1/M2/M3)';
+                instructions = 'You may need to add Homebrew to your PATH after installation. Follow the Apple Silicon specific steps.';
+            } else {
+                // Try to detect based on screen resolution and other factors
+                const screenWidth = window.screen.width;
+                const screenHeight = window.screen.height;
+                
+                // Common Apple Silicon Mac resolutions
+                if ((screenWidth === 2560 && screenHeight === 1600) || // 13" MacBook Pro M1/M2
+                    (screenWidth === 3024 && screenHeight === 1964) || // 14" MacBook Pro M1/M2
+                    (screenWidth === 3456 && screenHeight === 2234) || // 16" MacBook Pro M1/M2
+                    (screenWidth === 4480 && screenHeight === 2520) || // Studio Display
+                    (screenWidth === 5120 && screenHeight === 2880)) {  // 27" iMac M1
+                    macType = 'Likely Apple Silicon (M1/M2/M3)';
+                    instructions = 'Based on your screen resolution, you likely have an Apple Silicon Mac. Follow the Apple Silicon specific steps.';
+                } else {
+                    macType = 'Likely Intel Mac';
+                    instructions = 'Based on detection, you likely have an Intel Mac. Follow the standard installation instructions.';
+                }
+            }
+            
+            valueElement.textContent = macType;
+            instructionsElement.textContent = instructions;
+            resultDiv.classList.remove('hidden');
+            
+            // Scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+    <!-- Developer Footer -->
+    <footer class="developer-footer">
+        <div class="container">
+            <div class="developer-credits">
+                <div class="developer-info">
+                    <img src="https://avatars.githubusercontent.com/u/185730623?v=4" alt="Zebbern" class="developer-avatar">
+                    <div class="developer-details">
+                        <h4 class="developer-name">Website developed by Zebbern</h4>
+                        <p class="developer-description">Full-stack developer passionate about AI tools and developer experience</p>
+                    </div>
+                </div>
+                <div class="developer-links">
+                    <a href="https://github.com/zebbern" class="developer-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+            <div class="developer-footer-bottom">
+                <p>&copy; 2025 Claude Code Guide. Website crafted with ❤️ by <a href="https://github.com/zebbern" target="_blank">Zebbern</a></p>
+            </div>
+        </div>
+
+    </footer>
+    <!-- Commands Button -->
+    <a href="commands.html" class="commands-button" title="All Claude Commands">
+        <i class="fas fa-terminal"></i>
+        All Claude Commands
+    </a>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <a href="#" class="quick-action" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+        <a href="resources.html#community" class="quick-action" title="Community">
+            <i class="fas fa-users"></i>
+        </a>
+        <a href="resources.html#support" class="quick-action" title="Support">
+            <i class="fas fa-question-circle"></i>
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Resources - Troubleshooting, Community, and Enterprise</title>
+    <meta name="description" content="Comprehensive Claude Code resources including troubleshooting guides, community tutorials, enterprise features, and official documentation.">
+    <meta name="keywords" content="Claude Code resources, troubleshooting, community guides, enterprise features, documentation">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="shared.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i> Claude Code
+            </a>
+            
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link ">Home</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Start</div>
+                                <a href="index.html#overview" class="nav-dropdown-link">
+                                    <i class="fas fa-info-circle"></i>
+                                    Overview
+                                </a>
+                                <a href="index.html#workflow" class="nav-dropdown-link">
+                                    <i class="fas fa-rocket"></i>
+                                    Transform Workflow
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Get Started</div>
+                                <a href="windows.html" class="nav-dropdown-link">
+                                    <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                                    Windows Setup
+                                </a>
+                                <a href="macos.html" class="nav-dropdown-link">
+                                    <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                                    macOS Setup
+                                </a>
+                                <a href="linux.html" class="nav-dropdown-link">
+                                    <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                                    Linux Setup
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="features.html" class="nav-link ">Features</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">AI Models</div>
+                                <a href="features.html#models" class="nav-dropdown-link">
+                                    <i class="fas fa-brain"></i>
+                                    Claude 4 Models
+                                </a>
+                                <a href="features.html#commands" class="nav-dropdown-link">
+                                    <i class="fas fa-terminal"></i>
+                                    Commands Reference
+                                </a>
+                                <a href="features.html#modes" class="nav-dropdown-link">
+                                    <i class="fas fa-cogs"></i>
+                                    Usage Modes
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Integration</div>
+                                <a href="features.html#ide" class="nav-dropdown-link">
+                                    <i class="fas fa-code"></i>
+                                    IDE Integration
+                                </a>
+                                <a href="features.html#enterprise" class="nav-dropdown-link">
+                                    <i class="fas fa-building"></i>
+                                    Enterprise Features
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="windows.html" class="nav-link ">Installation</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Operating Systems</div>
+                                <a href="windows.html" class="nav-dropdown-link">
+                                    <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                                    Windows (WSL)
+                                </a>
+                                <a href="macos.html" class="nav-dropdown-link">
+                                    <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                                    macOS (Homebrew)
+                                </a>
+                                <a href="linux.html" class="nav-dropdown-link">
+                                    <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                                    Linux (All Distros)
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Links</div>
+                                <a href="resources.html#troubleshooting" class="nav-dropdown-link">
+                                    <i class="fas fa-tools"></i>
+                                    Troubleshooting
+                                </a>
+                                <a href="resources.html#requirements" class="nav-dropdown-link">
+                                    <i class="fas fa-check-circle"></i>
+                                    System Requirements
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mcp.html" class="nav-link ">MCP</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Setup & Configuration</div>
+                                <a href="mcp.html#setup" class="nav-dropdown-link">
+                                    <i class="fas fa-cog"></i>
+                                    Quick Setup
+                                </a>
+                                <a href="mcp.html#remote" class="nav-dropdown-link">
+                                    <i class="fas fa-cloud"></i>
+                                    Remote MCP Servers
+                                </a>
+                                <a href="mcp.html#servers" class="nav-dropdown-link">
+                                    <i class="fas fa-server"></i>
+                                    Popular Servers
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Advanced</div>
+                                <a href="mcp.html#oauth" class="nav-dropdown-link">
+                                    <i class="fas fa-shield-alt"></i>
+                                    OAuth Integration
+                                </a>
+                                <a href="mcp.html#custom" class="nav-dropdown-link">
+                                    <i class="fas fa-wrench"></i>
+                                    Custom Servers
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="examples.html" class="nav-link ">Examples</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Start</div>
+                                <a href="examples.html#quick" class="nav-dropdown-link">
+                                    <i class="fas fa-bolt"></i>
+                                    Quick Commands
+                                </a>
+                                <a href="examples.html#workflows" class="nav-dropdown-link">
+                                    <i class="fas fa-project-diagram"></i>
+                                    Development Workflows
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Advanced</div>
+                                <a href="examples.html#ide" class="nav-dropdown-link">
+                                    <i class="fas fa-code"></i>
+                                    IDE Integration
+                                </a>
+                                <a href="examples.html#advanced" class="nav-dropdown-link">
+                                    <i class="fas fa-rocket"></i>
+                                    Complex Scenarios
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="resources.html" class="nav-link active">Resources</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Help & Support</div>
+                                <a href="resources.html#troubleshooting" class="nav-dropdown-link">
+                                    <i class="fas fa-tools"></i>
+                                    Troubleshooting
+                                </a>
+                                <a href="resources.html#community" class="nav-dropdown-link">
+                                    <i class="fas fa-users"></i>
+                                    Community Guides
+                                </a>
+                                <a href="resources.html#faq" class="nav-dropdown-link">
+                                    <i class="fas fa-question-circle"></i>
+                                    FAQ
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Official</div>
+                                <a href="resources.html#official" class="nav-dropdown-link">
+                                    <i class="fas fa-file-alt"></i>
+                                    Documentation
+                                </a>
+                                <a href="resources.html#enterprise" class="nav-dropdown-link">
+                                    <i class="fas fa-building"></i>
+                                    Enterprise
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="search-container collapsed">
+                
+                <input type="text" class="search-input" placeholder="Search documentation..." id="searchInput" style="opacity: 0;">
+                <button class="search-toggle">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" class="nav-link ">Home</a></li>
+                <li><a href="features.html" class="nav-link ">Features</a></li>
+                <li><a href="mcp.html" class="nav-link ">MCP</a></li>
+                <li><a href="examples.html" class="nav-link ">Examples</a></li>
+                <li><a href="resources.html" class="nav-link active">Resources</a></li>
+            </ul>
+            
+            <div class="mobile-section">
+                <h4 style="color: var(--text-accent); font-size: 0.875rem; font-weight: 600; margin-bottom: var(--space-sm); text-transform: uppercase;">Installation Guides</h4>
+                <div class="mobile-os-nav">
+                    <a href="windows.html" class="os-link windows ">
+                        <i class="fab fa-windows"></i>
+                        Windows (WSL)
+                    </a>
+                    <a href="macos.html" class="os-link macos ">
+                        <i class="fab fa-apple"></i>
+                        macOS (Homebrew)
+                    </a>
+                    <a href="linux.html" class="os-link linux ">
+                        <i class="fab fa-linux"></i>
+                        Linux (All Distros)
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mobile-search">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search documentation..." id="mobileSearchInput">
+                <div class="search-results" id="mobileSearchResults"></div>
+            </div>
+        </div>
+    </header>
+    
+
+    <!-- Hero Section -->
+    <section class="section" style="padding-top: var(--space-2xl);">
+        <div class="container">
+            <div class="text-center mb-2xl">
+                <div style="width: 5rem; height: 5rem; background: var(--gradient-accent); border-radius: var(--radius-2xl); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg); font-size: 2.5rem;">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: var(--space-md); color: var(--text-accent);">
+                    Claude Code Resources
+                </h1>
+                <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto var(--space-lg);">
+                    Everything you need to master Claude Code: troubleshooting guides, community resources, 
+                    enterprise features, and official documentation.
+                </p>
+            </div>
+            
+            <!-- Resource Categories -->
+            <div class="grid grid-4 mb-2xl">
+                <div class="glass card text-center" style="cursor: pointer;" onclick="scrollToSection('troubleshooting')">
+                    <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-warning);">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-primary mb-sm">Troubleshooting</h3>
+                    <p class="text-muted">Common Issues & Fixes</p>
+                </div>
+                
+                <div class="glass card text-center" style="cursor: pointer;" onclick="scrollToSection('community')">
+                    <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-success);">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-primary mb-sm">Community</h3>
+                    <p class="text-muted">Guides & Tutorials</p>
+                </div>
+                
+                <div class="glass card text-center" style="cursor: pointer;" onclick="scrollToSection('enterprise')">
+                    <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-primary mb-sm">Enterprise</h3>
+                    <p class="text-muted">Business Features</p>
+                </div>
+                
+                <div class="glass card text-center" style="cursor: pointer;" onclick="scrollToSection('official')">
+                    <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-error);">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="text-primary mb-sm">Official Docs</h3>
+                    <p class="text-muted">Anthropic Resources</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting Section -->
+    <section class="section" id="troubleshooting">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-tools text-warning"></i>
+                Troubleshooting Guide
+            </h2>
+            <p class="section-subtitle">
+                Common issues and their solutions. Find quick fixes for installation problems, 
+                performance issues, and configuration errors.
+            </p>
+            
+            <!-- Installation Issues -->
+            <div class="glass card mb-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-download text-error"></i>
+                        Installation Problems
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-star"></i>
+                        Most Common Issues
+                    </div>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">Command Not Found</h4>
+                        <div class="p-lg mb-lg" style="background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.2);">
+                            <p class="text-error mb-sm">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Error:</strong> <code>claude: command not found</code>
+                            </p>
+                        </div>
+                        
+                        <h5 class="text-primary mb-sm">Solutions:</h5>
+                        <div class="code-block">
+                            <pre><code># Fix PATH issue
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+
+# Verify installation
+which claude
+claude --version</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Permission Denied</h4>
+                        <div class="p-lg mb-lg" style="background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.2);">
+                            <p class="text-error mb-sm">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <strong>Error:</strong> <code>EACCES: permission denied</code>
+                            </p>
+                        </div>
+                        
+                        <h5 class="text-primary mb-sm">Solutions:</h5>
+                        <div class="code-block">
+                            <pre><code># Configure npm for non-root access
+mkdir -p ~/.npm-global
+npm config set prefix ~/.npm-global
+
+# Reinstall Claude Code
+npm install -g @anthropic-ai/claude-code</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-lg">
+                    <h4 class="text-primary mb-md">Windows-Specific Issues</h4>
+                    <div class="grid grid-2">
+                        <div>
+                            <h5 class="text-primary mb-sm">Unsupported Platform Error</h5>
+                            <div class="code-block">
+                                <pre><code># Error: Unsupported platform for @anthropic-ai/claude-code
+# Solution: Install WSL2 and use Linux environment
+
+wsl --install Ubuntu
+# Then install Claude Code in WSL</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="text-primary mb-sm">WSL Performance Issues</h5>
+                            <div class="code-block">
+                                <pre><code># Edit %USERPROFILE%\.wslconfig
+[wsl2]
+memory=8GB
+processors=4
+swap=2GB</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Runtime Issues -->
+            <div class="glass card mb-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-exclamation-circle text-warning"></i>
+                        Runtime & Performance Issues
+                    </h3>
+                </div>
+                
+                <div class="grid grid-3">
+                    <div>
+                        <h4 class="text-primary mb-md">Rate Limiting</h4>
+                        <div class="p-lg mb-md" style="background: rgba(245, 158, 11, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.2);">
+                            <p class="text-warning">
+                                <i class="fas fa-clock"></i>
+                                Too many requests
+                            </p>
+                        </div>
+                        
+                        <h5 class="text-primary mb-sm">Solutions:</h5>
+                        <div class="code-block">
+                            <pre><code># Check usage
+/cost
+
+# Clear context to save tokens
+/clear
+
+# Upgrade to Claude Max
+/upgrade</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Slow Performance</h4>
+                        <div class="p-lg mb-md" style="background: rgba(245, 158, 11, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.2);">
+                            <p class="text-warning">
+                                <i class="fas fa-hourglass-half"></i>
+                                Responses taking too long
+                            </p>
+                        </div>
+                        
+                        <h5 class="text-primary mb-sm">Solutions:</h5>
+                        <div class="code-block">
+                            <pre><code># Use faster model
+claude --model claude-haiku-3.5
+
+# Compact context
+/compact
+
+# Check network connection</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Memory Issues</h4>
+                        <div class="p-lg mb-md" style="background: rgba(245, 158, 11, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.2);">
+                            <p class="text-warning">
+                                <i class="fas fa-memory"></i>
+                                High memory usage
+                            </p>
+                        </div>
+                        
+                        <h5 class="text-primary mb-sm">Solutions:</h5>
+                        <div class="code-block">
+                            <pre><code># Clear context regularly
+/clear
+
+# Restart Claude Code
+/exit
+claude
+
+# Monitor system resources</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MCP Issues -->
+            <div class="glass card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-plug text-accent"></i>
+                        MCP Server Issues
+                    </h3>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">Server Connection Failed</h4>
+                        <div class="code-block">
+                            <pre><code># Debug MCP issues
+claude --mcp-debug
+
+# Check server status
+/mcp
+
+# List configured servers
+claude mcp list
+
+# Restart specific server
+claude mcp restart server-name</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Authentication Issues</h4>
+                        <div class="code-block">
+                            <pre><code># Check OAuth tokens
+/mcp auth status
+
+# Re-authenticate
+/mcp auth refresh
+
+# Clear and re-setup
+claude mcp remove server-name
+claude mcp add server-name</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-lg">
+                    <h4 class="text-primary mb-md">Common MCP Debugging Steps:</h4>
+                    <ol style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li>Check server logs for error messages</li>
+                        <li>Verify network connectivity to remote servers</li>
+                        <li>Ensure API keys and tokens are valid</li>
+                        <li>Test server endpoints independently</li>
+                        <li>Review MCP configuration files</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-question-circle text-accent"></i>
+                Frequently Asked Questions
+            </h2>
+            <p class="section-subtitle">
+                Common questions and answers about Claude Code installation, usage, and troubleshooting.
+            </p>
+            
+            <div class="grid grid-1 mb-2xl">
+                <div class="glass card">
+                    <h3 class="card-title">
+                        <i class="fas fa-download text-accent"></i>
+                        Installation Questions
+                    </h3>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: Do I need a Claude subscription to use Claude Code?</h4>
+                        <p class="faq-answer">A: Yes, you need either a Claude Pro subscription ($20/month) or Anthropic API credits. The Pro subscription is more economical for regular use.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: Can I use Claude Code on Windows?</h4>
+                        <p class="faq-answer">A: Yes, but you need to install WSL (Windows Subsystem for Linux) first. Claude Code runs inside the Linux environment provided by WSL.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: What Node.js version do I need?</h4>
+                        <p class="faq-answer">A: Node.js 18 or higher is required. We recommend Node.js 20 LTS for the best experience.</p>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <h3 class="card-title">
+                        <i class="fas fa-cogs text-accent"></i>
+                        Usage Questions
+                    </h3>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: How do I update Claude Code?</h4>
+                        <p class="faq-answer">A: Run <code>npm install -g @anthropic-ai/claude-code@latest</code> to update to the latest version.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: Can Claude Code work with my existing IDE?</h4>
+                        <p class="faq-answer">A: Yes! Claude Code integrates with VS Code, Cursor, and other popular IDEs. Use the <code>/ide</code> command to set up integration.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: How much does Claude Code cost to run?</h4>
+                        <p class="faq-answer">A: With a Claude Pro subscription ($20/month), usage is included. API users pay per token - typically $0.10-$2.00 per hour of active coding.</p>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <h3 class="card-title">
+                        <i class="fas fa-wrench text-accent"></i>
+                        Troubleshooting Questions
+                    </h3>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: Claude Code won't start - what should I check?</h4>
+                        <p class="faq-answer">A: First, verify Node.js is installed (<code>node --version</code>), check your API key is set, and ensure you have an active Claude subscription or API credits.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: How do I reset Claude Code if it's not working?</h4>
+                        <p class="faq-answer">A: Run <code>/clear</code> to clear the context, or <code>/logout</code> and <code>/login</code> to reset authentication.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4 class="faq-question">Q: Can I use Claude Code offline?</h4>
+                        <p class="faq-answer">A: No, Claude Code requires an internet connection to communicate with Anthropic's AI models.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Resources -->
+    <section class="section glass-secondary" id="community">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-users text-success"></i>
+                Community Resources
+            </h2>
+            <p class="section-subtitle">
+                Learn from the community with curated guides, tutorials, and best practices 
+                from experienced Claude Code users.
+            </p>
+            
+            <!-- Featured Community Guides -->
+            <div class="grid grid-3 mt-2xl">
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-user text-accent"></i>
+                            Harper Reed's Workflow
+                        </h3>
+                        <div class="difficulty-badge difficulty-beginner mb-md">
+                            <i class="fas fa-star"></i>
+                            Beginner Friendly
+                        </div>
+                        <p class="card-description">
+                            Basic Claude Code workflow and tips from Harper Reed. 
+                            Perfect introduction for new users.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Key Topics:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Getting started with Claude Code</li>
+                            <li>Basic workflow patterns</li>
+                            <li>Common use cases</li>
+                            <li>Productivity tips</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="https://harper.blog/2025/05/08/basic-claude-code/" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Read Guide
+                    </a>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-code text-accent"></i>
+                            Philipp Spiess's Tips
+                        </h3>
+                        <div class="difficulty-badge difficulty-intermediate mb-md">
+                            <i class="fas fa-star"></i>
+                            Advanced Techniques
+                        </div>
+                        <p class="card-description">
+                            Advanced Claude Code techniques and optimization strategies 
+                            from Philipp Spiess.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Key Topics:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Advanced workflow optimization</li>
+                            <li>Performance tuning</li>
+                            <li>Integration strategies</li>
+                            <li>Professional development tips</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="https://spiess.dev/blog/how-i-use-claude-code" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Read Guide
+                    </a>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-plug text-accent"></i>
+                            MCP Setup Guide
+                        </h3>
+                        <div class="difficulty-badge difficulty-intermediate mb-md">
+                            <i class="fas fa-star"></i>
+                            MCP Focus
+                        </div>
+                        <p class="card-description">
+                            Comprehensive MCP configuration guide by Scott Spence. 
+                            Learn to set up and optimize MCP servers.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Key Topics:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>MCP server configuration</li>
+                            <li>Popular server setups</li>
+                            <li>Troubleshooting MCP issues</li>
+                            <li>Advanced MCP workflows</li>
+                        </ul>
+                    </div>
+                    
+                    <a href="https://scottspence.com/posts/configuring-mcp-tools-in-claude-code" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Read Guide
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Community Platforms -->
+            <div class="glass card mt-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-comments text-accent"></i>
+                        Community Platforms
+                    </h3>
+                    <p class="card-description">
+                        Connect with other Claude Code users, share experiences, and get help.
+                    </p>
+                </div>
+                
+                <div class="grid grid-4">
+                    <div class="text-center">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h4 class="text-primary mb-sm">GitHub</h4>
+                        <p class="text-secondary mb-md">Official repository and issue tracking</p>
+                        <a href="https://github.com/anthropics/claude-code" target="_blank" class="btn btn-ghost">
+                            <i class="fas fa-external-link-alt"></i>
+                            Visit
+                        </a>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <h4 class="text-primary mb-sm">Discord</h4>
+                        <p class="text-secondary mb-md">Real-time community discussions</p>
+                        <a href="#" target="_blank" class="btn btn-ghost">
+                            <i class="fas fa-external-link-alt"></i>
+                            Join
+                        </a>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                            <i class="fab fa-reddit"></i>
+                        </div>
+                        <h4 class="text-primary mb-sm">Reddit</h4>
+                        <p class="text-secondary mb-md">Community discussions and tips</p>
+                        <a href="#" target="_blank" class="btn btn-ghost">
+                            <i class="fas fa-external-link-alt"></i>
+                            Visit
+                        </a>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <h4 class="text-primary mb-sm">Twitter</h4>
+                        <p class="text-secondary mb-md">Latest news and updates</p>
+                        <a href="https://twitter.com/anthropicai" target="_blank" class="btn btn-ghost">
+                            <i class="fas fa-external-link-alt"></i>
+                            Follow
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Best Practices -->
+            <div class="glass card mt-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-star text-warning"></i>
+                        Community Best Practices
+                    </h3>
+                    <p class="card-description">
+                        Proven strategies and tips from the Claude Code community.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">Workflow Optimization</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li><strong>Think conversations, not commands</strong> - Use natural language</li>
+                            <li><strong>Iterate rapidly</strong> - First attempt won't be perfect</li>
+                            <li><strong>Context is king</strong> - Be specific, clear frequently</li>
+                            <li><strong>Monitor & interrupt</strong> - Use Esc when things go wrong</li>
+                            <li><strong>Document everything</strong> - Future you will thank you</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Development Patterns</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li><strong>30-45 minute projects</strong> - Regardless of complexity</li>
+                            <li><strong>Documentation before code</strong> - Read docs first</li>
+                            <li><strong>Error interruption</strong> - Stop and redirect when needed</li>
+                            <li><strong>Context management</strong> - Clear between major tasks</li>
+                            <li><strong>Rapid development</strong> - Describe → Plan → Execute</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Requirements Section -->
+    <section class="section" id="requirements">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-list-check text-accent"></i>
+                System Requirements
+            </h2>
+            <p class="section-subtitle">
+                Minimum and recommended system requirements for running Claude Code across different platforms.
+            </p>
+            
+            <div class="grid grid-3 mb-2xl">
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                            Windows Requirements
+                        </h3>
+                    </div>
+                    
+                    <div class="requirements-section">
+                        <h4 class="requirements-title">Minimum Requirements</h4>
+                        <ul class="requirements-list">
+                            <li><i class="fas fa-check text-success"></i> Windows 10 version 2004 or higher</li>
+                            <li><i class="fas fa-check text-success"></i> WSL 2 installed and configured</li>
+                            <li><i class="fas fa-check text-success"></i> 4GB RAM</li>
+                            <li><i class="fas fa-check text-success"></i> 2GB free disk space</li>
+                            <li><i class="fas fa-check text-success"></i> Node.js 18+ in WSL environment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="requirements-section">
+                        <h4 class="requirements-title">Recommended</h4>
+                        <ul class="requirements-list">
+                            <li><i class="fas fa-star text-warning"></i> Windows 11</li>
+                            <li><i class="fas fa-star text-warning"></i> 8GB+ RAM</li>
+                            <li><i class="fas fa-star text-warning"></i> SSD storage</li>
+                            <li><i class="fas fa-star text-warning"></i> Node.js 20 LTS</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                            macOS Requirements
+                        </h3>
+                    </div>
+                    
+                    <div class="requirements-section">
+                        <h4 class="requirements-title">Minimum Requirements</h4>
+                        <ul class="requirements-list">
+                            <li><i class="fas fa-check text-success"></i> macOS 10.15 (Catalina) or higher</li>
+                            <li><i class="fas fa-check text-success"></i> 4GB RAM</li>
+                            <li><i class="fas fa-check text-success"></i> 2GB free disk space</li>
+                            <li><i class="fas fa-check text-success"></i> Homebrew installed</li>
+                            <li><i class="fas fa-check text-success"></i> Node.js 18+</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="requirements-section">
+                        <h4 class="requirements-title">Recommended</h4>
+                        <ul class="requirements-list">
+                            <li><i class="fas fa-star text-warning"></i> macOS 12+ (Monterey or newer)</li>
+                            <li><i class="fas fa-star text-warning"></i> Apple Silicon (M1/M2/M3) for best performance</li>
+                            <li><i class="fas fa-star text-warning"></i> 8GB+ RAM</li>
+                            <li><i class="fas fa-star text-warning"></i> SSD storage</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                            Linux Requirements
+                        </h3>
+                    </div>
+                    
+                    <div class="requirements-section">
+                        <h4 class="requirements-title">Minimum Requirements</h4>
+                        <ul class="requirements-list">
+                            <li><i class="fas fa-check text-success"></i> Ubuntu 20.04+ / Debian 11+ / Fedora 35+</li>
+                            <li><i class="fas fa-check text-success"></i> 4GB RAM</li>
+                            <li><i class="fas fa-check text-success"></i> 2GB free disk space</li>
+                            <li><i class="fas fa-check text-success"></i> Node.js 18+</li>
+                            <li><i class="fas fa-check text-success"></i> curl, git installed</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="requirements-section">
+                        <h4 class="requirements-title">Recommended</h4>
+                        <ul class="requirements-list">
+                            <li><i class="fas fa-star text-warning"></i> Latest LTS distribution</li>
+                            <li><i class="fas fa-star text-warning"></i> 8GB+ RAM</li>
+                            <li><i class="fas fa-star text-warning"></i> SSD storage</li>
+                            <li><i class="fas fa-star text-warning"></i> Node.js 20 LTS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Features -->
+    <section class="section" id="enterprise">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-building text-accent"></i>
+                Enterprise Features
+            </h2>
+            <p class="section-subtitle">
+                Advanced features and deployment options for enterprise environments, 
+                including cloud providers and security compliance.
+            </p>
+            
+            <!-- Cloud Providers -->
+            <div class="grid grid-3 mt-2xl">
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fab fa-aws text-warning"></i>
+                            Amazon Bedrock
+                        </h3>
+                        <div class="difficulty-badge difficulty-advanced mb-md">
+                            <i class="fas fa-star"></i>
+                            Enterprise Ready
+                        </div>
+                        <p class="card-description">
+                            Deploy Claude Code with Amazon Bedrock for enterprise-grade 
+                            security and compliance.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Setup:</h4>
+                        <div class="code-block">
+                            <pre><code># Configure AWS credentials
+export AWS_PROFILE=your-profile
+
+# Use Bedrock provider
+claude --provider bedrock \
+       --model anthropic.claude-3-5-sonnet</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Features:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>FedRAMP High compliance</li>
+                            <li>DoD IL4/5 workload approval</li>
+                            <li>VPC deployment options</li>
+                            <li>Advanced logging and monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fab fa-google text-accent"></i>
+                            Google Vertex AI
+                        </h3>
+                        <div class="difficulty-badge difficulty-advanced mb-md">
+                            <i class="fas fa-star"></i>
+                            Google Cloud
+                        </div>
+                        <p class="card-description">
+                            Integrate with Google Cloud's Vertex AI platform for 
+                            enterprise AI workflows.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Setup:</h4>
+                        <div class="code-block">
+                            <pre><code># Configure Google Cloud credentials
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
+
+# Use Vertex AI provider
+claude --provider vertex \
+       --model claude-3-5-sonnet</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Features:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Google Cloud integration</li>
+                            <li>Enterprise security controls</li>
+                            <li>Scalable infrastructure</li>
+                            <li>Advanced analytics</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-shield-alt text-success"></i>
+                            Claude Gov Models
+                        </h3>
+                        <div class="difficulty-badge difficulty-advanced mb-md">
+                            <i class="fas fa-star"></i>
+                            Government Use
+                        </div>
+                        <p class="card-description">
+                            Specialized models for U.S. national security customers 
+                            with enhanced security features.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Features:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Enhanced security protocols</li>
+                            <li>Government compliance</li>
+                            <li>Classified data handling</li>
+                            <li>Specialized deployment options</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-lg" style="background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.2);">
+                        <p class="text-success">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Note:</strong> Available only for qualified government customers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enterprise Configuration -->
+            <div class="glass card mt-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-cogs text-accent"></i>
+                        Enterprise Configuration
+                    </h3>
+                    <p class="card-description">
+                        Advanced configuration options for enterprise deployments.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">User Configuration</h4>
+                        <div class="code-block">
+                            <pre><code># ~/.claude.json
+{
+  "defaultModel": "claude-sonnet-4",
+  "permissions": {
+    "allowedTools": ["Edit", "Bash(git*)"],
+    "deniedTools": ["Bash(rm*)"]
+  },
+  "preferences": {
+    "autoCompact": true,
+    "compactThreshold": 50000
+  },
+  "enterprise": {
+    "auditLogging": true,
+    "dataRetention": "30d",
+    "complianceMode": "strict"
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Environment Variables</h4>
+                        <div class="code-block">
+                            <pre><code># Enterprise environment setup
+export ANTHROPIC_API_KEY=your_key
+export CLAUDE_MODEL=claude-sonnet-4
+export CLAUDE_PROVIDER=bedrock
+export CLAUDE_AUDIT_LOG=true
+export CLAUDE_COMPLIANCE_MODE=strict
+export CLAUDE_DATA_RETENTION=30d</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Security & Compliance -->
+            <div class="glass card mt-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-lock text-success"></i>
+                        Security & Compliance
+                    </h3>
+                    <p class="card-description">
+                        Enterprise security features and compliance certifications.
+                    </p>
+                </div>
+                
+                <div class="grid grid-3">
+                    <div>
+                        <h4 class="text-primary mb-md">Security Features</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>End-to-end encryption</li>
+                            <li>Zero data retention options</li>
+                            <li>Audit logging</li>
+                            <li>Access controls</li>
+                            <li>Network isolation</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Compliance</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>SOC 2 Type II</li>
+                            <li>FedRAMP High</li>
+                            <li>DoD IL4/5</li>
+                            <li>GDPR compliance</li>
+                            <li>HIPAA eligible</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Monitoring</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Usage analytics</li>
+                            <li>Performance metrics</li>
+                            <li>Error tracking</li>
+                            <li>Security monitoring</li>
+                            <li>Compliance reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Official Documentation -->
+    <section class="section glass-secondary" id="official">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-file-alt text-error"></i>
+                Official Documentation
+            </h2>
+            <p class="section-subtitle">
+                Official resources from Anthropic including documentation, API references, 
+                and support channels.
+            </p>
+            
+            <!-- Official Links -->
+            <div class="grid grid-2 mt-2xl">
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-book text-accent"></i>
+                            Primary Documentation
+                        </h3>
+                        <p class="card-description">
+                            Official documentation and guides from Anthropic.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-md">
+                        <a href="https://docs.anthropic.com/claude-code" target="_blank" class="btn btn-secondary w-full">
+                            <i class="fas fa-external-link-alt"></i>
+                            Claude Code Documentation
+                        </a>
+                        
+                        <a href="https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview" target="_blank" class="btn btn-ghost w-full">
+                            <i class="fas fa-external-link-alt"></i>
+                            Developer Overview
+                        </a>
+                        
+                        <a href="https://docs.anthropic.com/en/docs/claude-code/mcp" target="_blank" class="btn btn-ghost w-full">
+                            <i class="fas fa-external-link-alt"></i>
+                            MCP Documentation
+                        </a>
+                        
+                        <a href="https://docs.anthropic.com/en/docs/claude-code/troubleshooting" target="_blank" class="btn btn-ghost w-full">
+                            <i class="fas fa-external-link-alt"></i>
+                            Official Troubleshooting
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-code text-accent"></i>
+                            Development Resources
+                        </h3>
+                        <p class="card-description">
+                            Code repositories, packages, and development tools.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-md">
+                        <a href="https://github.com/anthropics/claude-code" target="_blank" class="btn btn-secondary w-full">
+                            <i class="fab fa-github"></i>
+                            GitHub Repository
+                        </a>
+                        
+                        <a href="https://www.npmjs.com/package/@anthropic-ai/claude-code" target="_blank" class="btn btn-ghost w-full">
+                            <i class="fab fa-npm"></i>
+                            NPM Package
+                        </a>
+                        
+                        <a href="https://anthropic.com/partners/mcp" target="_blank" class="btn btn-ghost w-full">
+                            <i class="fas fa-plug"></i>
+                            MCP Directory
+                        </a>
+                        
+                        <a href="https://www.anthropic.com/engineering/claude-code-best-practices" target="_blank" class="btn btn-ghost w-full">
+                            <i class="fas fa-star"></i>
+                            Best Practices Guide
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Support Channels -->
+            <div class="glass card mt-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-headset text-accent"></i>
+                        Support Channels
+                    </h3>
+                    <p class="card-description">
+                        Get help and support for Claude Code issues.
+                    </p>
+                </div>
+                
+                <div class="grid grid-4">
+                    <div class="text-center">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h4 class="text-primary mb-sm">In-App Bug Report</h4>
+                        <p class="text-secondary mb-md">Use the /bug command in Claude Code</p>
+                        <div class="code-block">
+                            <pre><code>/bug describe_problem</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h4 class="text-primary mb-sm">GitHub Issues</h4>
+                        <p class="text-secondary mb-md">Report bugs and feature requests</p>
+                        <a href="https://github.com/anthropics/claude-code/issues" target="_blank" class="btn btn-ghost">
+                            <i class="fas fa-external-link-alt"></i>
+                            Open Issue
+                        </a>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4 class="text-primary mb-sm">Email Support</h4>
+                        <p class="text-secondary mb-md">Direct support from Anthropic</p>
+                        <a href="mailto:support@anthropic.com" class="btn btn-ghost">
+                            <i class="fas fa-envelope"></i>
+                            Contact Support
+                        </a>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4 class="text-primary mb-sm">Community</h4>
+                        <p class="text-secondary mb-md">Community discussions and help</p>
+                        <a href="#community" class="btn btn-ghost">
+                            <i class="fas fa-users"></i>
+                            Join Community
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Release Notes -->
+            <div class="glass card mt-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-newspaper text-accent"></i>
+                        Latest Updates
+                    </h3>
+                    <p class="card-description">
+                        Stay updated with the latest Claude Code releases and features.
+                    </p>
+                </div>
+                
+                <div class="grid grid-3">
+                    <div>
+                        <h4 class="text-primary mb-md">June 2025</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Remote MCP server support</li>
+                            <li>Native OAuth integration</li>
+                            <li>Python SDK launch</li>
+                            <li>Enhanced security features</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">March 2025</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Streamable HTTP transport</li>
+                            <li>Performance improvements</li>
+                            <li>Bug fixes and stability</li>
+                            <li>Enhanced error handling</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">February 2025</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Claude Code general availability</li>
+                            <li>Claude 4 model support</li>
+                            <li>IDE extensions beta</li>
+                            <li>MCP protocol launch</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-lg text-center">
+                    <div class="code-block">
+                        <pre><code># Check for updates in Claude Code
+/release-notes</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- JavaScript -->
+    <script src="shared.js"></script>
+    <script>
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+    <!-- Developer Footer -->
+    <footer class="developer-footer">
+        <div class="container">
+            <div class="developer-credits">
+                <div class="developer-info">
+                    <img src="https://avatars.githubusercontent.com/u/185730623?v=4" alt="Zebbern" class="developer-avatar">
+                    <div class="developer-details">
+                        <h4 class="developer-name">Website developed by Zebbern</h4>
+                        <p class="developer-description">Full-stack developer passionate about AI tools and developer experience</p>
+                    </div>
+                </div>
+                <div class="developer-links">
+                    <a href="https://github.com/zebbern" class="developer-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+            <div class="developer-footer-bottom">
+                <p>&copy; 2025 Claude Code Guide. Website crafted with ❤️ by <a href="https://github.com/zebbern" target="_blank">Zebbern</a></p>
+            </div>
+        </div>
+
+    </footer>
+    <!-- Commands Button -->
+    <a href="commands.html" class="commands-button" title="All Claude Commands">
+        <i class="fas fa-terminal"></i>
+        All Claude Commands
+    </a>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <a href="#" class="quick-action" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+        <a href="resources.html#community" class="quick-action" title="Community">
+            <i class="fas fa-users"></i>
+        </a>
+        <a href="resources.html#support" class="quick-action" title="Support">
+            <i class="fas fa-question-circle"></i>
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="shared.js"></script>
+</body>
+</html>

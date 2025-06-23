@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code for Windows - Complete Installation Guide</title>
+    <meta name="description" content="Complete guide to installing Claude Code on Windows using WSL. Step-by-step instructions for beginners and advanced users.">
+    <meta name="keywords" content="Claude Code Windows, WSL installation, Windows Subsystem for Linux, AI coding assistant">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="shared.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i> Claude Code
+            </a>
+            
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link ">Home</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Start</div>
+                                <a href="index.html#overview" class="nav-dropdown-link">
+                                    <i class="fas fa-info-circle"></i>
+                                    Overview
+                                </a>
+                                <a href="index.html#workflow" class="nav-dropdown-link">
+                                    <i class="fas fa-rocket"></i>
+                                    Transform Workflow
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Get Started</div>
+                                <a href="windows.html" class="nav-dropdown-link">
+                                    <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                                    Windows Setup
+                                </a>
+                                <a href="macos.html" class="nav-dropdown-link">
+                                    <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                                    macOS Setup
+                                </a>
+                                <a href="linux.html" class="nav-dropdown-link">
+                                    <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                                    Linux Setup
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="features.html" class="nav-link ">Features</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">AI Models</div>
+                                <a href="features.html#models" class="nav-dropdown-link">
+                                    <i class="fas fa-brain"></i>
+                                    Claude 4 Models
+                                </a>
+                                <a href="features.html#commands" class="nav-dropdown-link">
+                                    <i class="fas fa-terminal"></i>
+                                    Commands Reference
+                                </a>
+                                <a href="features.html#modes" class="nav-dropdown-link">
+                                    <i class="fas fa-cogs"></i>
+                                    Usage Modes
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Integration</div>
+                                <a href="features.html#ide" class="nav-dropdown-link">
+                                    <i class="fas fa-code"></i>
+                                    IDE Integration
+                                </a>
+                                <a href="features.html#enterprise" class="nav-dropdown-link">
+                                    <i class="fas fa-building"></i>
+                                    Enterprise Features
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="windows.html" class="nav-link active">Installation</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Operating Systems</div>
+                                <a href="windows.html" class="nav-dropdown-link">
+                                    <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                                    Windows (WSL)
+                                </a>
+                                <a href="macos.html" class="nav-dropdown-link">
+                                    <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                                    macOS (Homebrew)
+                                </a>
+                                <a href="linux.html" class="nav-dropdown-link">
+                                    <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                                    Linux (All Distros)
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Links</div>
+                                <a href="resources.html#troubleshooting" class="nav-dropdown-link">
+                                    <i class="fas fa-tools"></i>
+                                    Troubleshooting
+                                </a>
+                                <a href="resources.html#requirements" class="nav-dropdown-link">
+                                    <i class="fas fa-check-circle"></i>
+                                    System Requirements
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mcp.html" class="nav-link ">MCP</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Setup & Configuration</div>
+                                <a href="mcp.html#setup" class="nav-dropdown-link">
+                                    <i class="fas fa-cog"></i>
+                                    Quick Setup
+                                </a>
+                                <a href="mcp.html#remote" class="nav-dropdown-link">
+                                    <i class="fas fa-cloud"></i>
+                                    Remote MCP Servers
+                                </a>
+                                <a href="mcp.html#servers" class="nav-dropdown-link">
+                                    <i class="fas fa-server"></i>
+                                    Popular Servers
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Advanced</div>
+                                <a href="mcp.html#oauth" class="nav-dropdown-link">
+                                    <i class="fas fa-shield-alt"></i>
+                                    OAuth Integration
+                                </a>
+                                <a href="mcp.html#custom" class="nav-dropdown-link">
+                                    <i class="fas fa-wrench"></i>
+                                    Custom Servers
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="examples.html" class="nav-link ">Examples</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Start</div>
+                                <a href="examples.html#quick" class="nav-dropdown-link">
+                                    <i class="fas fa-bolt"></i>
+                                    Quick Commands
+                                </a>
+                                <a href="examples.html#workflows" class="nav-dropdown-link">
+                                    <i class="fas fa-project-diagram"></i>
+                                    Development Workflows
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Advanced</div>
+                                <a href="examples.html#ide" class="nav-dropdown-link">
+                                    <i class="fas fa-code"></i>
+                                    IDE Integration
+                                </a>
+                                <a href="examples.html#advanced" class="nav-dropdown-link">
+                                    <i class="fas fa-rocket"></i>
+                                    Complex Scenarios
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="resources.html" class="nav-link ">Resources</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Help & Support</div>
+                                <a href="resources.html#troubleshooting" class="nav-dropdown-link">
+                                    <i class="fas fa-tools"></i>
+                                    Troubleshooting
+                                </a>
+                                <a href="resources.html#community" class="nav-dropdown-link">
+                                    <i class="fas fa-users"></i>
+                                    Community Guides
+                                </a>
+                                <a href="resources.html#faq" class="nav-dropdown-link">
+                                    <i class="fas fa-question-circle"></i>
+                                    FAQ
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Official</div>
+                                <a href="resources.html#official" class="nav-dropdown-link">
+                                    <i class="fas fa-file-alt"></i>
+                                    Documentation
+                                </a>
+                                <a href="resources.html#enterprise" class="nav-dropdown-link">
+                                    <i class="fas fa-building"></i>
+                                    Enterprise
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="search-container collapsed">
+                
+                <input type="text" class="search-input" placeholder="Search documentation..." id="searchInput" style="opacity: 0;">
+                <button class="search-toggle">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" class="nav-link ">Home</a></li>
+                <li><a href="features.html" class="nav-link ">Features</a></li>
+                <li><a href="mcp.html" class="nav-link ">MCP</a></li>
+                <li><a href="examples.html" class="nav-link ">Examples</a></li>
+                <li><a href="resources.html" class="nav-link ">Resources</a></li>
+            </ul>
+            
+            <div class="mobile-section">
+                <h4 style="color: var(--text-accent); font-size: 0.875rem; font-weight: 600; margin-bottom: var(--space-sm); text-transform: uppercase;">Installation Guides</h4>
+                <div class="mobile-os-nav">
+                    <a href="windows.html" class="os-link windows active">
+                        <i class="fab fa-windows"></i>
+                        Windows (WSL)
+                    </a>
+                    <a href="macos.html" class="os-link macos ">
+                        <i class="fab fa-apple"></i>
+                        macOS (Homebrew)
+                    </a>
+                    <a href="linux.html" class="os-link linux ">
+                        <i class="fab fa-linux"></i>
+                        Linux (All Distros)
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mobile-search">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search documentation..." id="mobileSearchInput">
+                <div class="search-results" id="mobileSearchResults"></div>
+            </div>
+        </div>
+    </header>
+    
+
+    <!-- Hero Section -->
+    <section class="section" style="padding-top: var(--space-2xl);">
+        <div class="container">
+            <div class="text-center mb-2xl">
+                <div style="width: 5rem; height: 5rem; background: var(--gradient-windows); border-radius: var(--radius-2xl); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg); font-size: 2.5rem;">
+                    <i class="fab fa-windows"></i>
+                </div>
+                <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: var(--space-md); color: var(--windows-color);">
+                    Claude Code for Windows
+                </h1>
+                <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-lg);">
+                    Complete installation guide for Windows using Windows Subsystem for Linux (WSL). 
+                    Choose your experience level to get started.
+                </p>
+                
+                <div class="flex gap-md justify-center">
+                    <div class="difficulty-badge difficulty-intermediate">
+                        <i class="fas fa-star"></i>
+                        Intermediate Setup Required
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Very Quick Installation -->
+            <div class="container mb-2xl">
+                <div class="glass card" style="max-width: 700px; margin: 0 auto;">
+                    <div class="card-header" style="text-align: center;">
+                        <h3 class="card-title">
+                            <i class="fas fa-bolt text-warning"></i>
+                            Very Quick Installation
+                        </h3>
+                        <p class="card-description">
+                            For experienced users - get Claude Code running in 4 commands
+                        </p>
+                    </div>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Windows Quick Setup</span>
+                            <button class="copy-btn" onclick="copyToClipboard(this, `# Install WSL (if not already installed)
+wsl --install
+
+# Install Node.js in WSL
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Run Claude Code
+claude`)">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre><code># Install WSL (if not already installed)
+wsl --install
+
+# Install Node.js in WSL
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Run Claude Code
+claude</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Path Selection -->
+            <div class="grid grid-2 mb-2xl">
+                <div class="glass card" style="cursor: pointer;" onclick="scrollToSection('beginner')">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-seedling text-success"></i>
+                            Beginner Path
+                        </h3>
+                        <div class="difficulty-badge difficulty-beginner mb-md">
+                            <i class="fas fa-star"></i>
+                            Step-by-Step Guide
+                        </div>
+                        <p class="card-description">
+                            New to WSL or command line? Follow our detailed, beginner-friendly guide with explanations for each step.
+                        </p>
+                    </div>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; margin-bottom: var(--space-lg);">
+                        <li>WSL installation and setup</li>
+                        <li>Node.js installation explained</li>
+                        <li>Basic terminal usage</li>
+                        <li>Troubleshooting common issues</li>
+                    </ul>
+                    <a href="#beginner" class="btn btn-windows">
+                        <i class="fas fa-play"></i>
+                        Start Beginner Guide
+                    </a>
+                </div>
+                
+                <div class="glass card" style="cursor: pointer;" onclick="scrollToSection('professional')">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-rocket text-accent"></i>
+                            Professional Path
+                        </h3>
+                        <div class="difficulty-badge difficulty-advanced mb-md">
+                            <i class="fas fa-star"></i>
+                            Advanced Setup
+                        </div>
+                        <p class="card-description">
+                            Experienced with WSL and development tools? Jump to advanced configurations and enterprise features.
+                        </p>
+                    </div>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem; margin-bottom: var(--space-lg);">
+                        <li>Quick installation commands</li>
+                        <li>Performance optimizations</li>
+                        <li>Enterprise configurations</li>
+                        <li>CI/CD integration</li>
+                    </ul>
+                    <a href="#professional" class="btn btn-secondary">
+                        <i class="fas fa-rocket"></i>
+                        Advanced Setup
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Notice -->
+    <section class="section glass-secondary">
+        <div class="container">
+            <div class="glass card" style="border-left: 4px solid var(--text-warning);">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-exclamation-triangle text-warning"></i>
+                        Important: WSL Required
+                    </h3>
+                    <p class="card-description">
+                        Claude Code does not run natively on Windows. You must use Windows Subsystem for Linux (WSL) 
+                        to create a Linux environment within Windows.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2 mt-lg">
+                    <div>
+                        <h4 class="text-primary mb-md">Why WSL?</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Claude Code requires a Unix-like environment</li>
+                            <li>WSL provides full Linux compatibility</li>
+                            <li>Seamless integration with Windows</li>
+                            <li>Access to both Windows and Linux tools</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-primary mb-md">What You'll Get</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Full Claude Code functionality</li>
+                            <li>Linux terminal within Windows</li>
+                            <li>Access to Windows files from WSL</li>
+                            <li>Best of both operating systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beginner Path -->
+    <section class="section" id="beginner">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-seedling text-success"></i>
+                Beginner Installation Guide
+            </h2>
+            <p class="section-subtitle">
+                Follow these detailed steps to install Claude Code on Windows. Each step includes explanations and troubleshooting tips.
+            </p>
+            
+            <!-- Step 1: Enable WSL -->
+            <div class="glass card mt-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-windows); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">1</span>
+                        Enable Windows Subsystem for Linux
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        5-10 minutes
+                    </div>
+                    <p class="card-description">
+                        First, we need to enable WSL on your Windows system. This creates a Linux environment within Windows.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Option A: Automatic Installation (Windows 10 version 2004+ or Windows 11)</h4>
+                    <p class="text-secondary mb-md">Open PowerShell or Command Prompt as Administrator and run:</p>
+                    
+                    <div class="code-block">
+                        <pre><code>wsl --install</code></pre>
+                    </div>
+                    
+                    <p class="text-muted mb-lg">
+                        This command will enable WSL, install Ubuntu as the default distribution, and restart your computer.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Option B: Manual Installation (Older Windows versions)</h4>
+                    <p class="text-secondary mb-md">If the automatic installation doesn't work:</p>
+                    
+                    <ol style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li>Open PowerShell as Administrator</li>
+                        <li>Enable WSL feature:</li>
+                    </ol>
+                    
+                    <div class="code-block">
+                        <pre><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</code></pre>
+                    </div>
+                    
+                    <ol start="3" style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li>Enable Virtual Machine Platform:</li>
+                    </ol>
+                    
+                    <div class="code-block">
+                        <pre><code>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code></pre>
+                    </div>
+                    
+                    <ol start="4" style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li>Restart your computer</li>
+                        <li>Download and install the <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" class="text-accent">WSL2 Linux kernel update package</a></li>
+                        <li>Set WSL2 as default:</li>
+                    </ol>
+                    
+                    <div class="code-block">
+                        <pre><code>wsl --set-default-version 2</code></pre>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.2);">
+                    <p class="text-success">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Tip:</strong> After installation, you can access WSL by typing "Ubuntu" in the Start menu or opening Windows Terminal.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 2: Install Ubuntu -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-windows); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">2</span>
+                        Install Ubuntu Distribution
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        5 minutes
+                    </div>
+                    <p class="card-description">
+                        Install Ubuntu as your Linux distribution. This provides the environment where Claude Code will run.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Install from Microsoft Store</h4>
+                    <ol style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li>Open Microsoft Store</li>
+                        <li>Search for "Ubuntu"</li>
+                        <li>Install "Ubuntu" (latest LTS version)</li>
+                        <li>Launch Ubuntu from Start menu</li>
+                        <li>Create a username and password when prompted</li>
+                    </ol>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Alternative: Command Line Installation</h4>
+                    <div class="code-block">
+                        <pre><code># List available distributions
+wsl --list --online
+
+# Install Ubuntu
+wsl --install -d Ubuntu</code></pre>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(245, 158, 11, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.2);">
+                    <p class="text-warning">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Note:</strong> The first launch will take a few minutes as Ubuntu sets up the environment. You'll be asked to create a username and password.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 3: Update System -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-windows); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">3</span>
+                        Update Ubuntu System
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        5-10 minutes
+                    </div>
+                    <p class="card-description">
+                        Update the Ubuntu system to ensure you have the latest packages and security updates.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <p class="text-secondary mb-md">In your Ubuntu terminal, run these commands:</p>
+                    
+                    <div class="code-block">
+                        <pre><code># Update package list
+sudo apt update
+
+# Upgrade installed packages
+sudo apt upgrade -y
+
+# Install essential build tools
+sudo apt install build-essential curl git -y</code></pre>
+                    </div>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">What These Commands Do:</h4>
+                    <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                        <li><code>sudo apt update</code> - Downloads the latest package information</li>
+                        <li><code>sudo apt upgrade -y</code> - Installs available updates</li>
+                        <li><code>build-essential</code> - Provides compilation tools</li>
+                        <li><code>curl</code> - Tool for downloading files</li>
+                        <li><code>git</code> - Version control system</li>
+                    </ul>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(99, 102, 241, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(99, 102, 241, 0.2);">
+                    <p class="text-accent">
+                        <i class="fas fa-terminal"></i>
+                        <strong>Terminal Tip:</strong> You can paste commands in WSL terminal using Ctrl+Shift+V or right-click.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 4: Install Node.js -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-windows); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">4</span>
+                        Install Node.js
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        5 minutes
+                    </div>
+                    <p class="card-description">
+                        Claude Code requires Node.js 18 or higher. We'll install the latest LTS version using NodeSource repository.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Install Node.js 20 LTS</h4>
+                    <div class="code-block">
+                        <pre><code># Add NodeSource repository
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+
+# Install Node.js
+sudo apt-get install -y nodejs
+
+# Verify installation
+node --version
+npm --version</code></pre>
+                    </div>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Configure npm for Global Packages</h4>
+                    <p class="text-secondary mb-md">To avoid permission issues when installing global packages:</p>
+                    
+                    <div class="code-block">
+                        <pre><code># Create directory for global packages
+mkdir -p ~/.npm-global
+
+# Configure npm to use this directory
+npm config set prefix ~/.npm-global
+
+# Add to PATH in your shell profile
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
+
+# Reload shell configuration
+source ~/.bashrc</code></pre>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(239, 68, 68, 0.2);">
+                    <p class="text-error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Important:</strong> Never use <code>sudo</code> with npm install for global packages. This can cause permission issues and security risks.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 5: Install Claude Code -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-windows); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">5</span>
+                        Install Claude Code
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        2 minutes
+                    </div>
+                    <p class="card-description">
+                        Now we can install Claude Code using npm. This will download and install the latest version.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <div class="code-block">
+                        <pre><code># Install Claude Code globally
+npm install -g @anthropic-ai/claude-code
+
+# Verify installation
+claude --version</code></pre>
+                    </div>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Test the Installation</h4>
+                    <div class="code-block">
+                        <pre><code># Check if Claude Code is in PATH
+which claude
+
+# Should output something like: /home/username/.npm-global/bin/claude</code></pre>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.2);">
+                    <p class="text-success">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>Success!</strong> If you see a version number, Claude Code is installed correctly.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 6: Authentication -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-windows); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">6</span>
+                        Authenticate with Anthropic
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        3 minutes
+                    </div>
+                    <p class="card-description">
+                        Set up authentication to use Claude Code. You can use either Claude Max subscription or an API key.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2 mb-lg">
+                    <div>
+                        <h4 class="text-primary mb-md">Option A: Claude Max (Recommended)</h4>
+                        <ol style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Navigate to a project directory</li>
+                            <li>Run <code>claude</code></li>
+                            <li>Follow OAuth prompts in browser</li>
+                            <li>Complete authentication</li>
+                        </ol>
+                        
+                        <div class="code-block">
+                            <pre><code># Navigate to your project
+cd /mnt/c/Users/YourUsername/Projects/your-project
+
+# Start Claude Code
+claude</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Option B: API Key</h4>
+                        <ol style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Get API key from <a href="https://console.anthropic.com" class="text-accent">Anthropic Console</a></li>
+                            <li>Set environment variable</li>
+                            <li>Add to shell profile</li>
+                        </ol>
+                        
+                        <div class="code-block">
+                            <pre><code># Set API key
+export ANTHROPIC_API_KEY=your_key_here
+
+# Add to shell profile
+echo 'export ANTHROPIC_API_KEY=your_key' >> ~/.bashrc
+source ~/.bashrc</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(99, 102, 241, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(99, 102, 241, 0.2);">
+                    <p class="text-accent">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Tip:</strong> Claude Max subscription ($20/month) is more economical for regular users than pay-per-use API.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 7: First Use -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <span style="background: var(--gradient-windows); color: white; width: 2rem; height: 2rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: var(--space-sm);">7</span>
+                        First Use and Testing
+                    </h3>
+                    <div class="difficulty-badge difficulty-beginner mb-md">
+                        <i class="fas fa-clock"></i>
+                        5 minutes
+                    </div>
+                    <p class="card-description">
+                        Test Claude Code with your first project and learn basic commands.
+                    </p>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Access Your Windows Projects</h4>
+                    <p class="text-secondary mb-md">Your Windows files are accessible from WSL at <code>/mnt/c/</code>:</p>
+                    
+                    <div class="code-block">
+                        <pre><code># Navigate to your Windows projects
+cd /mnt/c/Users/YourUsername/Projects
+
+# Or create a new project
+mkdir claude-test
+cd claude-test
+
+# Initialize a simple project
+echo "console.log('Hello Claude!');" > hello.js</code></pre>
+                    </div>
+                </div>
+                
+                <div class="mb-lg">
+                    <h4 class="text-primary mb-md">Start Claude Code</h4>
+                    <div class="code-block">
+                        <pre><code># Start Claude Code in your project
+claude
+
+# Try some basic commands
+> "Explain what this JavaScript file does"
+> "/init"  # Generate project documentation
+> "/help"  # See all available commands</code></pre>
+                    </div>
+                </div>
+                
+                <div class="p-lg" style="background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.2);">
+                    <p class="text-success">
+                        <i class="fas fa-party-horn"></i>
+                        <strong>Congratulations!</strong> You've successfully installed Claude Code on Windows. You're ready to start AI-powered coding!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Path -->
+    <section class="section glass-secondary" id="professional">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-rocket text-accent"></i>
+                Professional Installation Guide
+            </h2>
+            <p class="section-subtitle">
+                Quick setup for experienced developers with advanced configurations and enterprise features.
+            </p>
+            
+            <!-- Quick Install -->
+            <div class="glass card mt-2xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-bolt text-accent"></i>
+                        Quick Installation Script
+                    </h3>
+                    <div class="difficulty-badge difficulty-advanced mb-md">
+                        <i class="fas fa-clock"></i>
+                        5 minutes
+                    </div>
+                    <p class="card-description">
+                        Automated installation script for experienced users. Assumes WSL2 is already configured.
+                    </p>
+                </div>
+                
+                <div class="code-block">
+                    <pre><code># One-line installation (run in WSL)
+curl -fsSL https://raw.githubusercontent.com/anthropics/claude-code/main/install.sh | bash
+
+# Or manual quick setup
+sudo apt update && sudo apt upgrade -y
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs build-essential curl git
+mkdir -p ~/.npm-global && npm config set prefix ~/.npm-global
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc && source ~/.bashrc
+npm install -g @anthropic-ai/claude-code</code></pre>
+                </div>
+            </div>
+            
+            <!-- Performance Optimization -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-tachometer-alt text-accent"></i>
+                        Performance Optimization
+                    </h3>
+                    <p class="card-description">
+                        Optimize WSL2 performance for better Claude Code experience.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">WSL Configuration</h4>
+                        <p class="text-secondary mb-md">Create <code>%USERPROFILE%\.wslconfig</code>:</p>
+                        
+                        <div class="code-block">
+                            <pre><code>[wsl2]
+memory=8GB
+processors=4
+swap=2GB
+localhostForwarding=true
+
+[experimental]
+sparseVhd=true
+autoMemoryReclaim=gradual</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">Environment Variables</h4>
+                        <div class="code-block">
+                            <pre><code># Add to ~/.bashrc
+export ANTHROPIC_API_KEY=your_key
+export CLAUDE_MODEL=claude-sonnet-4
+export MCP_DEBUG=false
+export NODE_OPTIONS="--max-old-space-size=4096"
+
+# Windows integration
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enterprise Configuration -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-building text-accent"></i>
+                        Enterprise Configuration
+                    </h3>
+                    <p class="card-description">
+                        Advanced configurations for enterprise environments and team deployments.
+                    </p>
+                </div>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <h4 class="text-primary mb-md">Global Configuration</h4>
+                        <p class="text-secondary mb-md">Create <code>~/.claude.json</code>:</p>
+                        
+                        <div class="code-block">
+                            <pre><code>{
+  "defaultModel": "claude-sonnet-4",
+  "permissions": {
+    "allowedTools": ["Edit", "Bash(git*)"],
+    "deniedTools": ["Bash(rm*)"]
+  },
+  "preferences": {
+    "autoCompact": true,
+    "compactThreshold": 50000
+  },
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "~/Projects"]
+    }
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-primary mb-md">CI/CD Integration</h4>
+                        <div class="code-block">
+                            <pre><code># GitHub Actions workflow
+name: Claude Code CI
+on: [push, pull_request]
+
+jobs:
+  claude-review:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+    - run: npm install -g @anthropic-ai/claude-code
+    - run: claude --dangerously-skip-permissions -p "review this PR"
+      env:
+        ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Docker Integration -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fab fa-docker text-accent"></i>
+                        Docker Integration
+                    </h3>
+                    <p class="card-description">
+                        Use Claude Code in containerized environments for isolation and reproducibility.
+                    </p>
+                </div>
+                
+                <div class="code-block">
+                    <pre><code># Dockerfile for Claude Code
+FROM node:20-slim
+
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN npm install -g @anthropic-ai/claude-code
+
+WORKDIR /workspace
+VOLUME ["/workspace"]
+
+ENV ANTHROPIC_API_KEY=""
+CMD ["claude"]</code></pre>
+                </div>
+                
+                <div class="mt-lg">
+                    <h4 class="text-primary mb-md">Usage</h4>
+                    <div class="code-block">
+                        <pre><code># Build and run
+docker build -t claude-code .
+docker run -it --rm -v $(pwd):/workspace -e ANTHROPIC_API_KEY=your_key claude-code
+
+# Or use dangerous mode for automation
+docker run --rm -v $(pwd):/workspace -e ANTHROPIC_API_KEY=your_key claude-code \
+  claude --dangerously-skip-permissions -p "fix all linting errors"</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Windows-Specific Troubleshooting</h2>
+            <p class="section-subtitle">
+                Common issues and solutions specific to Windows and WSL environments.
+            </p>
+            
+            <div class="grid grid-2 mt-2xl">
+                <!-- Common Issues -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-exclamation-triangle text-warning"></i>
+                            Common Issues
+                        </h3>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">WSL not found or not working</h4>
+                        <div class="code-block">
+                            <pre><code># Check WSL status
+wsl --status
+
+# Update WSL
+wsl --update
+
+# Restart WSL
+wsl --shutdown
+wsl</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Node.js version conflicts</h4>
+                        <div class="code-block">
+                            <pre><code># Check which npm is being used
+which npm
+which node
+
+# Should show /usr/bin/npm, not /mnt/c/...</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Permission denied errors</h4>
+                        <div class="code-block">
+                            <pre><code># Fix npm permissions
+sudo chown -R $(whoami) ~/.npm-global
+npm config set prefix ~/.npm-global</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Performance Issues -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-tachometer-alt text-accent"></i>
+                            Performance Issues
+                        </h3>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Slow file access</h4>
+                        <p class="text-secondary mb-sm">Work within WSL filesystem, not Windows drives:</p>
+                        <div class="code-block">
+                            <pre><code># Instead of /mnt/c/Users/...
+# Use ~/projects/ or /home/username/projects/
+
+# Copy project to WSL
+cp -r /mnt/c/Users/YourName/project ~/project
+cd ~/project</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Memory issues</h4>
+                        <p class="text-secondary mb-sm">Increase WSL memory allocation in <code>.wslconfig</code>:</p>
+                        <div class="code-block">
+                            <pre><code>[wsl2]
+memory=8GB
+processors=4</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-sm">Network connectivity</h4>
+                        <div class="code-block">
+                            <pre><code># Reset WSL network
+wsl --shutdown
+# Restart WSL and try again</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section class="section glass-secondary">
+        <div class="container">
+            <div class="glass card text-center">
+                <h3 class="text-primary mb-md">🎉 Windows Installation Complete!</h3>
+                <p class="text-secondary mb-lg">
+                    You've successfully installed Claude Code on Windows. Here's what to explore next:
+                </p>
+                
+                <div class="grid grid-3 mb-2xl">
+                    <a href="features.html" class="btn btn-secondary">
+                        <i class="fas fa-rocket"></i>
+                        Explore Features
+                    </a>
+                    <a href="mcp.html" class="btn btn-secondary">
+                        <i class="fas fa-plug"></i>
+                        Setup MCP
+                    </a>
+                    <a href="examples.html" class="btn btn-secondary">
+                        <i class="fas fa-code"></i>
+                        View Examples
+                    </a>
+                </div>
+                
+                <div class="mt-2xl pt-lg" style="border-top: 1px solid var(--glass-border);">
+                    <p class="text-muted">
+                        Need help? Check our <a href="resources.html#troubleshooting" class="text-accent">troubleshooting guide</a> 
+                        or visit the <a href="resources.html#community" class="text-accent">community resources</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- JavaScript -->
+    <script src="shared.js"></script>
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    </script>
+    <!-- Developer Footer -->
+    <footer class="developer-footer">
+        <div class="container">
+            <div class="developer-credits">
+                <div class="developer-info">
+                    <img src="https://avatars.githubusercontent.com/u/185730623?v=4" alt="Zebbern" class="developer-avatar">
+                    <div class="developer-details">
+                        <h4 class="developer-name">Website developed by Zebbern</h4>
+                        <p class="developer-description">Full-stack developer passionate about AI tools and developer experience</p>
+                    </div>
+                </div>
+                <div class="developer-links">
+                    <a href="https://github.com/zebbern" class="developer-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+            <div class="developer-footer-bottom">
+                <p>&copy; 2025 Claude Code Guide. Website crafted with ❤️ by <a href="https://github.com/zebbern" target="_blank">Zebbern</a></p>
+            </div>
+        </div>
+
+    </footer>
+    <!-- Commands Button -->
+    <a href="commands.html" class="commands-button" title="All Claude Commands">
+        <i class="fas fa-terminal"></i>
+        All Claude Commands
+    </a>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <a href="#" class="quick-action" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+        <a href="resources.html#community" class="quick-action" title="Community">
+            <i class="fas fa-users"></i>
+        </a>
+        <a href="resources.html#support" class="quick-action" title="Support">
+            <i class="fas fa-question-circle"></i>
+        </a>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="shared.js"></script>
+</body>
+</html>

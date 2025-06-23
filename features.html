@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Features - Complete Guide to AI Coding Assistant</title>
+    <meta name="description" content="Comprehensive guide to Claude Code features. Learn about models, commands, usage modes, IDE integration, and advanced capabilities.">
+    <meta name="keywords" content="Claude Code features, AI coding assistant, Claude models, interactive commands, IDE integration">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="shared.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-code"></i> Claude Code
+            </a>
+            
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link ">Home</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Start</div>
+                                <a href="index.html#overview" class="nav-dropdown-link">
+                                    <i class="fas fa-info-circle"></i>
+                                    Overview
+                                </a>
+                                <a href="index.html#workflow" class="nav-dropdown-link">
+                                    <i class="fas fa-rocket"></i>
+                                    Transform Workflow
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Get Started</div>
+                                <a href="windows.html" class="nav-dropdown-link">
+                                    <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                                    Windows Setup
+                                </a>
+                                <a href="macos.html" class="nav-dropdown-link">
+                                    <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                                    macOS Setup
+                                </a>
+                                <a href="linux.html" class="nav-dropdown-link">
+                                    <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                                    Linux Setup
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="features.html" class="nav-link active">Features</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">AI Models</div>
+                                <a href="features.html#models" class="nav-dropdown-link">
+                                    <i class="fas fa-brain"></i>
+                                    Claude 4 Models
+                                </a>
+                                <a href="commands.html" class="nav-dropdown-link">
+                                    <i class="fas fa-terminal"></i>
+                                    Commands Reference
+                                </a>
+                                <a href="features.html#modes" class="nav-dropdown-link">
+                                    <i class="fas fa-cogs"></i>
+                                    Usage Modes
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Integration</div>
+                                <a href="features.html#ide" class="nav-dropdown-link">
+                                    <i class="fas fa-code"></i>
+                                    IDE Integration
+                                </a>
+                                <a href="features.html#enterprise" class="nav-dropdown-link">
+                                    <i class="fas fa-building"></i>
+                                    Enterprise Features
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="windows.html" class="nav-link ">Installation</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Operating Systems</div>
+                                <a href="windows.html" class="nav-dropdown-link">
+                                    <i class="fab fa-windows" style="color: var(--windows-color);"></i>
+                                    Windows (WSL)
+                                </a>
+                                <a href="macos.html" class="nav-dropdown-link">
+                                    <i class="fab fa-apple" style="color: var(--macos-color);"></i>
+                                    macOS (Homebrew)
+                                </a>
+                                <a href="linux.html" class="nav-dropdown-link">
+                                    <i class="fab fa-linux" style="color: var(--linux-color);"></i>
+                                    Linux (All Distros)
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Links</div>
+                                <a href="resources.html#troubleshooting" class="nav-dropdown-link">
+                                    <i class="fas fa-tools"></i>
+                                    Troubleshooting
+                                </a>
+                                <a href="resources.html#requirements" class="nav-dropdown-link">
+                                    <i class="fas fa-check-circle"></i>
+                                    System Requirements
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mcp.html" class="nav-link ">MCP</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Setup & Configuration</div>
+                                <a href="mcp.html#setup" class="nav-dropdown-link">
+                                    <i class="fas fa-cog"></i>
+                                    Quick Setup
+                                </a>
+                                <a href="mcp.html#remote" class="nav-dropdown-link">
+                                    <i class="fas fa-cloud"></i>
+                                    Remote MCP Servers
+                                </a>
+                                <a href="mcp.html#servers" class="nav-dropdown-link">
+                                    <i class="fas fa-server"></i>
+                                    Popular Servers
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Advanced</div>
+                                <a href="mcp.html#oauth" class="nav-dropdown-link">
+                                    <i class="fas fa-shield-alt"></i>
+                                    OAuth Integration
+                                </a>
+                                <a href="mcp.html#custom" class="nav-dropdown-link">
+                                    <i class="fas fa-wrench"></i>
+                                    Custom Servers
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="examples.html" class="nav-link ">Examples</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Quick Start</div>
+                                <a href="examples.html#quick" class="nav-dropdown-link">
+                                    <i class="fas fa-bolt"></i>
+                                    Quick Commands
+                                </a>
+                                <a href="examples.html#workflows" class="nav-dropdown-link">
+                                    <i class="fas fa-project-diagram"></i>
+                                    Development Workflows
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Advanced</div>
+                                <a href="examples.html#ide" class="nav-dropdown-link">
+                                    <i class="fas fa-code"></i>
+                                    IDE Integration
+                                </a>
+                                <a href="examples.html#advanced" class="nav-dropdown-link">
+                                    <i class="fas fa-rocket"></i>
+                                    Complex Scenarios
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="resources.html" class="nav-link ">Resources</a>
+                        <div class="nav-dropdown">
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Help & Support</div>
+                                <a href="resources.html#troubleshooting" class="nav-dropdown-link">
+                                    <i class="fas fa-tools"></i>
+                                    Troubleshooting
+                                </a>
+                                <a href="resources.html#community" class="nav-dropdown-link">
+                                    <i class="fas fa-users"></i>
+                                    Community Guides
+                                </a>
+                                <a href="resources.html#faq" class="nav-dropdown-link">
+                                    <i class="fas fa-question-circle"></i>
+                                    FAQ
+                                </a>
+                            </div>
+                            <div class="nav-dropdown-section">
+                                <div class="nav-dropdown-title">Official</div>
+                                <a href="resources.html#official" class="nav-dropdown-link">
+                                    <i class="fas fa-file-alt"></i>
+                                    Documentation
+                                </a>
+                                <a href="resources.html#enterprise" class="nav-dropdown-link">
+                                    <i class="fas fa-building"></i>
+                                    Enterprise
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="search-container collapsed">
+                
+                <input type="text" class="search-input" placeholder="Search documentation..." id="searchInput" style="opacity: 0;">
+                <button class="search-toggle">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" class="nav-link ">Home</a></li>
+                <li><a href="features.html" class="nav-link active">Features</a></li>
+                <li><a href="mcp.html" class="nav-link ">MCP</a></li>
+                <li><a href="examples.html" class="nav-link ">Examples</a></li>
+                <li><a href="resources.html" class="nav-link ">Resources</a></li>
+            </ul>
+            
+            <div class="mobile-section">
+                <h4 style="color: var(--text-accent); font-size: 0.875rem; font-weight: 600; margin-bottom: var(--space-sm); text-transform: uppercase;">Installation Guides</h4>
+                <div class="mobile-os-nav">
+                    <a href="windows.html" class="os-link windows ">
+                        <i class="fab fa-windows"></i>
+                        Windows (WSL)
+                    </a>
+                    <a href="macos.html" class="os-link macos ">
+                        <i class="fab fa-apple"></i>
+                        macOS (Homebrew)
+                    </a>
+                    <a href="linux.html" class="os-link linux ">
+                        <i class="fab fa-linux"></i>
+                        Linux (All Distros)
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mobile-search">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search documentation..." id="mobileSearchInput">
+                <div class="search-results" id="mobileSearchResults"></div>
+            </div>
+        </div>
+    </header>
+    
+
+    <!-- Hero Section -->
+    <section class="section" style="padding-top: var(--space-2xl);">
+        <div class="container">
+            <div class="text-center mb-2xl">
+                <div style="width: 5rem; height: 5rem; background: var(--gradient-accent); border-radius: var(--radius-2xl); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-lg); font-size: 2.5rem;">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: var(--space-md); color: var(--text-accent);">
+                    Claude Code Features
+                </h1>
+                <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-lg);">
+                    Discover the full power of Claude Code with comprehensive feature coverage, 
+                    usage examples, and advanced capabilities for 2025.
+                </p>
+            </div>
+            
+            <!-- Feature Categories -->
+            <div class="grid grid-4 mb-2xl">
+                <div class="glass card text-center" style="cursor: pointer;" onclick="scrollToSection('models')">
+                    <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-primary mb-sm">AI Models</h3>
+                    <p class="text-muted">Claude 4 Models</p>
+                </div>
+                
+                <div class="glass card text-center" style="cursor: pointer;" onclick="scrollToSection('commands')">
+                    <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3 class="text-primary mb-sm">Commands</h3>
+                    <p class="text-muted">Commands Reference</p>
+                </div>
+                
+                <div class="glass card text-center" style="cursor: pointer;" onclick="scrollToSection('modes')">
+                    <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-primary mb-sm">Usage Modes</h3>
+                    <p class="text-muted">Different Workflows</p>
+                </div>
+                
+                <div class="glass card text-center" style="cursor: pointer;" onclick="scrollToSection('ide')">
+                    <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-primary mb-sm">IDE Integration</h3>
+                    <p class="text-muted">Editor Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Models Section -->
+    <section class="section" id="models">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-brain text-accent"></i>
+                Claude 4 AI Models
+            </h2>
+            <p class="section-subtitle">
+                Choose the right Claude model for your specific coding needs and performance requirements.
+            </p>
+            
+            <div class="grid grid-3 mt-2xl">
+                <!-- Claude Opus 4 -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-md);">
+                            <h3 class="card-title" style="margin: 0;">
+                                <i class="fas fa-crown text-warning"></i>
+                                Claude Opus 4
+                            </h3>
+                            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--radius-sm); padding: var(--space-xs) var(--space-sm);">
+                                <span style="color: var(--text-warning); font-size: 0.75rem; font-weight: 600;">MOST CAPABLE</span>
+                            </div>
+                        </div>
+                        <p class="card-description">
+                            The world's best coding model for complex, long-running tasks and agent workflows. 
+                            Handles sophisticated multi-file changes with precision.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Best For:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Complex architectural decisions</li>
+                            <li>Large-scale refactoring</li>
+                            <li>Advanced debugging and analysis</li>
+                            <li>Multi-file code generation</li>
+                            <li>Enterprise-level projects</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Usage:</h4>
+                        <div class="code-block">
+                            <pre><code>claude --model claude-opus-4</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="p-lg" style="background: rgba(245, 158, 11, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(245, 158, 11, 0.2);">
+                        <p class="text-warning">
+                            <i class="fas fa-star"></i>
+                            <strong>Premium Model:</strong> Higher cost but unmatched capability for complex tasks.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Claude Sonnet 4 -->
+                <div class="glass card glass-glow">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-md);">
+                            <h3 class="card-title" style="margin: 0;">
+                                <i class="fas fa-balance-scale text-accent"></i>
+                                Claude Sonnet 4
+                            </h3>
+                            <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: var(--radius-sm); padding: var(--space-xs) var(--space-sm);">
+                                <span style="color: var(--text-accent); font-size: 0.75rem; font-weight: 600;">RECOMMENDED</span>
+                            </div>
+                        </div>
+                        <p class="card-description">
+                            Perfect balance of capability and speed. Superior coding and reasoning 
+                            while responding precisely to instructions. Default model for most users.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Best For:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>General development tasks</li>
+                            <li>Code reviews and analysis</li>
+                            <li>Feature implementation</li>
+                            <li>Bug fixes and optimization</li>
+                            <li>Daily development workflow</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Usage:</h4>
+                        <div class="code-block">
+                            <pre><code>claude --model claude-sonnet-4
+# Or simply (default model)
+claude</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="p-lg" style="background: rgba(99, 102, 241, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(99, 102, 241, 0.2);">
+                        <p class="text-accent">
+                            <i class="fas fa-thumbs-up"></i>
+                            <strong>Recommended:</strong> Best balance of performance, speed, and cost for most developers.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Claude Haiku 3.5 -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-md);">
+                            <h3 class="card-title" style="margin: 0;">
+                                <i class="fas fa-bolt text-success"></i>
+                                Claude Haiku 3.5
+                            </h3>
+                            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: var(--radius-sm); padding: var(--space-xs) var(--space-sm);">
+                                <span style="color: var(--text-success); font-size: 0.75rem; font-weight: 600;">FASTEST</span>
+                            </div>
+                        </div>
+                        <p class="card-description">
+                            Lightning-fast responses for simple tasks and rapid iteration cycles. 
+                            Most cost-effective option for basic coding assistance.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Best For:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Quick fixes and simple tasks</li>
+                            <li>Code formatting and linting</li>
+                            <li>Basic questions and explanations</li>
+                            <li>Rapid prototyping</li>
+                            <li>Learning and experimentation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Usage:</h4>
+                        <div class="code-block">
+                            <pre><code>claude --model claude-haiku-3.5</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="p-lg" style="background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); border: 1px solid rgba(16, 185, 129, 0.2);">
+                        <p class="text-success">
+                            <i class="fas fa-dollar-sign"></i>
+                            <strong>Cost-Effective:</strong> Lowest cost per request, perfect for high-frequency usage.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Model Comparison -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-chart-bar text-accent"></i>
+                        Model Comparison
+                    </h3>
+                    <p class="card-description">
+                        Compare Claude models across different dimensions to choose the right one for your needs.
+                    </p>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Claude Opus 4</th>
+                                <th>Claude Sonnet 4</th>
+                                <th>Claude Haiku 3.5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Capability</strong></td>
+                                <td><span class="text-warning">★★★★★</span></td>
+                                <td><span class="text-accent">★★★★☆</span></td>
+                                <td><span class="text-success">★★★☆☆</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Speed</strong></td>
+                                <td><span class="text-warning">★★★☆☆</span></td>
+                                <td><span class="text-accent">★★★★☆</span></td>
+                                <td><span class="text-success">★★★★★</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cost</strong></td>
+                                <td><span class="text-warning">★☆☆☆☆</span></td>
+                                <td><span class="text-accent">★★★☆☆</span></td>
+                                <td><span class="text-success">★★★★★</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Context Window</strong></td>
+                                <td>200K tokens</td>
+                                <td>200K tokens</td>
+                                <td>200K tokens</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Best Use Cases</strong></td>
+                                <td>Complex architecture, large refactoring</td>
+                                <td>General development, code reviews</td>
+                                <td>Quick fixes, simple tasks</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Modes Section -->
+    <section class="section glass-secondary" id="modes">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-cogs text-accent"></i>
+                Usage Modes
+            </h2>
+            <p class="section-subtitle">
+                Claude Code offers multiple interaction modes for different development scenarios and workflows.
+            </p>
+            
+            <div class="grid grid-2 mt-2xl">
+                <!-- Interactive Mode -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-comments text-accent"></i>
+                            Interactive Mode
+                        </h3>
+                        <div class="difficulty-badge difficulty-beginner mb-md">
+                            <i class="fas fa-star"></i>
+                            Most Popular
+                        </div>
+                        <p class="card-description">
+                            Conversational coding assistance with full context awareness. 
+                            Perfect for normal development workflow.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Usage:</h4>
+                        <div class="code-block">
+                            <pre><code># Start interactive session
+claude
+
+# Example conversation
+> "Add error handling to this function"
+> "Explain how this algorithm works"
+> "Refactor this code for better performance"</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Features:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Full codebase context</li>
+                            <li>Multi-turn conversations</li>
+                            <li>Real-time file editing</li>
+                            <li>Interactive command execution</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- One-Shot Mode -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-bolt text-accent"></i>
+                            One-Shot Mode
+                        </h3>
+                        <div class="difficulty-badge difficulty-intermediate mb-md">
+                            <i class="fas fa-star"></i>
+                            Quick Tasks
+                        </div>
+                        <p class="card-description">
+                            Execute single commands quickly without entering interactive mode. 
+                            Ideal for automation and quick fixes.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Usage:</h4>
+                        <div class="code-block">
+                            <pre><code># Single command execution
+claude -p "fix all TypeScript errors"
+claude -p "add tests for the auth module"
+claude -p "optimize this component for performance"
+claude -p "generate documentation for this API"</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Features:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>No interactive session needed</li>
+                            <li>Perfect for scripts and automation</li>
+                            <li>Quick task execution</li>
+                            <li>CI/CD integration friendly</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Headless Mode -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-robot text-accent"></i>
+                            Headless Mode
+                        </h3>
+                        <div class="difficulty-badge difficulty-advanced mb-md">
+                            <i class="fas fa-star"></i>
+                            Automation
+                        </div>
+                        <p class="card-description">
+                            Structured output for CI/CD pipelines and automation systems. 
+                            Machine-readable responses for integration.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Usage:</h4>
+                        <div class="code-block">
+                            <pre><code># Headless mode with JSON output
+claude -p "analyze code quality" --output-format stream-json
+
+# For CI/CD integration
+claude -p "run security audit" --headless --json</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Features:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Structured JSON output</li>
+                            <li>No interactive prompts</li>
+                            <li>Perfect for CI/CD pipelines</li>
+                            <li>Programmatic integration</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Planning Mode -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-clipboard-list text-accent"></i>
+                            Planning Mode
+                        </h3>
+                        <div class="difficulty-badge difficulty-intermediate mb-md">
+                            <i class="fas fa-star"></i>
+                            Review First
+                        </div>
+                        <p class="card-description">
+                            Plan changes without executing them. Review proposed modifications 
+                            before applying to your codebase.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Usage:</h4>
+                        <div class="code-block">
+                            <pre><code># Enter planning mode
+# Press Shift+Tab Shift+Tab in interactive mode
+
+# Or use planning flag
+claude -p "refactor this module" --plan-only</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Features:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>No file modifications</li>
+                            <li>Detailed change proposals</li>
+                            <li>Risk assessment</li>
+                            <li>Review before execution</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mode Comparison -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-table text-accent"></i>
+                        Mode Comparison
+                    </h3>
+                    <p class="card-description">
+                        Choose the right mode for your specific use case and workflow requirements.
+                    </p>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Mode</th>
+                                <th>Command</th>
+                                <th>Use Case</th>
+                                <th>Output</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Interactive</strong></td>
+                                <td><code>claude</code></td>
+                                <td>Normal development</td>
+                                <td>Conversational</td>
+                                <td>Daily coding tasks</td>
+                            </tr>
+                            <tr>
+                                <td><strong>One-shot</strong></td>
+                                <td><code>claude -p "task"</code></td>
+                                <td>Quick tasks</td>
+                                <td>Direct response</td>
+                                <td>Automation scripts</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Headless</strong></td>
+                                <td><code>claude -p "task" --json</code></td>
+                                <td>CI/CD integration</td>
+                                <td>Structured JSON</td>
+                                <td>Pipeline automation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Planning</strong></td>
+                                <td><code>Shift+Tab Shift+Tab</code></td>
+                                <td>Review changes</td>
+                                <td>Change proposals</td>
+                                <td>Safe refactoring</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commands Overview Section -->
+    <section class="section" id="commands">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-terminal text-accent"></i>
+                Claude Code Commands
+            </h2>
+            <p class="section-subtitle">
+                Master Claude Code with our comprehensive command reference. Access pre-terminal setup commands and interactive terminal commands.
+            </p>
+            
+            <div class="grid grid-2 mt-2xl">
+                <div class="glass card">
+                    <div class="card-header">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-success);">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="card-title">Pre-Terminal Commands</h3>
+                        <p class="card-description">Commands you run before launching Claude Code interactive mode.</p>
+                    </div>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-header">
+                        <div style="font-size: 2rem; margin-bottom: var(--space-sm); color: var(--text-accent);">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <h3 class="card-title">Interactive Terminal Commands</h3>
+                        <p class="card-description">Commands available inside Claude Code's interactive terminal.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-xl">
+                <a href="commands.html" class="btn btn-primary btn-lg">
+                    <i class="fas fa-list"></i>
+                    View Complete Commands Reference
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- IDE Integration Section -->
+    <section class="section glass-secondary" id="ide">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-code text-accent"></i>
+                IDE Integration
+            </h2>
+            <p class="section-subtitle">
+                Seamlessly integrate Claude Code with your favorite development environments for enhanced productivity.
+            </p>
+            
+            <div class="grid grid-2 mt-2xl">
+                <!-- VS Code Integration -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-code text-accent"></i>
+                            Visual Studio Code
+                        </h3>
+                        <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: var(--radius-sm); padding: var(--space-xs) var(--space-sm); display: inline-block; margin-bottom: var(--space-md);">
+                            <span style="color: var(--text-accent); font-size: 0.75rem; font-weight: 600;">BETA EXTENSION</span>
+                        </div>
+                        <p class="card-description">
+                            New beta extension with inline edit suggestions and visual diffs. 
+                            Claude's proposed edits appear directly in your files.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Installation:</h4>
+                        <div class="code-block">
+                            <pre><code># Install VS Code extension
+code --install-extension anthropic.claude-code
+
+# Connect Claude Code to VS Code
+claude /ide</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Features:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Inline edit suggestions</li>
+                            <li>Context sharing with open files</li>
+                            <li>Visual diffs for changes</li>
+                            <li>Linter error integration</li>
+                            <li>Keyboard shortcuts (⌘+Esc / Ctrl+Esc)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Workflow:</h4>
+                        <ol style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Open your project in VS Code</li>
+                            <li>Run <code>claude /ide</code> in terminal</li>
+                            <li>Use ⌘+Esc (Mac) or Ctrl+Esc (Windows/Linux)</li>
+                            <li>Review and apply suggested changes</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <!-- JetBrains Integration -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-brain text-accent"></i>
+                            JetBrains IDEs
+                        </h3>
+                        <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: var(--radius-sm); padding: var(--space-xs) var(--space-sm); display: inline-block; margin-bottom: var(--space-md);">
+                            <span style="color: var(--text-accent); font-size: 0.75rem; font-weight: 600;">BETA EXTENSION</span>
+                        </div>
+                        <p class="card-description">
+                            Beta extension for IntelliJ IDEA, PyCharm, WebStorm, and other JetBrains IDEs. 
+                            Streamlined review and tracking within the familiar editor interface.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Supported IDEs:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>IntelliJ IDEA</li>
+                            <li>PyCharm</li>
+                            <li>WebStorm</li>
+                            <li>PhpStorm</li>
+                            <li>RubyMine</li>
+                            <li>GoLand</li>
+                            <li>CLion</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Installation:</h4>
+                        <div class="code-block">
+                            <pre><code># Install from JetBrains Marketplace
+# Search for "Claude Code" in plugin settings
+
+# Or install via Claude Code
+claude /ide</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Features:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Inline code suggestions</li>
+                            <li>Integrated diff viewer</li>
+                            <li>Context-aware assistance</li>
+                            <li>Code review integration</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Cursor Integration -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-mouse-pointer text-accent"></i>
+                            Cursor
+                        </h3>
+                        <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: var(--radius-sm); padding: var(--space-xs) var(--space-sm); display: inline-block; margin-bottom: var(--space-md);">
+                            <span style="color: var(--text-success); font-size: 0.75rem; font-weight: 600;">NATIVE SUPPORT</span>
+                        </div>
+                        <p class="card-description">
+                            Cursor provides excellent native integration with Claude Code through its built-in terminal. 
+                            Optimized for AI-powered development workflows.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Usage:</h4>
+                        <div class="code-block">
+                            <pre><code># Launch Cursor in project
+cursor .
+
+# Use integrated terminal
+# Run claude in terminal
+claude</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Benefits:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Native terminal integration</li>
+                            <li>File selection context</li>
+                            <li>Real-time collaboration</li>
+                            <li>Optimized for AI workflows</li>
+                            <li>Seamless context sharing</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Terminal Integration -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-terminal text-accent"></i>
+                            Terminal Integration
+                        </h3>
+                        <div style="background: rgba(247, 147, 30, 0.1); border: 1px solid rgba(247, 147, 30, 0.2); border-radius: var(--radius-sm); padding: var(--space-xs) var(--space-sm); display: inline-block; margin-bottom: var(--space-md);">
+                            <span style="color: var(--text-warning); font-size: 0.75rem; font-weight: 600;">UNIVERSAL</span>
+                        </div>
+                        <p class="card-description">
+                            Works with any terminal or editor that supports terminal integration. 
+                            Universal compatibility across all development environments.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Supported Terminals:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>iTerm2 (macOS)</li>
+                            <li>Terminal.app (macOS)</li>
+                            <li>Windows Terminal</li>
+                            <li>GNOME Terminal (Linux)</li>
+                            <li>Konsole (KDE)</li>
+                            <li>Alacritty</li>
+                            <li>Hyper</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Optimization:</h4>
+                        <div class="code-block">
+                            <pre><code># Optimize terminal for Claude Code
+claude /terminal-setup
+
+# This enables:
+# - Shift+Enter for newlines
+# - Bell notifications
+# - Optimized settings</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- IDE Comparison -->
+            <div class="glass card mt-xl">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-chart-bar text-accent"></i>
+                        IDE Integration Comparison
+                    </h3>
+                    <p class="card-description">
+                        Compare different IDE integration options to choose the best fit for your workflow.
+                    </p>
+                </div>
+                
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>IDE/Editor</th>
+                                <th>Integration Type</th>
+                                <th>Features</th>
+                                <th>Status</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>VS Code</strong></td>
+                                <td>Beta Extension</td>
+                                <td>Inline edits, visual diffs</td>
+                                <td><span class="text-accent">Beta</span></td>
+                                <td>Web development, TypeScript</td>
+                            </tr>
+                            <tr>
+                                <td><strong>JetBrains IDEs</strong></td>
+                                <td>Beta Extension</td>
+                                <td>Integrated diff viewer</td>
+                                <td><span class="text-accent">Beta</span></td>
+                                <td>Java, Python, enterprise</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cursor</strong></td>
+                                <td>Native Support</td>
+                                <td>Terminal integration</td>
+                                <td><span class="text-success">Stable</span></td>
+                                <td>AI-first development</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Terminal</strong></td>
+                                <td>Universal</td>
+                                <td>Full functionality</td>
+                                <td><span class="text-success">Stable</span></td>
+                                <td>Any editor, universal</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vim/Neovim</strong></td>
+                                <td>Terminal + Vim mode</td>
+                                <td>Vim keybindings</td>
+                                <td><span class="text-success">Stable</span></td>
+                                <td>Terminal-based workflow</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Features -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Advanced Features</h2>
+            <p class="section-subtitle">
+                Explore powerful advanced features for professional development workflows and enterprise use cases.
+            </p>
+            
+            <div class="grid grid-2 mt-2xl">
+                <!-- Permission Management -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-shield-alt text-accent"></i>
+                            Permission Management
+                        </h3>
+                        <p class="card-description">
+                            Fine-grained control over what Claude Code can and cannot do in your environment.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Interactive Control:</h4>
+                        <div class="code-block">
+                            <pre><code># Allow specific tools
+/permissions add Edit
+/permissions add "Bash(git commit:*)"
+
+# Deny dangerous operations
+/permissions deny "Bash(rm*)"
+
+# View current permissions
+/permissions</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Command-line Control:</h4>
+                        <div class="code-block">
+                            <pre><code># Session-specific permissions
+claude --allowedTools Edit,Bash
+
+# Dangerous mode (skip all prompts)
+claude --dangerously-skip-permissions</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Context Management -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-memory text-accent"></i>
+                            Context Management
+                        </h3>
+                        <p class="card-description">
+                            Efficiently manage conversation context and memory to optimize token usage and performance.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Context Commands:</h4>
+                        <div class="code-block">
+                            <pre><code># Clear context between major tasks
+/clear
+
+# Keep summary, reduce context
+/compact
+
+# Resume previous conversation
+/resume session_id</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Memory Management:</h4>
+                        <div class="code-block">
+                            <pre><code># Edit memory files
+/memory
+
+# Add directory to context
+/add-dir ~/important-project</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- GitHub Integration -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fab fa-github text-accent"></i>
+                            GitHub Integration
+                        </h3>
+                        <p class="card-description">
+                            Seamless integration with GitHub for pull request reviews and repository management.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">PR Management:</h4>
+                        <div class="code-block">
+                            <pre><code># Review pull request
+/review 123
+
+# Get PR comments
+/pr-comments 123
+
+# Setup GitHub Actions
+/install-github-app</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Workflow Examples:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>Automated code reviews</li>
+                            <li>PR comment analysis</li>
+                            <li>GitHub Actions integration</li>
+                            <li>Repository insights</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Features -->
+                <div class="glass card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-building text-accent"></i>
+                            Enterprise Features
+                        </h3>
+                        <p class="card-description">
+                            Enterprise-grade features for large organizations and production deployments.
+                        </p>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Cloud Providers:</h4>
+                        <div class="code-block">
+                            <pre><code># Amazon Bedrock
+claude --provider bedrock --model anthropic.claude-3-5-sonnet
+
+# Google Vertex AI
+claude --provider vertex --model claude-3-5-sonnet</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-lg">
+                        <h4 class="text-primary mb-md">Security & Compliance:</h4>
+                        <ul style="color: var(--text-secondary); padding-left: 1.5rem;">
+                            <li>FedRAMP High approved</li>
+                            <li>DoD IL4/5 workloads</li>
+                            <li>Enterprise SSO integration</li>
+                            <li>Audit logging</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Features Section -->
+    <section class="section" id="enterprise">
+        <div class="container">
+            <h2 class="section-title">Enterprise Features</h2>
+            <p class="section-subtitle">
+                Claude Code offers enterprise-grade features for teams and organizations, 
+                including advanced security, compliance, and deployment options.
+            </p>
+            
+            <div class="grid grid-2 mb-2xl">
+                <div class="glass card">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="card-header">
+                        <h3 class="card-title">Security & Compliance</h3>
+                        <p class="card-description">
+                            Enterprise-grade security features including SSO integration, 
+                            audit logging, and compliance with SOC 2, GDPR, and HIPAA standards.
+                        </p>
+                    </div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check text-success"></i> Single Sign-On (SSO) integration</li>
+                        <li><i class="fas fa-check text-success"></i> Advanced audit logging</li>
+                        <li><i class="fas fa-check text-success"></i> Data encryption at rest and in transit</li>
+                        <li><i class="fas fa-check text-success"></i> Compliance certifications</li>
+                    </ul>
+                </div>
+                
+                <div class="glass card">
+                    <div class="card-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <div class="card-header">
+                        <h3 class="card-title">Team Management</h3>
+                        <p class="card-description">
+                            Comprehensive team management tools for administrators, 
+                            including user provisioning, role-based access control, and usage analytics.
+                        </p>
+                    </div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check text-success"></i> Role-based access control</li>
+                        <li><i class="fas fa-check text-success"></i> Automated user provisioning</li>
+                        <li><i class="fas fa-check text-success"></i> Usage analytics and reporting</li>
+                        <li><i class="fas fa-check text-success"></i> Team collaboration features</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <div class="glass card" style="display: inline-block; padding: var(--space-2xl); max-width: 600px;">
+                    <h3 style="color: var(--text-accent); margin-bottom: var(--space-lg);">Ready for Enterprise?</h3>
+                    <p style="margin-bottom: var(--space-xl); color: var(--text-secondary);">
+                        Contact our enterprise team to learn more about Claude Code for your organization.
+                    </p>
+                    <div class="flex gap-md justify-center">
+                        <a href="https://anthropic.com/contact" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-envelope"></i>
+                            Contact Sales
+                        </a>
+                        <a href="https://docs.anthropic.com/claude-code/enterprise" class="btn btn-secondary" target="_blank">
+                            <i class="fas fa-book"></i>
+                            Enterprise Docs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- JavaScript -->
+    <script src="shared.js"></script>
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+    </script>
+
+    <!-- Developer Footer -->
+    <footer class="developer-footer">
+        <div class="container">
+            <div class="developer-credits">
+                <div class="developer-info">
+                    <img src="https://avatars.githubusercontent.com/u/185730623?v=4" alt="Zebbern" class="developer-avatar">
+                    <div class="developer-details">
+                        <h4 class="developer-name">Website developed by Zebbern</h4>
+                        <p class="developer-description">Full-stack developer passionate about AI tools and developer experience</p>
+                    </div>
+                </div>
+                <div class="developer-links">
+                    <a href="https://github.com/zebbern" class="developer-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+            <div class="developer-footer-bottom">
+                <p>&copy; 2025 Claude Code Guide. Website crafted with ❤️ by <a href="https://github.com/zebbern" target="_blank">Zebbern</a></p>
+            </div>
+        </div>
+    </footer>
+    <!-- Commands Button -->
+    <a href="commands.html" class="commands-button" title="All Claude Commands">
+        <i class="fas fa-terminal"></i>
+        All Claude Commands
+    </a>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <a href="#" class="quick-action" title="Back to Top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+        <a href="#models" class="quick-action" title="AI Models">
+            <i class="fas fa-brain"></i>
+        </a>
+        <a href="#commands" class="quick-action" title="Commands Reference">
+            <i class="fas fa-terminal"></i>
+        </a>
+    </div>
+</body>
+</html>

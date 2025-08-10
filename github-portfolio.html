@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zebbern - GitHub Portfolio</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg-primary:#0d1117;
+      --bg-secondary:#161b22;
+      --bg-card:#1c2128;
+      --text-primary:#f0f6fc;
+      --text-secondary:#8b949e;
+      --accent:#58a6ff;
+      --accent-hover:#79c0ff;
+      --border:#30363d;
+      --success:#3fb950;
+      --warning:#d29922;
+      --danger:#f85149;
+    }
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+      background:linear-gradient(135deg,var(--bg-primary) 0%,#0a0e27 100%);
+      color:var(--text-primary);
+      min-height:100vh;line-height:1.6
+    }
+    .container{max-width:1200px;margin:0 auto;padding:2rem}
+    .loader{display:flex;justify-content:center;align-items:center;min-height:60vh}
+    .spinner{width:50px;height:50px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Header */
+    .header{margin-bottom:1.5rem;animation:fadeInDown .8s ease}
+    .profile{display:flex;align-items:center;gap:2rem;margin-bottom:1.25rem;flex-wrap:wrap;justify-content:center}
+    .avatar{width:150px;height:150px;border-radius:50%;border:4px solid var(--accent);box-shadow:0 0 30px rgba(88,166,255,.3);transition:.3s}
+    .avatar:hover{transform:scale(1.05);box-shadow:0 0 40px rgba(88,166,255,.5)}
+    .profile-info h1{font-size:2.3rem;margin-bottom:.4rem;background:linear-gradient(135deg,var(--accent),var(--accent-hover));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .bio{color:var(--text-secondary);font-size:1.05rem;margin-bottom:.8rem}
+    .stats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    .stat{text-align:center;padding:.5rem 1rem;background:var(--bg-card);border-radius:10px;border:1px solid var(--border);transition:.2s;min-width:140px}
+    .stat:hover{transform:translateY(-3px);border-color:var(--accent)}
+    .stat-value{font-size:1.3rem;font-weight:700;color:var(--accent)}
+    .stat-value.money{color:var(--success)} /* green money */
+    .stat-label{font-size:.9rem;color:var(--text-secondary)}
+
+    /* Tabs + Search + Counts */
+    .topbar{display:flex;gap:.6rem;margin:0 auto 1.2rem;flex-wrap:wrap;align-items:center;justify-content:center;animation:fadeIn .6s ease}
+    .tab-btn{padding:.55rem 1.1rem;background:var(--bg-card);border:1px solid var(--border);color:var(--text-primary);border-radius:9999px;cursor:pointer;transition:.2s;font-size:.95rem;display:inline-flex;align-items:center;gap:.4rem}
+    .tab-btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+    .tab-btn[aria-selected="true"]{background:var(--accent);border-color:var(--accent)}
+    .count-badge{padding:.15rem .5rem;border-radius:9999px;background:rgba(240,246,252,.1);border:1px solid var(--border);font-size:.8rem;color:#d0e6ff}
+    .search-box{padding:.6rem 1rem;background:var(--bg-card);border:1px solid var(--border);color:var(--text-primary);border-radius:9999px;min-width:280px;transition:border-color .2s ease}
+    .search-box:focus{outline:none;border-color:var(--accent)}
+    .sort-bar{display:flex;gap:.5rem;align-items:center;justify-content:flex-end;margin:-.3rem 0 1rem}
+    .pill{padding:.4rem .8rem;border-radius:9999px;border:1px solid var(--border);background:var(--bg-card);cursor:pointer;font-size:.9rem;color:var(--text-secondary);transition:.2s}
+    .pill[aria-pressed="true"]{background:var(--accent);color:#041423;border-color:var(--accent)}
+    .select{padding:.45rem .7rem;border-radius:10px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-primary)}
+
+    /* Sections */
+    .section{display:none;animation:fadeIn .25s ease}
+    .section.active{display:block}
+    .section-title{font-size:1.9rem;margin:0 0 .8rem;text-align:left;background:linear-gradient(135deg,var(--accent),var(--accent-hover));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+    /* Repos */
+    .repos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.2rem;animation:fadeInUp .6s ease}
+    .repo-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.2rem;transition:.25s;cursor:pointer;position:relative;overflow:hidden}
+    .repo-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-hover));transform:translateX(-100%);transition:transform .25s}
+    .repo-card:hover::before{transform:translateX(0)}
+    .repo-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+    .repo-name{font-size:1.15rem;font-weight:600;color:var(--accent);margin-bottom:.4rem;display:flex;align-items:center;gap:.5rem}
+    .repo-visibility{font-size:.75rem;padding:.2rem .5rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:10px;color:var(--text-secondary)}
+    .repo-description{color:var(--text-secondary);margin-bottom:.7rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .repo-stats{display:flex;gap:1rem;margin-bottom:.6rem;flex-wrap:wrap;color:var(--text-secondary);font-size:.9rem}
+    .repo-language{display:flex;align-items:center;gap:.5rem;margin-top:.4rem}
+    .language-dot{width:12px;height:12px;border-radius:50%;background:var(--accent)}
+
+    /* Live Websites */
+    .websites-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:1.5rem;margin:0 0 2rem}
+    .website-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:.25s;cursor:pointer;position:relative}
+    .website-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 15px 40px rgba(0,0,0,.4)}
+    .website-preview{position:relative;height:260px;overflow:hidden;background:var(--bg-secondary)}
+    .website-preview iframe{width:100%;height:100%;border:0;pointer-events:none}
+    .website-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 0%,rgba(13,17,23,.7) 100%);display:flex;align-items:center;justify-content:center;opacity:0;transition:.2s}
+    .website-card:hover .website-overlay{opacity:1}
+    .visit-btn{padding:.7rem 1.4rem;background:var(--accent);color:#fff;border-radius:25px;font-weight:700;transform:translateY(12px);transition:.2s}
+    .website-card:hover .visit-btn{transform:translateY(0)}
+    .website-info{padding:1rem 1.2rem 1.2rem}
+    .website-info h3{font-size:1.25rem;color:var(--accent);margin-bottom:.15rem}
+    .website-info p{color:var(--text-secondary);margin-bottom:.5rem}
+    .website-url{display:inline-block;padding:.3rem .7rem;background:var(--bg-secondary);border-radius:15px;color:var(--accent-hover);font-size:.9rem;font-family:monospace}
+
+    /* Bounties */
+    .bounty-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:1.2rem;margin-bottom:2rem}
+    .bounty-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;transition:.25s;cursor:pointer;display:flex;gap:1rem;align-items:flex-start;position:relative;overflow:hidden}
+    .bounty-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#f85149,#f9826c);transform:translateX(-100%);transition:transform .25s}
+    .bounty-card:hover::before{transform:translateX(0)}
+    .bounty-card:hover{transform:translateY(-4px);border-color:#f85149;box-shadow:0 10px 30px rgba(248,81,73,.2)}
+    .bounty-icon{color:#f85149;flex-shrink:0;padding:.45rem;background:rgba(248,81,73,.1);border-radius:10px}
+    .bounty-content h3.bounty-title{font-size:1.15rem;margin-bottom:.25rem;color:var(--text-primary);padding-right:7rem}
+    .bounty-domain{position:absolute;top:.6rem;right:.6rem;display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .6rem;border-radius:9999px;background:var(--bg-secondary);border:1px solid var(--border);font-size:.85rem;color:var(--text-secondary)}
+    .bounty-content p{color:var(--text-secondary);line-height:1.5;margin:.45rem 0 .7rem;font-size:.95rem}
+    .bounty-meta{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+    .severity{padding:.25rem .7rem;border-radius:15px;font-size:.82rem;font-weight:700;text-transform:uppercase;border:1px solid transparent}
+    .severity.critical{background:rgba(248,81,73,.2);color:#f85149;border-color:rgba(248,81,73,.35)}
+    .severity.high{background:rgba(251,143,68,.2);color:#fb8f44;border-color:rgba(251,143,68,.35)}
+    .severity.medium{background:rgba(210,153,34,.2);color:#d29922;border-color:rgba(210,153,34,.35)}
+    .severity.low{background:rgba(88,166,255,.2);color:#58a6ff;border-color:rgba(88,166,255,.35)}
+    .status{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .65rem;border-radius:14px;border:1px solid var(--border);font-size:.82rem;font-weight:700}
+    .status.confidential{background:rgba(248,81,73,.16);border-color:rgba(248,81,73,.4);color:var(--danger);text-transform:uppercase;letter-spacing:.02em}
+    .status.confidential svg{width:14px;height:14px}
+
+    .bounty-amount{background:linear-gradient(135deg,#3fb950,#56d364);padding:.3rem .8rem;border-radius:15px;font-weight:700;color:#041423;font-size:.9rem}
+
+    /* Error */
+    .error{text-align:center;padding:2rem;background:rgba(248,81,73,.1);border:1px solid rgba(248,81,73,.3);border-radius:10px;color:#f85149;margin:2rem 0}
+
+    /* Footer / footnote with icons */
+    .footnote{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.95rem;color:var(--text-secondary);text-align:center}
+    .footer-links{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;justify-content:center;margin-bottom:.6rem}
+    .footer-item{display:inline-flex;align-items:center;gap:.45rem;background:var(--bg-card);border:1px solid var(--border);padding:.4rem .7rem;border-radius:9999px;transition:.2s}
+    .footer-item:hover{border-color:var(--accent);transform:translateY(-1px)}
+    .footer-item svg{width:16px;height:16px;opacity:.9}
+    .footnote a{color:var(--text-primary);text-decoration:none}
+    .footnote .small{font-size:.85rem;display:flex;gap:.35rem;align-items:center;justify-content:center;color:#a9b6c2}
+    .footnote .small svg{width:14px;height:14px;opacity:.8}
+
+    /* Responsive */
+    @media (max-width:768px){
+      .profile{flex-direction:column;text-align:center}
+      .profile-info h1{font-size:2rem}
+      .repos-grid,.bounty-grid{grid-template-columns:1fr}
+      .websites-grid{grid-template-columns:1fr}
+      .bounty-content h3.bounty-title{padding-right:0}
+      .bounty-domain{position:static;margin-left:auto}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="content">
+      <div class="loader"><div class="spinner"></div></div>
+    </div>
+  </div>
+
+  <script>
+    const username = 'zebbern';
+
+    const languageColors = {
+      JavaScript:'#f1e05a', Python:'#3572A5', Java:'#b07219', TypeScript:'#2b7489',
+      CSS:'#563d7c', HTML:'#e34c26', C:'#555555', 'C++':'#f34b7d','C#':'#178600',
+      Ruby:'#701516', Go:'#00ADD8', Swift:'#ffac45', Kotlin:'#F18E33', Rust:'#dea584',
+      PHP:'#4F5D95', Shell:'#89e051', Vue:'#4fc08d', React:'#61dafb'
+    };
+
+    let activeSection = 'repos';
+    let currentQuery = '';
+    let reposData = [];
+    let reposSort = 'updated'; // 'updated' | 'stars' | 'forks' | 'name'
+    let bountySeverity = 'all'; // 'all' | 'low' | 'medium' | 'high' | 'critical'
+
+    async function fetchGitHubData(){
+      try{
+        const userRes = await fetch(`https://api.github.com/users/${username}`);
+        if(!userRes.ok) throw new Error('User not found');
+        const user = await userRes.json();
+
+        const reposRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+        if(!reposRes.ok) throw new Error('Failed to fetch repositories');
+        reposData = await reposRes.json();
+
+        displayProfile(user);
+        displayRepos(reposData);
+        updateCounts(user.public_repos);
+
+        const searchEl = document.getElementById('search-input');
+        if(searchEl){ searchEl.value = currentQuery; }
+        showSection(activeSection);
+        filterCurrentSection();
+      }catch(err){
+        document.getElementById('content').innerHTML = `
+          <div class="error">
+            <h2>Error loading GitHub data</h2>
+            <p>${err.message}</p>
+            <button class="pill" onclick="location.reload()">Try Again</button>
+          </div>`;
+      }
+    }
+
+    function displayProfile(user){
+      const profileHTML = `
+        <div class="header">
+          <div class="profile">
+            <img src="${user.avatar_url}" alt="${user.name || user.login}" class="avatar">
+            <div class="profile-info">
+              <h1>${user.name || user.login}</h1>
+              ${user.bio ? `<p class="bio">${user.bio}</p>` : ''}
+              <div class="stats">
+                <div class="stat"><div class="stat-value">${user.public_repos}</div><div class="stat-label">Repositories</div></div>
+                <div class="stat"><div class="stat-value">${user.followers}</div><div class="stat-label">Followers</div></div>
+                <div class="stat"><div class="stat-value">${user.following}</div><div class="stat-label">Following</div></div>
+                <div class="stat"><div class="stat-value money">$617</div><div class="stat-label">Bounty Earnings</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="topbar" role="tablist" aria-label="Sections">
+            <button class="tab-btn" role="tab" aria-selected="true" aria-controls="section-repos" id="tab-repos">
+              Repos <span id="count-repos" class="count-badge">0</span>
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="section-websites" id="tab-websites">
+              Live Websites <span id="count-websites" class="count-badge">0</span>
+            </button>
+            <button class="tab-btn" role="tab" aria-selected="false" aria-controls="section-bounties" id="tab-bounties">
+              Bug Bounty Reports <span id="count-bounties" class="count-badge">0</span>
+            </button>
+            <input id="search-input" class="search-box" type="search" placeholder="Search repositories…" aria-label="Search current section"/>
+          </div>
+        </div>
+
+        <section id="section-repos" class="section" aria-labelledby="tab-repos">
+          <h2 class="section-title">📁 Repos</h2>
+          <div class="sort-bar">
+            <label for="repo-sort" class="sr-only">Sort repositories</label>
+            <select id="repo-sort" class="select" aria-label="Sort repositories">
+              <option value="updated">Recently updated</option>
+              <option value="stars">Most stars</option>
+              <option value="forks">Most forks</option>
+              <option value="name">Name A–Z</option>
+            </select>
+          </div>
+          <div id="repos-container"></div>
+        </section>
+
+        <section id="section-websites" class="section" aria-labelledby="tab-websites">
+          <h2 class="section-title">🌐 Live Websites</h2>
+          <div class="websites-grid" id="websites-grid">
+            <div class="website-card" data-title="AI Unmarked" data-url="aiunmarked.com" onclick="window.open('https://aiunmarked.com/','_blank')">
+              <div class="website-preview">
+                <iframe src="https://aiunmarked.com/" loading="lazy" title="AI Unmarked"></iframe>
+                <div class="website-overlay"><span class="visit-btn">Visit Site →</span></div>
+              </div>
+              <div class="website-info">
+                <h3>AI Unmarked</h3>
+                <p>AI content detection platform for identifying AI-generated text.</p>
+                <div class="website-url">aiunmarked.com</div>
+              </div>
+            </div>
+            <div class="website-card" data-title="Portfolio Site" data-url="zebbern.github.io" onclick="window.open('https://zebbern.github.io/','_blank')">
+              <div class="website-preview">
+                <iframe src="https://zebbern.github.io/" loading="lazy" title="Portfolio Site"></iframe>
+                <div class="website-overlay"><span class="visit-btn">Visit Site →</span></div>
+              </div>
+              <div class="website-info">
+                <h3>Portfolio Site</h3>
+                <p>Personal developer portfolio showcasing projects and skills.</p>
+                <div class="website-url">zebbern.github.io</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-bounties" class="section" aria-labelledby="tab-bounties">
+          <h2 class="section-title">🐛 Bug Bounty Reports</h2>
+          <div class="sort-bar" id="bounty-filters" role="toolbar" aria-label="Bounty severity filters">
+            <button class="pill" data-sev="all" aria-pressed="true">All</button>
+            <button class="pill" data-sev="low" aria-pressed="false">Low</button>
+            <button class="pill" data-sev="medium" aria-pressed="false">Medium</button>
+            <button class="pill" data-sev="high" aria-pressed="false">High</button>
+            <button class="pill" data-sev="critical" aria-pressed="false">Critical</button>
+          </div>
+          <div class="bounty-grid" id="bounty-grid">
+            <div class="bounty-card" data-severity="low" onclick="window.open('https://hackerone.com/zebbern?type=user','_blank')">
+              <div class="bounty-icon" aria-hidden="true">
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="9" y1="9" x2="15" y2="15"></line>
+                  <line x1="15" y1="9" x2="9" y2="15"></line>
+                </svg>
+              </div>
+              <div class="bounty-content">
+                <h3 class="bounty-title">UI Redressing (Clickjacking)</h3>
+                <span class="bounty-domain">github.com</span>
+                <p>Clickjacking vulnerability allowing malicious sites to trick users into performing unintended actions on GitHub via invisible overlays.</p>
+                <div class="bounty-meta">
+                  <span class="severity low">Low</span>
+                  <span class="status confidential">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <rect x="3" y="11" width="18" height="10" rx="2"/>
+                      <path d="M7 11V8a5 5 0 0 1 10 0v3"/>
+                    </svg>
+                    Confidential
+                  </span>
+                  <span class="bounty-amount">$617</span>
+                  <span style="color:var(--text-secondary);font-size:.85rem;">📅 May 20, 2025</span>
+                  <a href="https://hackerone.com/zebbern?type=user" target="_blank" style="color:var(--accent);text-decoration:none;font-size:.9rem;margin-left:auto;">View on HackerOne →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="footnote" id="footnote">
+          <div class="footer-links">
+            <a class="footer-item" href="mailto:z_r@tuta.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+              <span>z_r@tuta.com</span>
+            </a>
+            <a class="footer-item" href="https://medium.com/@zebbern" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.54 12c0 3.35-3.03 6.06-6.77 6.06S0 15.35 0 12C0 8.65 3.03 5.94 6.77 5.94s6.77 2.71 6.77 6.06zM21.08 12c0 3.17-1.52 5.74-3.39 5.74-1.87 0-3.39-2.57-3.39-5.74 0-3.17 1.52-5.74 3.39-5.74 1.87 0 3.39 2.57 3.39 5.74zM24 12c0 2.89-.5 5.23-1.11 5.23-.61 0-1.11-2.34-1.11-5.23s.5-5.23 1.11-5.23c.61 0 1.11 2.34 1.11 5.23z"/></svg>
+              <span>@zebbern</span>
+            </a>
+            <a class="footer-item" href="https://zebbern.github.io/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10A15.3 15.3 0 0 1 8 12 15.3 15.3 0 0 1 12 2z"/></svg>
+              <span>zebbern.github.io</span>
+            </a>
+          </div>
+          <div class="small" id="last-synced">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <span>Last synced: ${new Date().toLocaleString()}</span>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('content').innerHTML = profileHTML;
+
+      // Tabs
+      document.getElementById('tab-repos').addEventListener('click',()=>showSection('repos'));
+      document.getElementById('tab-websites').addEventListener('click',()=>showSection('websites'));
+      document.getElementById('tab-bounties').addEventListener('click',()=>showSection('bounties'));
+      // Search
+      document.getElementById('search-input').addEventListener('input', (e)=>{
+        currentQuery = e.target.value.trim().toLowerCase();
+        filterCurrentSection();
+      });
+      // Repo sort
+      document.getElementById('repo-sort').addEventListener('change',(e)=>{
+        reposSort = e.target.value;
+        displayRepos(reposData);
+        filterCurrentSection();
+      });
+      // Bounty severity filters
+      document.querySelectorAll('#bounty-filters .pill').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          bountySeverity = btn.dataset.sev;
+          document.querySelectorAll('#bounty-filters .pill').forEach(b=>b.setAttribute('aria-pressed','false'));
+          btn.setAttribute('aria-pressed','true');
+          filterCurrentSection();
+        });
+      });
+    }
+
+    function updateCounts(repoCount){
+      document.getElementById('count-repos').textContent = repoCount;
+      const websitesCount = document.querySelectorAll('#websites-grid .website-card').length;
+      document.getElementById('count-websites').textContent = websitesCount;
+      const bountyCount = document.querySelectorAll('#bounty-grid .bounty-card').length;
+      document.getElementById('count-bounties').textContent = bountyCount;
+    }
+
+    function sortRepos(list){
+      const arr = [...list];
+      if(reposSort === 'stars'){
+        arr.sort((a,b)=> (b.stargazers_count||0)-(a.stargazers_count||0));
+      }else if(reposSort === 'forks'){
+        arr.sort((a,b)=> (b.forks_count||0)-(a.forks_count||0));
+      }else if(reposSort === 'name'){
+        arr.sort((a,b)=> (a.name||'').localeCompare(b.name||''));
+      }else{ // updated
+        arr.sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at));
+      }
+      return arr;
+    }
+
+    function displayRepos(repos){
+      const items = sortRepos(repos);
+      const reposHTML = items.map(repo => `
+        <div class="repo-card"
+             data-name="${(repo.name||'').toLowerCase()}"
+             data-desc="${(repo.description||'').toLowerCase()}"
+             data-lang="${(repo.language||'').toLowerCase()}"
+             data-stars="${repo.stargazers_count||0}"
+             data-forks="${repo.forks_count||0}"
+             onclick="window.open('${repo.html_url}','_blank')">
+          <div class="repo-name">
+            ${repo.name}
+            <span class="repo-visibility">${repo.private ? 'Private' : 'Public'}</span>
+          </div>
+          ${repo.description ? `<p class="repo-description">${repo.description}</p>` : '<p class="repo-description">No description available</p>'}
+          <div class="repo-stats">
+            <span>⭐ ${repo.stargazers_count}</span>
+            <span>🍴 ${repo.forks_count}</span>
+            <span>👁️ ${repo.watchers_count}</span>
+            ${(repo.open_issues_count||0)>0 ? `<span>⚠️ ${repo.open_issues_count} issues</span>` : ''}
+          </div>
+          ${repo.language ? `
+            <div class="repo-language">
+              <span class="language-dot" style="background:${languageColors[repo.language] || '#8b949e'}"></span>
+              <span>${repo.language}</span>
+            </div>` : ''}
+          <div style="color:var(--text-secondary);font-size:.85rem;margin-top:.4rem;">Updated: ${new Date(repo.updated_at).toLocaleDateString()}</div>
+        </div>`
+      ).join('');
+
+      document.getElementById('repos-container').innerHTML = `
+        <div class="repos-grid" id="repos-grid">${reposHTML}</div>
+      `;
+    }
+
+    function showSection(section){
+      activeSection = section;
+      const sections = {
+        repos: document.getElementById('section-repos'),
+        websites: document.getElementById('section-websites'),
+        bounties: document.getElementById('section-bounties')
+      };
+      const tabs = {
+        repos: document.getElementById('tab-repos'),
+        websites: document.getElementById('tab-websites'),
+        bounties: document.getElementById('tab-bounties')
+      };
+      Object.values(sections).forEach(s=>s.classList.remove('active'));
+      Object.values(tabs).forEach(t=>t.setAttribute('aria-selected','false'));
+      sections[section].classList.add('active');
+      tabs[section].setAttribute('aria-selected','true');
+
+      const searchEl = document.getElementById('search-input');
+      if(searchEl){
+        if(section==='repos') searchEl.placeholder='Search repositories…';
+        if(section==='websites') searchEl.placeholder='Search websites…';
+        if(section==='bounties') searchEl.placeholder='Search bounty reports…';
+      }
+      filterCurrentSection();
+    }
+
+    function filterCurrentSection(){
+      const q = currentQuery;
+      if(activeSection==='repos'){
+        const cards = document.querySelectorAll('#repos-grid .repo-card');
+        cards.forEach(card=>{
+          const name = card.getAttribute('data-name') || '';
+          const desc = card.getAttribute('data-desc') || '';
+          const lang = card.getAttribute('data-lang') || '';
+          const show = !q || name.includes(q) || desc.includes(q) || lang.includes(q);
+          card.style.display = show ? '' : 'none';
+        });
+      }
+      if(activeSection==='websites'){
+        const cards = document.querySelectorAll('#websites-grid .website-card');
+        cards.forEach(card=>{
+          const title = (card.getAttribute('data-title')||'').toLowerCase();
+          const url = (card.getAttribute('data-url')||'').toLowerCase();
+          const text = (card.innerText||'').toLowerCase();
+          const show = !q || title.includes(q) || url.includes(q) || text.includes(q);
+          card.style.display = show ? '' : 'none';
+        });
+      }
+      if(activeSection==='bounties'){
+        const cards = document.querySelectorAll('#bounty-grid .bounty-card');
+        cards.forEach(card=>{
+          const title = (card.querySelector('.bounty-title')?.innerText||'').toLowerCase();
+          const domain = (card.querySelector('.bounty-domain')?.innerText||'').toLowerCase();
+          const body = (card.querySelector('.bounty-content p')?.innerText||'').toLowerCase();
+          const sev = card.getAttribute('data-severity') || 'low';
+          const searchMatch = !q || title.includes(q) || domain.includes(q) || body.includes(q);
+          const sevMatch = (bountySeverity==='all') || (sev===bountySeverity);
+          const show = searchMatch && sevMatch;
+          card.style.display = show ? '' : 'none';
+        });
+      }
+    }
+
+    // Init + refresh loop
+    fetchGitHubData();
+    setInterval(()=>{ fetchGitHubData(); }, 300000);
+  </script>
+</body>
+</html>

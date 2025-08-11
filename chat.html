@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free Chat — Pollinations + WebLLM + Local</title>
+  <style>
+    :root{--bg:#0b0e12;--panel:#12161c;--panel-2:#0f1318;--text:#e6edf3;--muted:#9aa5b1;--accent:#7c9cff;--accent-2:#6ee7b7;--border:#1f2937;--shadow:0 10px 30px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html,body{height:100%}
+    body{margin:0;background:
+      radial-gradient(1200px 700px at 10% -10%, #1b2230 0%, transparent 40%),
+      radial-gradient(700px 500px at 120% 10%, #162034 0%, transparent 50%),
+      var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial}
+    .app{display:grid;grid-template-columns:320px 1fr;height:100vh}
+    aside{background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);border-right:1px solid var(--border);padding:16px;overflow:auto}
+    main{display:flex;flex-direction:column;height:100vh}
+    .brand{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 20px var(--accent-2)}
+    .brand h1{font-size:18px;margin:0}.small{color:var(--muted);font-size:12px}
+    .group{margin:12px 0}.group label{display:block;font-weight:600;margin:6px 0}
+    .row{display:flex;align-items:center;gap:8px}
+    .panel{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;padding:10px;margin:10px 0}
+    .hidden{display:none}
+    select,input[type="text"],input[type="url"],input[type="number"],input[type="password"],textarea{
+      width:100%;padding:9px 10px;background:#0c1116;color:var(--text);border:1px solid var(--border);border-radius:10px;outline:none}
+    input[type="range"]{width:100%}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    button{background:#0e1420;color:var(--text);border:1px solid var(--border);padding:8px 12px;border-radius:12px;cursor:pointer;box-shadow:var(--shadow)}
+    button.primary{background:linear-gradient(135deg,#2a3b8f,#2e7d67);border-color:#2a3b8f}
+    button:disabled{opacity:.6;cursor:not-allowed}
+    .status{margin-top:10px;color:var(--muted);font-size:12px;white-space:pre-wrap}
+    .messages{flex:1;overflow:auto;padding:20px 20px 120px}
+    .composer{position:sticky;bottom:0;padding:12px;background:linear-gradient(180deg,rgba(11,14,18,.0),rgba(11,14,18,.75) 28%,rgba(11,14,18,.95) 90%);backdrop-filter:blur(8px);border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
+    .composer textarea{width:100%;min-height:54px;max-height:200px;resize:vertical}
+    .bubble{max-width:880px;padding:12px 14px;border-radius:16px;margin:8px 0;white-space:pre-wrap;word-wrap:break-word;box-shadow:var(--shadow)}
+    .me{margin-left:auto;background:#182236;border:1px solid #1f2a44}
+    .ai{margin-right:auto;background:#0f171f;border:1px solid #1a2535}
+    .msg-head{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;margin-bottom:6px}
+    .msg-head .role{font-weight:700;color:var(--text);font-size:12px}
+    .progress{height:6px;width:100%;background:#0c1116;border-radius:6px;overflow:hidden;border:1px solid var(--border)}
+    .progress>div{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .2s ease}
+    .tip{font-size:12px;color:var(--muted);margin-top:6px}
+    /* typing dots */
+    .typing{display:inline-flex;align-items:center;gap:6px;margin-top:6px}
+    .typing .dot{width:6px;height:6px;border-radius:50%;background:#9aa5b1;opacity:.35;animation:bounce 1.2s infinite}
+    .typing .dot:nth-child(2){animation-delay:.15s}.typing .dot:nth-child(3){animation-delay:.3s}
+    @keyframes bounce{0%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:1}60%{transform:translateY(0);opacity:.6}100%{opacity:.35}}
+    @media (max-width:900px){.app{grid-template-columns:1fr}aside{position:sticky;top:0;z-index:2}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <div class="brand"><div class="dot"></div><h1>Free Chat</h1></div>
+      <div class="small">Single-file UI. <strong>Pollinations (no key)</strong> by default, plus <strong>WebLLM</strong> in-browser, <strong>Ollama</strong>, <strong>LM Studio</strong>, or a custom OpenAI-compatible host.</div>
+
+      <div class="group">
+        <label for="backend">Backend</label>
+        <select id="backend">
+          <option value="pollinations">Pollinations (no key)</option>
+          <option value="webllm">In-browser (WebLLM)</option>
+          <option value="ollama">Ollama (localhost)</option>
+          <option value="lmstudio">LM Studio (localhost)</option>
+          <option value="custom">Custom OpenAI-compatible</option>
+        </select>
+        <div class="tip">Pollinations works instantly. “In-browser” runs fully on your device; local APIs require software running on your machine.</div>
+      </div>
+
+      <!-- Pollinations -->
+      <div id="polli-panel" class="panel">
+        <div class="row" style="justify-content:space-between">
+          <label>Pollinations Mode</label>
+          <select id="polli-mode">
+            <option value="chat">Chat (text)</option>
+            <option value="image">Image (text → image)</option>
+          </select>
+        </div>
+        <div class="row" style="justify-content:space-between">
+          <label>Pollinations Model</label>
+          <button id="refresh-polli" title="Refresh model list" aria-label="Refresh models">↻</button>
+        </div>
+        <select id="polli-model"></select>
+        <div id="polli-image-opts" class="hidden" style="margin-top:8px">
+          <label>Image width</label><input id="img-w" type="number" min="64" max="2048" value="768" />
+          <label>Image height</label><input id="img-h" type="number" min="64" max="2048" value="768" />
+          <label>Image model (optional)</label><input id="img-model" type="text" placeholder="e.g. flux, sdxl (optional)"/>
+          <label>Seed (optional)</label><input id="img-seed" type="number" placeholder="random"/>
+          <div class="tip">Images come from <code>image.pollinations.ai</code>.</div>
+        </div>
+        <div class="tip">Chat endpoint: <code>https://text.pollinations.ai/openai</code> (OpenAI-compatible; no key).</div>
+      </div>
+
+      <!-- WebLLM -->
+      <div id="webllm-panel" class="panel hidden">
+        <div class="row" style="justify-content:space-between">
+          <label>WebLLM Model</label>
+          <button id="refresh-models" title="Refresh model list" aria-label="Refresh models">↻</button>
+        </div>
+        <select id="webllm-model"></select>
+        <div class="tip">First run downloads the model, then caches it.</div>
+        <div style="margin-top:8px" class="progress"><div id="loadbar"></div></div>
+        <div id="loadstatus" class="status"></div>
+      </div>
+
+      <!-- Ollama -->
+      <div id="ollama-panel" class="panel hidden">
+        <label>Ollama URL</label>
+        <input id="ollama-url" type="url" value="http://localhost:11434/api/chat"/>
+        <label>Model name</label>
+        <input id="ollama-model" type="text" value="llama3.1"/>
+        <div class="tip">CORS: <code>export OLLAMA_ORIGINS=*</code> then restart Ollama.</div>
+      </div>
+
+      <!-- LM Studio -->
+      <div id="lmstudio-panel" class="panel hidden">
+        <label>Base URL</label>
+        <input id="lmstudio-url" type="url" value="http://localhost:1234/v1/chat/completions"/>
+        <label>Model id</label>
+        <input id="lmstudio-model" type="text" value="gpt-oss"/>
+        <div class="tip">OpenAI-compatible server; enable it in LM Studio.</div>
+      </div>
+
+      <!-- Custom -->
+      <div id="custom-panel" class="panel hidden">
+        <label>Base URL</label>
+        <input id="custom-base" type="url" placeholder="https://api.yourhost.com/v1"/>
+        <label>API key (if required)</label>
+        <input id="custom-key" type="password" placeholder="sk-… (optional)"/>
+        <label>Model id</label>
+        <input id="custom-model" type="text" placeholder="model-id"/>
+      </div>
+
+      <div class="group">
+        <label>System prompt</label>
+        <textarea id="system" rows="3" placeholder="You are a helpful assistant."></textarea>
+      </div>
+      <div class="group">
+        <div class="row"><label style="flex:1">Temperature</label><span id="tempOut" class="small">0.7</span></div>
+        <input id="temperature" type="range" min="0" max="2" step="0.1" value="0.7"/>
+      </div>
+      <div class="group">
+        <div class="row"><label style="flex:1">Max tokens</label><span id="maxOut" class="small">512</span></div>
+        <input id="maxTokens" type="range" min="64" max="4096" step="64" value="512"/>
+      </div>
+
+      <div class="actions">
+        <button id="clear">Clear chat</button>
+        <button id="export">Export JSON</button>
+        <button id="import">Import JSON</button><input id="importFile" type="file" accept="application/json" hidden>
+      </div>
+
+      <div id="status" class="status"></div>
+    </aside>
+
+    <main>
+      <div id="messages" class="messages"></div>
+      <form id="composer" class="composer">
+        <textarea id="input" placeholder="Type a message…  (Shift+Enter = newline)" rows="2"></textarea>
+        <div class="row" style="justify-content:space-between; gap:10px">
+          <div class="small">Backend: <span id="backendStatus">pollinations</span></div>
+          <div>
+            <button id="stop" type="button" class="danger" disabled>Stop</button>
+            <button id="send" type="submit" class="primary">Send ⏎</button>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script type="module">
+    import * as webllm from 'https://esm.run/@mlc-ai/web-llm@0.2.79';
+
+    const $ = (sel) => document.querySelector(sel);
+
+    const els = {
+      backendSel: $('#backend'),
+      polliPanel: $('#polli-panel'),
+      polliMode: $('#polli-mode'),
+      polliModel: $('#polli-model'),
+      refreshPolli: $('#refresh-polli'),
+      imgW: $('#img-w'), imgH: $('#img-h'), imgModel: $('#img-model'), imgSeed: $('#img-seed'),
+      polliImgOpts: $('#polli-image-opts'),
+
+      webllmPanel: $('#webllm-panel'),
+      webllmModel: $('#webllm-model'),
+      refreshModels: $('#refresh-models'),
+      loadbar: $('#loadbar'),
+      loadstatus: $('#loadstatus'),
+
+      ollamaPanel: $('#ollama-panel'),
+      ollamaURL: $('#ollama-url'), ollamaModel: $('#ollama-model'),
+
+      lmstudioPanel: $('#lmstudio-panel'),
+      lmURL: $('#lmstudio-url'), lmModel: $('#lmstudio-model'),
+
+      customPanel: $('#custom-panel'),
+      customBase: $('#custom-base'), customKey: $('#custom-key'), customModel: $('#custom-model'),
+
+      system: $('#system'),
+      temp: $('#temperature'), tempOut: $('#tempOut'),
+      maxTokens: $('#maxTokens'), maxOut: $('#maxOut'),
+
+      messages: $('#messages'),
+      input: $('#input'), composer: $('#composer'),
+      send: $('#send'), stop: $('#stop'),
+      clear: $('#clear'), exportBtn: $('#export'), importBtn: $('#import'), importFile: $('#importFile'),
+      status: $('#status'), backendStatus: $('#backendStatus'),
+    };
+
+    const state = {
+      backend: localStorage.getItem('backend') || 'pollinations',
+      messages: [],
+      webllmEngine: null,
+      abortController: null,
+      streaming: false,
+    };
+
+    // UI helpers
+    function messageBubble(role){
+      const wrap = document.createElement('div');
+      wrap.className = `bubble ${role === 'user' ? 'me' : 'ai'}`;
+      const head = document.createElement('div'); head.className = 'msg-head';
+      head.innerHTML = `<span class="role">${role === 'user' ? 'You' : 'AI'}</span>`;
+      const body = document.createElement('div'); body.className = 'msg-body';
+      wrap.append(head, body); els.messages.appendChild(wrap);
+      els.messages.scrollTop = els.messages.scrollHeight;
+      return {wrap, body};
+    }
+    function typingIndicator(){
+      const t = document.createElement('div'); t.className = 'typing';
+      t.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+      return t;
+    }
+    function setPanels(){
+      const b = state.backend;
+      els.polliPanel.classList.toggle('hidden', b!=='pollinations');
+      els.webllmPanel.classList.toggle('hidden', b!=='webllm');
+      els.ollamaPanel.classList.toggle('hidden', b!=='ollama');
+      els.lmstudioPanel.classList.toggle('hidden', b!=='lmstudio');
+      els.customPanel.classList.toggle('hidden', b!=='custom');
+      els.backendStatus.textContent = b;
+      localStorage.setItem('backend', b);
+      els.polliImgOpts.classList.toggle('hidden', !(b==='pollinations' && els.polliMode.value==='image'));
+    }
+    function setStatus(msg){ els.status.textContent = msg || '' }
+    function persistSettings(){
+      const cfg = {
+        backend: state.backend,
+        polliModel: els.polliModel?.value,
+        polliMode: els.polliMode?.value,
+        webllmModel: els.webllmModel?.value,
+        ollamaURL: els.ollamaURL?.value, ollamaModel: els.ollamaModel?.value,
+        lmURL: els.lmURL?.value, lmModel: els.lmModel?.value,
+        customBase: els.customBase?.value, customModel: els.customModel?.value,
+        system: els.system.value, temperature: els.temp.value, maxTokens: els.maxTokens.value,
+        imgW: els.imgW?.value, imgH: els.imgH?.value, imgModel: els.imgModel?.value, imgSeed: els.imgSeed?.value
+      };
+      localStorage.setItem('freechat.settings', JSON.stringify(cfg));
+    }
+    function restoreSettings(){
+      const raw = localStorage.getItem('freechat.settings'); if (!raw) return;
+      try{
+        const c = JSON.parse(raw);
+        if (c.backend) state.backend = c.backend;
+        if (c.polliMode && els.polliMode) els.polliMode.value = c.polliMode;
+        if (c.polliModel && els.polliModel) els.polliModel.value = c.polliModel;
+        if (c.webllmModel && els.webllmModel) els.webllmModel.value = c.webllmModel;
+        if (c.ollamaURL && els.ollamaURL) els.ollamaURL.value = c.ollamaURL;
+        if (c.ollamaModel && els.ollamaModel) els.ollamaModel.value = c.ollamaModel;
+        if (c.lmURL && els.lmURL) els.lmURL.value = c.lmURL;
+        if (c.lmModel && els.lmModel) els.lmModel.value = c.lmModel;
+        if (c.customBase && els.customBase) els.customBase.value = c.customBase;
+        if (c.customModel && els.customModel) els.customModel.value = c.customModel;
+        if (c.system) els.system.value = c.system;
+        if (c.temperature) els.temp.value = c.temperature;
+        if (c.maxTokens) els.maxTokens.value = c.maxTokens;
+        if (c.imgW) els.imgW.value = c.imgW;
+        if (c.imgH) els.imgH.value = c.imgH;
+        if (c.imgModel) els.imgModel.value = c.imgModel;
+        if (c.imgSeed) els.imgSeed.value = c.imgSeed;
+        els.tempOut.textContent = els.temp.value;
+        els.maxOut.textContent = els.maxTokens.value;
+      }catch{}
+    }
+
+    // Model lists
+    async function populateWebLLMModels(){
+      try{
+        const list = (webllm?.prebuiltAppConfig?.model_list) || [];
+        els.webllmModel.innerHTML = '';
+        const items = list.length ? list.map(r => ({
+          id: r.model_id || r.model || r.name,
+          label: r.display_name || r.name || r.model
+        })) : [
+          {id:'Qwen2.5-1.5B-Instruct',label:'Qwen2.5 1.5B Instruct'},
+          {id:'Phi-2-q4f16_1-MLC',label:'Phi-2 (quantized)'},
+          {id:'Llama-3.1-8B-Instruct',label:'Llama 3.1 8B Instruct'}
+        ];
+        for(const it of items){ if(!it.id) continue;
+          const o=document.createElement('option'); o.value=it.id; o.textContent=it.label||it.id; els.webllmModel.appendChild(o);
+        }
+      }catch(e){ console.warn('WebLLM list failed', e); }
+    }
+    function normalizePolliEntry(x){
+      if (!x) return null;
+      if (typeof x === 'string') return {id:x, label:x};
+      if (typeof x !== 'object') return null;
+      const id = x.id || x.model || x.name || x.slug || (x.config && (x.config.id || x.config.model));
+      const label = x.display_name || x.displayName || x.title || x.label || id;
+      return id ? {id, label} : null;
+    }
+    async function populatePolliModels(){
+      if(!els.polliModel) return;
+      els.polliModel.innerHTML = '';
+      try{
+        const res = await fetch('https://text.pollinations.ai/models');
+        const data = await res.json();
+        let entries=[];
+        if (Array.isArray(data)) entries = data.map(normalizePolliEntry).filter(Boolean);
+        else if (data && typeof data === 'object'){
+          if (Array.isArray(data.models)) entries = data.models.map(normalizePolliEntry).filter(Boolean);
+          else entries = Object.entries(data).map(([k,v])=>normalizePolliEntry(v)||{id:k,label:k}).filter(Boolean);
+        }
+        if(!entries.length) entries=[{id:'openai',label:'openai (router)'},{id:'mistral',label:'mistral (router)'}];
+        for(const it of entries){
+          const o=document.createElement('option'); o.value=it.id; o.textContent=(typeof it.label==='string'?it.label:it.id); o.title=it.id; els.polliModel.appendChild(o);
+        }
+      }catch(e){
+        console.warn('Pollinations list failed', e);
+        for(const it of [{id:'openai',label:'openai (router)'},{id:'mistral',label:'mistral (router)'}]){
+          const o=document.createElement('option'); o.value=it.id; o.textContent=it.label; els.polliModel.appendChild(o);
+        }
+      }
+    }
+
+    // WebLLM
+    async function ensureWebLLM(modelId){
+      if(state.webllmEngine?.getModelId?.()===modelId) return state.webllmEngine;
+      if(state.webllmEngine?.unload) try{await state.webllmEngine.unload()}catch{}
+      const initProgressCallback = (p)=>{
+        const pct=Math.round((p.progress||0)*100);
+        els.loadbar.style.width=pct+'%';
+        els.loadstatus.textContent=(p.text||'Loading…')+` (${pct}%)`;
+      };
+      els.loadbar.style.width='0%'; els.loadstatus.textContent='Preparing…';
+      state.webllmEngine = await webllm.CreateMLCEngine(modelId, { initProgressCallback });
+      els.loadstatus.textContent = `Loaded ${modelId}`;
+      return state.webllmEngine;
+    }
+
+    // Chat flow
+    function collectMessages(next){
+      const msgs=[], sys=(els.system.value||'').trim();
+      if(sys) msgs.push({role:'system', content:sys});
+      for(const m of state.messages) msgs.push(m);
+      msgs.push({role:'user', content:next});
+      return msgs;
+    }
+
+    async function sendMessage(ev){
+      ev?.preventDefault?.();
+      if(state.streaming) return;
+      const content = els.input.value.trim(); if(!content) return;
+
+      const {body: userBody} = messageBubble('user'); userBody.textContent = content;
+      state.messages.push({role:'user', content}); els.input.value='';
+
+      const {body: aiBody} = messageBubble('assistant');
+      const dots = typingIndicator(); aiBody.appendChild(dots);
+
+      state.streaming = true; els.stop.disabled=false; els.send.disabled=true; setStatus('sending…');
+
+      const temperature = parseFloat(els.temp.value);
+      const max_tokens = parseInt(els.maxTokens.value,10);
+      const msgs = collectMessages(content);
+
+      try{
+        if (state.backend === 'pollinations') {
+          if (els.polliMode.value === 'image') {
+            await generatePolliImage(content, aiBody, dots);
+          } else {
+            await streamFromOpenAICompat(msgs, aiBody, dots, {
+              url: 'https://text.pollinations.ai/openai',
+              model: els.polliModel.value, temperature, max_tokens,
+              fallbackModels: ['openai','mistral'] // try these on 402/404
+            });
+          }
+        } else if (state.backend === 'webllm') {
+          await streamFromWebLLM(msgs, aiBody, dots, { temperature });
+        } else if (state.backend === 'ollama') {
+          await streamFromOllama(msgs, aiBody, dots);
+        } else if (state.backend === 'lmstudio') {
+          await streamFromOpenAICompat(msgs, aiBody, dots, {
+            url: els.lmURL.value.replace(/\/$/, ''),
+            model: els.lmModel.value, temperature, max_tokens
+          });
+        } else if (state.backend === 'custom') {
+          await streamFromOpenAICompat(msgs, aiBody, dots, {
+            url: (els.customBase.value||'').replace(/\/$/, '') + '/v1/chat/completions',
+            model: els.customModel.value, temperature, max_tokens,
+            headers: els.customKey.value ? { 'Authorization': `Bearer ${els.customKey.value}` } : {}
+          });
+        }
+      } catch (err) {
+        console.error(err);
+        dots.remove();
+        aiBody.textContent += `\n\n[Error] ${err.message || err}`;
+        setStatus(String(err.message || err));
+      } finally {
+        persistSettings();
+        state.streaming=false; els.stop.disabled=true; els.send.disabled=false; state.abortController=null;
+        setStatus('');
+      }
+    }
+
+    // Streaming adapters
+    async function streamFromWebLLM(messages, targetEl, dots, { temperature }){
+      if (!('gpu' in navigator)) { dots.remove(); targetEl.textContent='Your browser lacks WebGPU. Try Chrome/Edge ≥121 or use a local API.'; return; }
+      const engine = await ensureWebLLM(els.webllmModel.value);
+      const chunks = await engine.chat.completions.create({ messages, stream:true, temperature, stream_options:{ include_usage:true }});
+      let replied=false, out='';
+      for await (const ch of chunks){
+        const delta = ch.choices?.[0]?.delta?.content || '';
+        if (delta){
+          if(!replied){ dots.remove(); replied=true; }
+          out+=delta; targetEl.textContent = out;
+        }
+      }
+      if(!replied) dots.remove();
+      state.messages.push({ role:'assistant', content: targetEl.textContent });
+    }
+
+    async function streamFromOllama(messages, targetEl, dots){
+      const body = { model: els.ollamaModel.value, messages, stream:true };
+      state.abortController = new AbortController();
+      const res = await fetch(els.ollamaURL.value, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body), signal:state.abortController.signal });
+      if(!res.ok || !res.body) throw new Error(`Ollama error ${res.status}`);
+      const reader = res.body.getReader(); const decoder = new TextDecoder();
+      let buf='', out='', replied=false;
+      while(true){
+        const {value, done} = await reader.read(); if(done) break;
+        buf += decoder.decode(value, {stream:true});
+        let idx;
+        while((idx = buf.indexOf('\n')) >= 0){
+          const line = buf.slice(0, idx).trim(); buf = buf.slice(idx+1); if(!line) continue;
+          try{
+            const obj = JSON.parse(line);
+            const delta = obj?.message?.content || '';
+            if(delta){ if(!replied){dots.remove(); replied=true;} out+=delta; targetEl.textContent=out; }
+            if(obj?.done) break;
+          }catch{}
+        }
+      }
+      if(!replied) dots.remove();
+      state.messages.push({ role:'assistant', content: targetEl.textContent });
+    }
+
+    // Robust OpenAI-compatible client (SSE or JSON, error text, retry, fallback)
+    async function streamFromOpenAICompat(messages, targetEl, dots, { url, model, temperature, max_tokens, headers = {}, fallbackModels = [] }) {
+      const baseBody = { model, messages, temperature, max_tokens, stream: true };
+
+      async function withTimeout(promise, ms = 60000) {
+        let to; const timer = new Promise((_, rej) => (to = setTimeout(() => rej(new Error('Request timed out')), ms)));
+        try { return await Promise.race([promise, timer]); } finally { clearTimeout(to); }
+      }
+
+      async function attempt(body) {
+        state.abortController = new AbortController();
+        const res = await withTimeout(fetch(url, {
+          method:'POST', headers:{ 'Content-Type':'application/json', ...headers },
+          body: JSON.stringify(body), signal: state.abortController.signal
+        }));
+        return res;
+      }
+
+      async function handleResponse(res) {
+        const ctype = (res.headers.get('content-type') || '').toLowerCase();
+        if (!res.ok) {
+          let detail = '';
+          try { detail = (await res.text()).slice(0, 1000); } catch {}
+          throw new Error(`${res.status} ${res.statusText}${detail ? ' — ' + detail : ''}`);
+        }
+
+        // Non-SSE JSON fallback
+        if (!ctype.includes('text/event-stream')) {
+          let data;
+          try { data = await res.json(); } catch (_) { throw new Error(`Unexpected response (content-type: ${ctype}).`); }
+          const errMsg = data?.error?.message || data?.message;
+          if (errMsg) throw new Error(errMsg);
+          const text = data?.choices?.[0]?.message?.content ?? data?.choices?.[0]?.text ?? '';
+          dots.remove();
+          targetEl.textContent = (text || '').trim();
+          state.messages.push({ role:'assistant', content: targetEl.textContent });
+          return;
+        }
+
+        // SSE stream
+        const reader = res.body.getReader(); const decoder = new TextDecoder();
+        let buf='', out='', replied=false;
+        while(true){
+          const { value, done } = await reader.read(); if(done) break;
+          buf += decoder.decode(value, { stream:true });
+          const parts = buf.split(/\n\n/); buf = parts.pop() || '';
+          for(const chunk of parts){
+            const line = chunk.split('\n').find(l => l.startsWith('data:')) || '';
+            const data = line.replace(/^data:\s?/, '').trim();
+            if(!data || data === '[DONE]') continue;
+            try{
+              const obj = JSON.parse(data);
+              const err = obj?.error?.message || obj?.message;
+              if (err) throw new Error(err);
+              const delta = obj.choices?.[0]?.delta?.content || '';
+              if (delta){ if(!replied){ dots.remove(); replied=true; } out += delta; targetEl.textContent = out; }
+            }catch{}
+          }
+        }
+        if(!replied) dots.remove();
+        state.messages.push({ role:'assistant', content: targetEl.textContent });
+      }
+
+      // Try request; on 5xx retry once; on 402/404 try fallbacks
+      let body = { ...baseBody }, attempts = 0;
+      while (true) {
+        let res;
+        try { res = await attempt(body); }
+        catch (e) { throw e; }
+
+        if (!res.ok) {
+          const status = res.status;
+          let detail = '';
+          try { detail = (await res.text()).slice(0, 1000); } catch {}
+          if ([500,502,503,504].includes(status) && attempts === 0) {
+            attempts++; await new Promise(r => setTimeout(r, 900)); continue; // retry once
+          }
+          if ((status === 402 || status === 404) && fallbackModels.length) {
+            const next = fallbackModels.shift();
+            if (next) { body = { ...baseBody, model: next }; setStatus(`Model unavailable; falling back to "${next}"…`); continue; }
+          }
+          throw new Error(`OpenAI-compatible error ${status}${detail ? ' — ' + detail : ''}`);
+        }
+
+        await handleResponse(res);
+        break;
+      }
+    }
+
+    // Pollinations image generation
+    async function generatePolliImage(prompt, targetEl, dots){
+      const w = Math.max(64, Math.min(2048, parseInt(els.imgW.value||'768',10)));
+      const h = Math.max(64, Math.min(2048, parseInt(els.imgH.value||'768',10)));
+      const params = new URLSearchParams();
+      params.set('width', String(w)); params.set('height', String(h));
+      if (els.imgModel.value.trim()) params.set('model', els.imgModel.value.trim());
+      if (els.imgSeed.value.trim()) params.set('seed', els.imgSeed.value.trim());
+      const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?${params.toString()}`;
+
+      const img = document.createElement('img');
+      img.alt = 'Generating image…'; img.style.maxWidth='100%'; img.style.borderRadius='10px'; img.style.display='block';
+      targetEl.appendChild(img);
+
+      img.onload = () => { dots.remove(); img.alt='Generated image'; };
+      img.onerror = () => { dots.remove(); targetEl.appendChild(document.createTextNode('\n[Image failed to load]')); };
+      img.src = url;
+
+      state.messages.push({ role:'assistant', content: `![image](${url})` });
+    }
+
+    // Events
+    els.backendSel.addEventListener('change', ()=>{ state.backend = els.backendSel.value; setPanels(); persistSettings(); });
+    els.polliMode.addEventListener('change', ()=> setPanels());
+    els.refreshPolli?.addEventListener('click', populatePolliModels);
+    els.refreshModels?.addEventListener('click', populateWebLLMModels);
+    els.temp.addEventListener('input', ()=> els.tempOut.textContent = els.temp.value);
+    els.maxTokens.addEventListener('input', ()=> els.maxOut.textContent = els.maxTokens.value);
+    els.composer.addEventListener('submit', sendMessage);
+    els.stop.addEventListener('click', ()=>{ if(!state.streaming) return; state.streaming=false; state.abortController?.abort?.(); els.stop.disabled=true; els.send.disabled=false; setStatus('stopped'); });
+    els.clear.addEventListener('click', ()=>{ state.messages=[]; els.messages.innerHTML=''; setStatus('cleared'); });
+    els.exportBtn.addEventListener('click', ()=>{
+      const blob = new Blob([JSON.stringify({ messages: state.messages }, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob); const a=document.createElement('a');
+      a.href=url; a.download='chat.json'; a.click(); setTimeout(()=>URL.revokeObjectURL(url), 1000);
+    });
+    els.importBtn.addEventListener('click', ()=> els.importFile.click());
+    els.importFile.addEventListener('change', async (e)=>{
+      const f=e.target.files?.[0]; if(!f) return;
+      const text=await f.text();
+      try{
+        const data=JSON.parse(text);
+        state.messages = Array.isArray(data.messages) ? data.messages : [];
+        els.messages.innerHTML = '';
+        for(const m of state.messages){
+          const {body} = messageBubble(m.role);
+          const imgMatch = m.content.match(/^!\[image\]\((.+)\)$/);
+          if (imgMatch){
+            const url = imgMatch[1];
+            const img=document.createElement('img'); img.src=url; img.style.maxWidth='100%'; img.style.borderRadius='10px'; body.appendChild(img);
+          } else {
+            body.textContent = m.content;
+          }
+        }
+        setStatus('imported');
+      }catch{ setStatus('Invalid JSON'); }
+    });
+    [els.polliModel, els.webllmModel, els.ollamaURL, els.ollamaModel, els.lmURL, els.lmModel, els.customBase, els.customKey, els.customModel, els.system, els.imgW, els.imgH, els.imgModel, els.imgSeed]
+      .forEach(el => { el?.addEventListener('change', persistSettings); el?.addEventListener('input', ()=> setTimeout(persistSettings,0)); });
+
+    // Boot
+    restoreSettings();
+    els.backendSel.value = state.backend; setPanels();
+    await populateWebLLMModels();
+    await populatePolliModels();
+    // No welcome message by design
+  </script>
+</body>
+</html>
